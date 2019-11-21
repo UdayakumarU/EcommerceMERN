@@ -1,0 +1,14 @@
+#sticky-footer {
+    flex-shrink: none;
+  }
+  
+  /* Other Classes for Page Styling */
+  
+  .blue-gradient {
+    background: #007bff;
+    background: linear-gradient(to right, #0062E6, #33AEFF);
+  }
+
+  .card:hover{
+    box-shadow: #bbb 2px 3px 5px, #bbb 1px 2px 10px;
+  }
