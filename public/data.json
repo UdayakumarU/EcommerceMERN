@@ -1,0 +1,34 @@
+[
+    {
+      "productId": 1001,
+      "productName": "Yellow Jersey",
+      "productActualPrice": 499,
+      "discount": 10,
+      "productImage":
+        "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
+    },
+    {
+      "productId": 1001,
+      "productName": "Yellow Jersey",
+      "productActualPrice": 499,
+      "discount": 10,
+      "productImage":
+        "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
+    },
+    {
+      "productId": 1001,
+      "productName": "Yellow Jersey",
+      "productActualPrice": 499,
+      "discount": 10,
+      "productImage":
+        "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
+    },
+    {
+      "productId": 1001,
+      "productName": "Yellow Jersey",
+      "productActualPrice": 499,
+      "discount": 10,
+      "productImage":
+        "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
+    }
+  ]

@@ -1,47 +1,38 @@
 import React, { Component } from "react";
+import Card from "./card";
+import axios from "axios";
 
 class CartCard extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products: ""
+    };
+  }
+  componentDidMount() {
+    this.getProducts();
+  }
+  getProducts = () => {
+    axios
+      .get("./data.json")
+      .then(response => {
+        let data = response.data;
+        this.setState({
+          products: data.map((product, key) => (
+            <Card key={key} product={product} />
+          ))
+        });
+        console.log(this.state.products);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   render() {
-    let products = [
-      {
-        productId: 1001,
-        productName: "Yellow Jersey",
-        productActualPrice: 499,
-        discount: 10,
-        productImage:
-          "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-      },
-      {
-        productId: 1001,
-        productName: "Yellow Jersey",
-        productActualPrice: 499,
-        discount: 10,
-        productImage:
-          "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-      },
-      {
-        productId: 1001,
-        productName: "Yellow Jersey",
-        productActualPrice: 499,
-        discount: 10,
-        productImage:
-          "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-      },
-      {
-        productId: 1001,
-        productName: "Yellow Jersey",
-        productActualPrice: 499,
-        discount: 10,
-        productImage:
-          "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-      }
-    ];
     return (
       <React.Fragment>
-        <nav className="navbar navbar-dark text-dark blue-gradient" >
-          <a className="navbar-brand" href="#">
-            Brand Logo
-          </a>
+        <nav className="navbar navbar-dark text-dark blue-gradient">
+          <span className="navbar-brand">Brand Logo</span>
           <form className="form-inline">
             <input
               className="form-control mr-sm-2"
@@ -59,30 +50,18 @@ class CartCard extends Component {
 
         <div className="container">
           <div className="row">
-            {products.map(product => (
-              <div className="col-md-3">
-                <div className="card">
-                  <div className="card-body">
-                    <img
-                      src={product.productImage}
-                      className="card-img-top"
-                      alt={product.productName}
-                    />
-                  </div>
-                  <div className="card-footer blue-gradient">
-                    <h5>{product.productName}</h5>
-                    <h6>{product.productActualPrice}</h6>
-                    <h6>{product.discount}</h6>
-                  </div>
-                </div>
-              </div>
-            ))}
+              
+              {this.state.products}
           </div>
         </div>
 
-        <footer id="sticky-footer" className="py-4 bg-dark text-white-50" style={{ marginTop : "130px"}}>
+        <footer
+          id="sticky-footer"
+          className="py-4 bg-dark text-white-50"
+          style={{ marginTop: "130px" }}
+        >
           <div className="container text-center">
-            <small>Copyright &copy; Your Website</small>
+            <small>Copyright &copy; UdayShop</small>
           </div>
         </footer>
       </React.Fragment>
