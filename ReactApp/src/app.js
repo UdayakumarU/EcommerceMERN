@@ -1,12 +1,17 @@
 import React, { Component } from "react";
+import Header from "./header";
+import Footer from "./footer";
 import Card from "./card";
 import axios from "axios";
+import Error from "./error"
+// import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
 
-class CartCard extends Component {
+class Home extends Component {
   constructor() {
     super();
     this.state = {
-      products: ""
+      products: "",
+      error : ""
     };
   }
   componentDidMount() {
@@ -22,51 +27,25 @@ class CartCard extends Component {
             <Card key={key} product={product} />
           ))
         });
-        console.log(this.state.products);
       })
       .catch(error => {
-        console.log(error);
+      this.setState({ error :<Error message={error.message}/> });
       });
   };
   render() {
-    return (
+    return (  
       <React.Fragment>
-        <nav className="navbar navbar-dark text-dark blue-gradient">
-          <span className="navbar-brand">Brand Logo</span>
-          <form className="form-inline">
-            <input
-              className="form-control mr-sm-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-dark my-1 my-sm-0" type="submit">
-              Search
-            </button>
-          </form>
-        </nav>
-        <br />
-        <br />
-
+        <Header/>
         <div className="container">
           <div className="row">
-              
-              {this.state.products}
+              {this.state.products?this.state.products:this.state.error}
           </div>
         </div>
-
-        <footer
-          id="sticky-footer"
-          className="py-4 bg-dark text-white-50"
-          style={{ marginTop: "130px" }}
-        >
-          <div className="container text-center">
-            <small>Copyright &copy; UdayShop</small>
-          </div>
-        </footer>
+        <Footer/>
+        
       </React.Fragment>
     );
   }
 }
 
-export default CartCard;
+export default Home;
