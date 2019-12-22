@@ -31,11 +31,11 @@ app.get('/', (req,res)=>{
         },
         {
           "productId": 1001,
-          "productName": "Yellow Jersey",
+          "productName": "American Tourist Bag",
           "productActualPrice": 499,
           "discount": 10,
           "productImage":
-            "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
+            "https://shopsbazaar.com/wp-content/uploads/2019/08/618ZNI86PgL._SL1100_-600x600.jpg"
         }
       ]
     res.send(data);
