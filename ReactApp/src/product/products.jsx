@@ -12,7 +12,7 @@ class Products extends Component {
                         <Link to = {'/viewProduct/'+ product.productId}>
                             <div className="card-body">
                                 <img
-                                    src={product.productImage}
+                                    src={product.productImages[0]}
                                     className="card-img-top"
                                     alt={product.productName}
                                 />

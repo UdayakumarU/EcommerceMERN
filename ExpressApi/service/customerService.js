@@ -1,2 +1,22 @@
-// implement Actual services which mostly integrate more CRUD operations;
-//eg: createUser() = > 1. getuser() if not 2. createAccount() functions from customerDB.js
+const customerModel = require('./../model/customerDB');
+const customerService ={};
+
+customerService.insertScript = () => {
+    return customerModel.insertScript().then((response) => {
+        return response;
+    })
+}
+
+customerService.getAllProducts = () => {
+    return customerModel.getAllProducts().then((response) => {
+        return response;
+    })
+}
+
+customerService.getPrductById = productId => {
+    return customerModel.getPrductById(productId).then((response) => {
+        return response;
+    })
+}
+
+module.exports = customerService;

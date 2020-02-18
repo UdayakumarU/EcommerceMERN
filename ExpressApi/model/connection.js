@@ -1,8 +1,3 @@
-//create schema
-//connect to Mongo db and collection
-//return model object such as orders,customers,sellers,products etc.
-
-
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
@@ -39,16 +34,18 @@ const customersObj = {
 };
 
 const productsObj = {
-    "productId":{ type:Number, required:true },
+    "productId":{ type:String, required:true },
     "productName": {type:String, required: true },
-    "quantity": { type:Number, min:10, required: true },
-    "price": { type:Number, required: true },
+    "category": {type:String, required: true },
+    "subCategory": {type:String, required: true },
+    "productActualPrice": { type:Number, required: true },
     "discount": { type:Number, default:0 },
-    "highlights": {
-        type: [{type:String}],
-        default: []
-    },
+    "productQuantity": { type:Number, min:10, required: true },
     "description": {
+        type:String,
+        default:""
+    },
+    "highlights": {
         type: [{type:String}],
         default: []
     },
@@ -65,10 +62,10 @@ const productsObj = {
     "sellcount":{ type:Number, default:0 },
     "returnCount" : { type:Number, default:0 },
     "productImages" :{
-        type:[{ type:String, required:true }],
+        type:[{ type:String,required:true}],
         required : true
     },
-    "sellerId" :{ type:Number, required:true },
+    "sellerId" :{ type:String, required:true },
     "sizes" :{
         type : [{type : String, required:true}],
         default :[]
@@ -81,7 +78,7 @@ const productsObj = {
 
 const ordersObj = {
     "orderId":{ type:Number, required:true },
-    "customerId":{trpe : Number, required : true},
+    "customerId":{type : Number, required : true},
     "products": {
         type: [{
             "productId": { type: Number, required: true },
@@ -133,19 +130,18 @@ const ordersSchema = new Schema(ordersObj, { collection: "Orders", timestamps: t
 const sellersSchema = new Schema(sellersObj, { collection: "Sellers", timestamps: true });
 
 connection.getCollection = collectionName => {
-    return mongoose.connect("mongodb://localhost:27017/UkartShoppingDB", { useNewUrlParser: true }).then((db) => {
+    return mongoose.connect("mongodb://localhost:27017/UkartShoppingDB", {useNewUrlParser: true, useUnifiedTopology: true}).then((db) => {
         switch (collectionName){
-            case "Customers" :  return db.model(collectionName, customersSchema);
-            case "Products" :  return db.model(collectionName, productsSchema);
-            case "Orders" :  return db.model(collectionName, ordersSchema);
-            case "Sellers" :  return db.model(collectionName, sellersSchema);
+            case "Customers": return db.model(collectionName, customersSchema);
+            case "Products" : return db.model(collectionName, productsSchema);
+            case "Orders"   : return db.model(collectionName, ordersSchema);
+            case "Sellers"  : return db.model(collectionName, sellersSchema);
         }
     }).catch((err) => {
-        console.log(err.message);
         let error = new Error("Could not connect to database")
         error.status = 500
         throw error
     });
 }
 
-module.exports = connection
+module.exports = connection;

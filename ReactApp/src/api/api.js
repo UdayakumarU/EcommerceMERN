@@ -4,8 +4,8 @@ import {URL} from './../constant/URL';
 export const getProducts = () => {
     return axios.get(URL.GET_PRODUCT).then( ({ data })=>{
         return data;
-    }).catch( ({ message }) =>{
-        throw message;
+    }).catch( ({response,message}) =>{
+        throw response? response.data.errorMessage : message;
     });
 }
 

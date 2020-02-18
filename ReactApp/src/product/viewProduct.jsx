@@ -28,7 +28,7 @@ class ViewProduct extends React.Component {
         {this.state.selectedProduct && <div className="container top-space">
           <div className="row">
             <div className="col-md-4 col-sm-7">
-              <img className="img-thumbnail" src={this.state.selectedProduct.productImage} alt={this.state.selectedProduct.productName} />
+              <img className="img-thumbnail" src={this.state.selectedProduct.productImages[0]} alt={this.state.selectedProduct.productName} />
               <br /><br />
               <div className="row">
                 <div className="col-md-7">
