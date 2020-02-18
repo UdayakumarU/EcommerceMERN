@@ -1,44 +1,15 @@
 const express = require('express');
-const cors = require("cors")
+const cors = require("cors");
+const router = require("./routes/routing");
+const requestLogger = require("./utilites/requestLogger");
+const errorLogger = require("./utilites/errorLogger");
 const app = express();
+
 app.use(cors());
 
-app.get('/', (req,res)=>{
-    let data = [
-        {
-          "productId": 1001,
-          "productName": "Yellow Jersey",
-          "productActualPrice": 499,
-          "discount": 10,
-          "productImage":
-            "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-        },
-        {
-          "productId": 1001,
-          "productName": "Yellow Jersey",
-          "productActualPrice": 499,
-          "discount": 10,
-          "productImage":
-            "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-        },
-        {
-          "productId": 1001,
-          "productName": "Yellow Jersey",
-          "productActualPrice": 499,
-          "discount": 10,
-          "productImage":
-            "https://www.unived.in/wp-content/uploads/2018/02/unived-athlete-front-mens-t-shirt-600x600.jpg"
-        },
-        {
-          "productId": 1001,
-          "productName": "American Tourist Bag",
-          "productActualPrice": 499,
-          "discount": 10,
-          "productImage":
-            "https://shopsbazaar.com/wp-content/uploads/2019/08/618ZNI86PgL._SL1100_-600x600.jpg"
-        }
-      ]
-    res.send(data);
-})
+app.use(requestLogger);
+app.use('/customer',router);
+app.use(errorLogger);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT,()=> console.log(`Server started on port ${PORT}`));

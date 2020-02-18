@@ -9,7 +9,7 @@ class Footer extends Component {
                 style={{ marginTop: "130px" }}
             >
                 <div className="container text-center">
-                    <small>Copyright &copy; UdayShop</small>
+                    <small>Copyright &copy; ukart</small>
                 </div>
             </footer>
         );

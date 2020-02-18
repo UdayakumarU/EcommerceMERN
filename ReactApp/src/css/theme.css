@@ -3,14 +3,59 @@
   }
   
   /* Other Classes for Page Styling */
-  
+  .top-space{
+     margin-top : 50px
+    }
+
   .blue-gradient {
     background: #007bff;
     background: linear-gradient(to right, #0062E6, #33AEFF);
   }
 
-  .card:hover{
+  .product-card:hover{
     box-shadow: #bbb 2px 3px 8px, #bbb 1px 2px 10px;
     transition: box-shadow 250ms;
     cursor: pointer;
+  }
+  .blue-header{
+    color: rgb(58, 58, 58);
+  }
+
+  .blue-body{
+    color: rgb(36, 36, 36);
+    text-align: justify;
+  }
+  .price-text{
+    font-size: larger;
+    font-weight: 500;
+  }
+  .textover-line{
+    padding : 20px 0px;
+    text-align: center;
+  }
+  .align-straight{
+    vertical-align: 5px;
+  }
+  .nav-item{
+    padding: 0px 40px;
+  }
+ul .navbar-nav{
+    height: 10px;
+  }
+  
+  .animate-error {
+    animation-duration: 1.2s;
+    animation-name: slidein;
+  }
+  
+  @keyframes slidein {
+    from {
+      margin-top: -10%;
+      width: 300%; 
+    }
+  
+    to {
+      margin-top: 0%;
+      width: 100%;
+    }
   }
