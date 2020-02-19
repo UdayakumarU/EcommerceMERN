@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser'); 
 const cors = require("cors");
 const router = require("./routes/routing");
 const requestLogger = require("./utilites/requestLogger");
@@ -8,6 +9,7 @@ const app = express();
 app.use(cors());
 
 app.use(requestLogger);
+app.use(bodyParser.json());
 app.use('/customer',router);
 app.use(errorLogger);
 

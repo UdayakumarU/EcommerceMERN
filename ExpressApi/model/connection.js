@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 mongoose.set("useCreateIndex", true);
 
 const customersObj = {
-    "customerId":{ type:Number, required:true },
-    "customerName": {type: String, required: true },
+    "customerId":{ type:String, required:true },
+    "customerName": { type: String, required: true },
     "customerPassword": { type: String, required: true },
     "customerEmail": { type: String, required: true },
     "customerMobile": { type: Number },

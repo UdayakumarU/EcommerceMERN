@@ -1,19 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { loginCustomer } from "../api/api";
 
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emailId: '',
-      loginPassword: '',
+      customerEmail: '',
+      customerPassword: '',
       formErrors: {
-        emailIdErr: '',
-        loginPasswordErr: ''
+        customerEmailError: '',
+        customerPasswordError: ''
       },
       fieldValidity: {
-        emailId: false,
-        loginPassword: false
+        customerEmail: false,
+        customerPassword: false
       },
       formValid: false
     };
@@ -21,22 +22,22 @@ class Login extends Component {
 
   setFormValidity = () =>{
     this.setState({
-      formValid : this.state.fieldValidity.emailId && 
-                  this.state.fieldValidity.loginPassword
+      formValid : this.state.fieldValidity.customerEmail && 
+                  this.state.fieldValidity.customerPassword
     });
   }
 
-  getEmailId = event => {
-    let emailId = event.target.value;
+  getLoginEmail = event => {
+    let customerEmail = event.target.value;
     let formErrors = this.state.formErrors;
     let fieldValidity = this.state.fieldValidity;
-    this.setState({ emailId });
-    if(emailId.length > 0){
-      formErrors.emailIdErr = "";
-      fieldValidity.emailId = true;
+    this.setState({ customerEmail });
+    if(customerEmail.length > 0){
+      formErrors.customerEmailError = "";
+      fieldValidity.customerEmail = true;
     }else{
-      formErrors.emailIdErr = "Enter your email!";
-      fieldValidity.emailId = false;
+      formErrors.customerEmailError = "Enter your email!";
+      fieldValidity.customerEmail = false;
     }
       this.setState({formErrors});
       this.setState({ fieldValidity});
@@ -44,41 +45,46 @@ class Login extends Component {
   };
 
   getLoginPassword = event => {
-    let loginPassword = event.target.value;
+    let customerPassword = event.target.value;
     let formErrors = this.state.formErrors;
     let fieldValidity = this.state.fieldValidity;
-    this.setState({ loginPassword });
-    if(loginPassword.length > 0){
-      formErrors.loginPasswordErr = "";
-      fieldValidity.loginPassword = true;
+    this.setState({ customerPassword });
+    if(customerPassword.length > 0){
+      formErrors.customerPasswordError = "";
+      fieldValidity.customerPassword = true;
     }else{
-      formErrors.loginPasswordErr = "Enter your password!";
-      fieldValidity.loginPassword = false;
+      formErrors.customerPasswordError = "Enter your password!";
+      fieldValidity.customerPassword = false;
     }
     this.setState({ formErrors});
     this.setState({ fieldValidity});
     this.setFormValidity();
   };
 
-  handleSubmit= event =>{
+  handleSubmit = event =>{
     event.preventDefault();
     let formErrors = this.state.formErrors;
     let fieldValidity = this.state.fieldValidity;
-    if(this.state.emailId.length === 0){
-      formErrors.emailIdErr = "Enter your email!";
-      fieldValidity.emailId = false;
+    if(this.state.customerEmail.length === 0){
+      formErrors.customerEmailError = "Enter your email!";
+      fieldValidity.customerEmail = false;
     }
-    if(this.state.loginPassword.length === 0 ){
-      formErrors.loginPasswordErr = "Enter your password!";
-      fieldValidity.loginPassword = false;
+    if(this.state.customerPassword.length === 0 ){
+      formErrors.customerPasswordError = "Enter your password!";
+      fieldValidity.customerPassword = false;
     }
     this.setState({ formErrors});
     this.setState({ fieldValidity});
-    this.setState({formValid : fieldValidity.emailId && fieldValidity.loginPassword});
-
+    this.setFormValidity();
     if (this.state.formValid) {
-      console.log(this.state);
-    }
+      loginCustomer(this.state)
+        .then( response =>{ 
+          console.log(response);
+        })
+        .catch( errorMessage =>{
+          console.log(errorMessage);
+        })
+      }
   }
 
   render() {
@@ -95,11 +101,11 @@ class Login extends Component {
                   id="email-Id"
                   type="text"
                   className="form-control"
-                  onChange={this.getEmailId}
-                  value={this.state.emailId}
+                  onChange={this.getLoginEmail}
+                  value={this.state.customerEmail}
                   autoComplete= {"off"}
                 />
-                <small  className="text-danger">{this.state.formErrors.emailIdErr}</small>
+                <small  className="text-danger">{this.state.formErrors.customerEmailError}</small>
               </div>
 
               <div className="form-group">
@@ -109,9 +115,9 @@ class Login extends Component {
                   type="password"
                   className="form-control"
                   onChange={this.getLoginPassword}
-                  value={this.state.loginPassword}
+                  value={this.state.customerPassword}
                 />
-                <small className="text-danger">{this.state.formErrors.loginPasswordErr}</small>
+                <small className="text-danger">{this.state.formErrors.customerPasswordError}</small>
               </div><br/>
               
               <button type="submit" className={`btn ${enableButton} btn-block`}>

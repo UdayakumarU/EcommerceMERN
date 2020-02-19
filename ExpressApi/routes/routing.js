@@ -27,4 +27,22 @@ router.get('/products/:productId', (req, res, next) => {
   })
 });
 
+router.post('/create-account', (req, res, next) => {
+  console.log(req.body);
+  customerService.createCustomerAccount(req.body).then(response =>{
+    res.send(response);
+  }).catch( error =>{
+    next(error);
+  })
+});
+
+router.post('/login-customer', (req, res, next) => {
+  console.log(req.body);
+  customerService.loginCustomer(req.body).then(response =>{
+    res.send(response);
+  }).catch( error =>{
+    next(error);
+  })
+});
+
 module.exports = router;

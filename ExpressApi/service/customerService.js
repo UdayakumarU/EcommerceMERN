@@ -1,4 +1,5 @@
 const customerModel = require('./../model/customerDB');
+const Creator = require('../model/objectCreator')
 const customerService ={};
 
 customerService.insertScript = () => {
@@ -19,4 +20,16 @@ customerService.getPrductById = productId => {
     })
 }
 
+customerService.createCustomerAccount = accountDetails => {
+    const customerDetails = new Creator.Customer('CU1001',accountDetails); 
+    return customerModel.createCustomerAccount(customerDetails).then((response) => {
+        return response;
+    })
+}
+
+customerService.loginCustomer = loginDetails => {
+    return customerModel.loginCustomer(loginDetails).then((response) => {
+        return response;
+    })
+}
 module.exports = customerService;

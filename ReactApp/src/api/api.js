@@ -16,3 +16,24 @@ export const getProductById = (productId) => {
         throw response? response.data.errorMessage : message;
     });
 }
+
+export const createCustomerAccount = accountDetails => {
+    const {customerName,customerEmail,customerMobile,customerPassword} = accountDetails;
+    return axios.post(URL.CREATE_CUSTOMER_ACCOUNT,{customerName,customerEmail,customerMobile,customerPassword})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}
+
+
+export const loginCustomer = loginDetails => {
+    const {customerEmail,customerPassword} = loginDetails;
+    return axios.post(URL.LOGIN_CUSTOMER,{customerEmail,customerPassword})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}

@@ -135,4 +135,30 @@ customerModel.getPrductById = productId => {
         }) 
     })
 }
+
+customerModel.createCustomerAccount = accountDetails => {
+  return collection.getCollection("Customers").then((model) => {
+      return model.create(accountDetails).then((response) => {
+          if(response) return response;
+          else{
+              let err = new Error("Account not created.Please! try Later");
+              err.status = 500;
+              throw err;
+          }
+      }) 
+  })
+}
+
+customerModel.loginCustomer = loginDetails => {
+  return collection.getCollection("Customers").then((model) => {
+      return model.findOne(loginDetails).then((response) => {
+          if(response) return "Welcome " + response.customerName;
+          else{
+              let err = new Error("Invalid email or password");
+              err.status = 401;
+              throw err;
+          }
+      }) 
+  })
+}
 module.exports = customerModel;
