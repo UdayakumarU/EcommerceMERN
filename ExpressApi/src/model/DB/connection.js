@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const {COLLECTION_NAME} = require('../../keys/constant');
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
+
 mongoose.set("useCreateIndex", true);
 
 const customersObj = {
@@ -21,15 +23,16 @@ const customersObj = {
         default: []
     },
     "uCurrency": { type : Number, default : 10 },
-    "address":{
-        type:{
+    "addresses":{
+        type:[{
             "doorNumber":{ type : String},
-            "street":{ type : String, required:true},
-            "city" : { type : String , required:true},
-            "State":{type : String,required:true},
-            "pincode":{ type : Number, required:true}
-            },
-        default : {}
+            "street":{ type : String, required:[true,"street is required"]},
+            "city" : { type : String , required:[true,"City is required"]},
+            "state":{type : String,required:[true,"State is required"]},
+            "pincode":{ type : Number, required:[true,"Pincode is required"]},
+            "addressType":{ type: String, enum:['H','W']}
+            }],
+        default : []
     }
 };
 
@@ -84,8 +87,10 @@ const ordersObj = {
             "productId": { type: Number, required: true },
             "quantity": { type: Number, min: 1, required: true }
         }],
-        default: []
+        required : true
     },
+    "orderPrice":{type : Number, required: true},
+    "paymentType":{type : String, required: true},
     "status": { type : String, required: true},
     "deliveryAddress":{
         type:{
@@ -95,10 +100,10 @@ const ordersObj = {
             "State":{type : String,required:true},
             "pincode":{ type : Number, required:true}
             },
-        default : {}
+        required : true
     },
     "orderDate":{ type: Date, required :true },
-    "deliveredDate":{ type: Date }
+    "deliveredDate":{ type: Date, required:true }
 };
 
 const sellersObj = {
@@ -130,14 +135,15 @@ const ordersSchema = new Schema(ordersObj, { collection: "Orders", timestamps: t
 const sellersSchema = new Schema(sellersObj, { collection: "Sellers", timestamps: true });
 
 connection.getCollection = collectionName => {
-    return mongoose.connect("mongodb://localhost:27017/UkartShoppingDB", {useNewUrlParser: true, useUnifiedTopology: true}).then((db) => {
+    return mongoose.connect("mongodb://localhost:27017/UkartShoppingDB", 
+    {useNewUrlParser: true, useUnifiedTopology: true}).then((db) => {
         switch (collectionName){
-            case "Customers": return db.model(collectionName, customersSchema);
-            case "Products" : return db.model(collectionName, productsSchema);
-            case "Orders"   : return db.model(collectionName, ordersSchema);
-            case "Sellers"  : return db.model(collectionName, sellersSchema);
+            case COLLECTION_NAME.CUSTOMERS: return db.model(collectionName, customersSchema);
+            case COLLECTION_NAME.PRODUCTS : return db.model(collectionName, productsSchema);
+            case COLLECTION_NAME.ORDERS   : return db.model(collectionName, ordersSchema);
+            case COLLECTION_NAME.SELLERS  : return db.model(collectionName, sellersSchema);
         }
-    }).catch((err) => {
+    }).catch(err => {
         let error = new Error("Could not connect to database")
         error.status = 500
         throw error

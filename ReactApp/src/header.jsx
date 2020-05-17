@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RoutingComponent from './routingComponent';
-
+import Logout from './login/logout';
 
 class Header extends Component {
   render() {
+    const {toggleLogin,isCustomerLoggedin,setCustomerLogin} = this.props;
     return (
       <React.Fragment>
         <nav className="navbar navbar-dark text-dark blue-gradient">
-          <Link to={'/'}><span className="navbar-brand"><h4>UKart</h4></span> </Link>
+          <Link to={'/'}  onClick={()=>toggleLogin(false) }>
+            <img src={"../logo.png"} alt="UKART" style={{width:"10rem"}} className="img-responsive" />
+          </Link>
           <form className="form-inline">
             <input
               className="form-control mr-sm-0"
@@ -20,7 +23,10 @@ class Header extends Component {
               <i className="material-icons" style={{ float: "left" }}>search</i>
             </button>
           </form>
-          <Link to={'/login'}> <button className="btn btn-outline-dark">Login</button></Link>
+         {isCustomerLoggedin?
+          <Logout setCustomerLogin = {setCustomerLogin} /> :
+          <Link to={'/login'}> <button className="btn btn-outline-dark" onClick={() => toggleLogin(true) }>Login</button></Link>
+          }
         </nav>
         <RoutingComponent />
       </React.Fragment>

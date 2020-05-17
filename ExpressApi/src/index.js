@@ -1,7 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser'); 
 const cors = require("cors");
-const router = require("./routes/routing");
+
+const userAccountRouter = require("./routes/userAccount.routes");
+const productRouter = require("./routes/product.routes");
+
 const requestLogger = require("./utilites/requestLogger");
 const errorLogger = require("./utilites/errorLogger");
 const app = express();
@@ -10,7 +13,8 @@ app.use(cors());
 
 app.use(requestLogger);
 app.use(bodyParser.json());
-app.use('/customer',router);
+app.use('/account',userAccountRouter);
+app.use('/products',productRouter);
 app.use(errorLogger);
 
 const PORT = process.env.PORT || 5000;

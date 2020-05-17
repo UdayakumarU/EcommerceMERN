@@ -2,6 +2,7 @@ import React from 'react';
 import * as APICalls from './../api/api'
 import {calculatePrice,calculateYouSave} from "./../utils/util";
 import Error from "./../error";
+import Spinner from '../spinner';
 
 class ViewProduct extends React.Component {
   constructor(){
@@ -25,7 +26,8 @@ class ViewProduct extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {this.state.selectedProduct && <div className="container top-space">
+        {this.state.selectedProduct === ""?<div style={{marginBottom:"15rem", marginTop:"15rem"}}><Spinner/></div>:
+         <div className="container top-space">
           <div className="row">
             <div className="col-md-4 col-sm-7">
               <img className="img-thumbnail" src={this.state.selectedProduct.productImages[0]} alt={this.state.selectedProduct.productName} />
