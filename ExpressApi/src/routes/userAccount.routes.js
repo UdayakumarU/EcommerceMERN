@@ -40,6 +40,25 @@ userAccountRouter.put("/update-password/:customerId", userAuth, (req, res, next)
         .catch(error => next(error));
 });
 
+userAccountRouter.put("/add-to-cart/:productId", userAuth, (req, res, next) => {
+    userAccountService.addToCart(req.auth.customerId, req.params.productId)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
+userAccountRouter.put("/delete-from-cart/:productId", userAuth, (req, res, next) => {
+    userAccountService.deleteFromCart(req.auth.customerId, req.params.productId)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
+//make sure UI send only +ve Interger in quantity
+userAccountRouter.put("/update-cart/:productId/:quantity", userAuth, (req, res, next) => {
+    userAccountService.updateCart(req.auth.customerId, req.params.productId, req.params.quantity)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
 //Remove in production
 userAccountRouter.get("/get-all-customers", (req, res, next) => {
     userAccountService.getAllCustomers()

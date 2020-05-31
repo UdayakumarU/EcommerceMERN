@@ -1,12 +1,13 @@
-const COLLECTION_NAME={
+const COLLECTION_NAME = {
     PRODUCTS:"Products",
     CUSTOMERS:"Customers",
     ORDERS:"Orders",
     SELLERS:"Sellers"
 };
 
-const ID_PREFIX ={
-    CUSTOMER:"CU"
+const ID_PREFIX = {
+    CUSTOMER:"CU",
+    ORDER:"OR"
 }
 
 const JWT_KEY = {

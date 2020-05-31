@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
 mongoose.set("useCreateIndex", true);
+mongoose.set('useFindAndModify', false);
 
 const customersObj = {
     "customerId":{ type:String, required:true },
@@ -13,13 +14,13 @@ const customersObj = {
     "customerMobile": { type: Number },
     "cart": {
         type: [{
-            "productId": { type: Number, required: true },
+            "productId": { type: String, required: true },
             "quantity": { type: Number, min: 1, required: true }
         }],
         default: []
     },
     "orders": {
-        type: [{ "orderId": { type: Number, required: true } }],
+        type: [{ type: String, required: true }],
         default: []
     },
     "uCurrency": { type : Number, default : 10 },
@@ -55,7 +56,7 @@ const productsObj = {
     "rating": { type:Number, default:1, min:1, max:5 },
     "reviews": {
         type: [{
-            "customerId":{ type:Number, required:true},
+            "customerId":{ type:String, required:true},
             "comment":{ type:String, required:true},
             "rating":{ type:Number, min:1, max:5, required:true },
             "reviewDate":{type:Date, required:true}
@@ -80,11 +81,11 @@ const productsObj = {
 };
 
 const ordersObj = {
-    "orderId":{ type:Number, required:true },
-    "customerId":{type : Number, required : true},
+    "orderId":{ type:String, required:true },
+    "customerId":{type : String, required : true},
     "products": {
         type: [{
-            "productId": { type: Number, required: true },
+            "productId": { type: String, required: true },
             "quantity": { type: Number, min: 1, required: true }
         }],
         required : true
@@ -97,7 +98,7 @@ const ordersObj = {
             "doorNumber":{ type : String},
             "street":{ type : String, required:true},
             "city" : { type : String , required:true},
-            "State":{type : String,required:true},
+            "state":{type : String,required:true},
             "pincode":{ type : Number, required:true}
             },
         required : true
@@ -107,13 +108,13 @@ const ordersObj = {
 };
 
 const sellersObj = {
-    "sellerId":{ type:Number, required:true },
+    "sellerId":{ type:String, required:true },
     "companyName": {type: String, required: true },
     "sellerPassword": { type: String, required: true },
     "sellerEmail": { type: String, required: true },
     "sellerMobile": { type: Number },
     "products": {
-        type: [{ "productId": { type: Number, required: true } }],
+        type: [{ "productId": { type: String, required: true } }],
         default: []
     },
     "address":{
@@ -121,7 +122,7 @@ const sellersObj = {
             "doorNumber":{ type : String},
             "street":{ type : String, required:true},
             "city" : { type : String , required:true},
-            "State":{type : String,required:true},
+            "state":{type : String,required:true},
             "pincode":{ type : Number, required:true}
             },
         default : {}

@@ -43,12 +43,12 @@ userAccountService.loginCustomer = async loginDetails  => {
             const isMatch = await bycrypt.compare(loginDetails.customerPassword, customerdata.customerPassword);
             if (isMatch) {
                 const message = "Logged in successfully";
-                const payload = { customerEmail: loginDetails.customerEmail };
-                const token = "Bearer " + jwt.sign(payload, JWT_KEY.SECRET, { expiresIn: 300 });
+                const payload = { customerId: customerdata.customerId, customerEmail: customerdata.customerEmail };
+                const token = "Bearer " + jwt.sign(payload, JWT_KEY.SECRET, { expiresIn: 30000 });
                 const customerData = {  
-                                        id: customerdata.customerId,
+                                        customerId: customerdata.customerId,
                                         cart: customerdata.cart,
-                                        name: customerdata.customerName,
+                                        customerName: customerdata.customerName,
                                     }
                 return { message, token, customerData}
             }
@@ -92,6 +92,44 @@ userAccountService.updateCustomerPassword = (customerId,{currentPassword, newPas
         });
 }
 
+
+userAccountService.addToCart = (customerId, productId) => {
+    console.log(customerId,productId);
+    return customersModel.isProductExistInCart(customerId, productId)
+        .then(isExist => {
+            console.log(isExist);
+            if(!isExist) return customersModel.addToCart(customerId, {productId,quantity:1})
+            return {message : "Product added already"}
+        })
+        .then(response => {
+            if(response) return response;
+            throw new ApiError("Product not added to cart. Please! try Later", 500);
+        });   
+}
+
+userAccountService.deleteFromCart = (customerId, productId) => {
+    return customersModel.isProductExistInCart(customerId, productId)
+        .then(isExist => {
+            if(isExist) return customersModel.deleteFromCart(customerId,productId)
+            return {message : "Product removed already"}
+        })
+        .then(response => {
+            if(response) return response;
+            throw new ApiError("Product not removed from cart. Please! try Later", 500);
+        });
+}
+
+userAccountService.updateCart = (customerId, productId, quantity) => {
+    return customersModel.isProductExistInCart(customerId, productId)
+    .then(isExist => {
+        if(isExist && quantity > 0) return customersModel.updateCart(customerId, productId,quantity)
+        return {message : "Product not available to update"}
+    })
+    .then(response => {
+        if(response) return response;
+        throw new ApiError("Can't update cart. Please! try Later", 500);
+    });
+}
 //Remove in production
 userAccountService.getAllCustomers = loginDetails => {
     return customersModel.getAllCustomers(loginDetails)

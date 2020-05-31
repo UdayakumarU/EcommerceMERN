@@ -49,6 +49,57 @@ customersModel.setCustomerPassword = (customerId, newPassword)  => {
         .then(response =>  response);
 }
 
+customersModel.isProductExistInCart = (customerId, productId) => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOne({ "customerId" : customerId, "cart.productId" : productId }))
+        .then(response => response?true:false);
+}
+
+customersModel.addToCart = (customerId, cartObj) => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOneAndUpdate(
+            { customerId },
+            { "$push": { "cart": cartObj } },
+            { new: true, rawResult: true, runValidators: true }))
+        .then(response => response);
+}
+
+customersModel.deleteFromCart = (customerId, productId) => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOneAndUpdate(
+            { customerId },
+            { "$pull": { "cart": { productId } } },
+            { new: true, rawResult: true, runValidators: true }))
+        .then(response => response);
+}
+
+customersModel.updateCart = (customerId, productId, updatedQuantity) => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOneAndUpdate(
+            { customerId, "cart.productId": productId},
+            { "$set": { "cart.$.quantity":updatedQuantity } },
+            { new: true, rawResult: true, runValidators: true }))
+        .then(response => response);
+}
+
+customersModel.deleteCartByCustomerId = customerId => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOneAndUpdate(
+            { customerId },
+            { "$set": { "cart": [] } },
+            { new: true, rawResult: true, runValidators: true }))
+        .then(response => response);
+}
+
+customersModel.addOrderId = (customerId,orderId)  => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOneAndUpdate(
+            { customerId },
+            { "$push": { "orders": orderId } },
+            { new: true, rawResult: true, runValidators: true }))
+        .then(response => response);
+}
+
 //Remove in production
 customersModel.getAllCustomers = () => {
   return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
