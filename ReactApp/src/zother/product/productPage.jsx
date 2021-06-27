@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Banner from './../banner';
-import * as APICalls from './../api/api';
-import Products from './../product/products';
-import Error from './../error';
-import Spinner from '../spinner';
+import * as APICalls from '../../api/api';
+import Products from './products';
+import Error from '../../error';
+import Spinner from '../../components/spinner';
 
 class ProductPage extends Component {
     constructor() {

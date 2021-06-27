@@ -1,8 +1,8 @@
 import React from 'react';
-import * as APICalls from './../api/api'
-import {calculatePrice,calculateYouSave} from "./../utils/util";
-import Error from "./../error";
-import Spinner from '../spinner';
+import * as APICalls from '../../api/api'
+import {calculatePrice,calculateYouSave} from "../../utils/util";
+import Error from "../../error";
+import Spinner from '../../components/spinner';
 
 class ViewProduct extends React.Component {
   constructor(){

@@ -12,6 +12,10 @@
 /build
 /logs
 package-lock.json
+
+#src
+/src/logs
+
 # misc
 .DS_Store
 .env.local

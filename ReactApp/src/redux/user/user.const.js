@@ -1,0 +1,7 @@
+const USER_CONST = {
+    LOGIN_USER : "LOGIN",
+    LOGOUT_USER : "LOGOUT",
+    CREATE_ACCOUNT : "CREATE_ACC"
+}
+
+export default USER_CONST;

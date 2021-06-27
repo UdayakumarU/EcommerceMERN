@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {URL} from './../constant/URL';
+import {URL} from './api.const';
 
 export const getProducts = () => {
     return axios.get(URL.GET_PRODUCT).then( ({ data })=>{

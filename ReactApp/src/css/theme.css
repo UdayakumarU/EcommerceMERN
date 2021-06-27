@@ -1,3 +1,60 @@
+._text_sm{
+  font-size: smaller;
+}
+._text_sm_dark{
+  font-size: smaller;
+  font-weight: 600;
+}
+._text_sm_light{
+  font-size: smaller;
+  opacity: 0.7;
+}
+
+._vertical_space{
+  margin-bottom: 40px;
+}
+._vertical_top_space{
+  margin-top: 20px;
+}
+
+._primary_bg{
+  background-color: #FFCA28;
+  background : linear-gradient(to top, #ffca28, #ffd045, #ffd65d, #ffe595, #ffedb7);
+  color:#000;
+}
+button._primary_bg:hover{
+  background-color: #fac011;
+  background : linear-gradient(to top, #fac011, #ffcd39, #ffd452, #ffdd78, #ffe7a0);
+}
+button._primary_bg:focus {
+  outline: none;
+  box-shadow:  0 0 0 1px rgb(250, 192, 17);
+}
+
+._secondary_bg{
+  background-color: #e7e7e7;
+  background : linear-gradient(to top, #e7e7e7, #f7f7f7, #fafafa);
+  color:#000;
+}
+._secondary_bg:hover{
+  background-color: #e0e0e0;
+  background : linear-gradient(to top, #e0e0e0, #f0f0f0, #f5f5f5);
+}
+._secondary_bg:focus {
+  outline: none;
+  box-shadow:  0 0 0 1px rgb(172, 172, 172);
+}
+
+._cut_text{ 
+  width: 190px; 
+  overflow: hidden; 
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
 #sticky-footer {
     flex-shrink: none;
   }
@@ -6,7 +63,9 @@
   .top-space{
      margin-top : 40px;
     }
-
+  .bottom-space{
+    margin-bottom: 20px;
+  }
   .blue-gradient {
     background: #007bff;
     background: linear-gradient(to right, #0062E6, #33AEFF);

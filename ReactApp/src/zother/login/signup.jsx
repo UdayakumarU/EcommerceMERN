@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {createCustomerAccount} from '../api/api';
+import {createCustomerAccount} from '../../api/api';
 class Signup extends Component {
   constructor(props) {
     super(props);
