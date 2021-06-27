@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { calculatePriceAfterDiscount, calculateSavingPrice } from "../utils/util";
+
 export default class ProductRightSection extends Component {
     render() {
         const { productName, rating, productActualPrice, discount, description, highlights } = this.props.product;
@@ -15,11 +17,17 @@ export default class ProductRightSection extends Component {
                   </tr>
                   <tr>
                     <td>Price </td>
-                    {/* <td>: <span className="price-text blue-body">&#8377; {calculatePrice(productActualPrice, discount)}</span></td> */}
+                    <td>: <span className="price-text blue-body">
+                            &#8377; {calculatePriceAfterDiscount(productActualPrice, discount)}
+                          </span>
+                    </td>
                   </tr>
                   <tr>
                     <td>You Save </td>
-                    {/* <td>: <span className="blue-body">&#8377; {calculateYouSave(productActualPrice, discount)} ({discount}%)</span></td> */}
+                    <td>: <span className="blue-body">
+                            &#8377; {calculateSavingPrice(productActualPrice, discount)} ({discount}%)
+                          </span>
+                    </td>
                   </tr>
                 </tbody>
               </table><br/>
