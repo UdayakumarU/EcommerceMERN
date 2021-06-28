@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
-import Login from "../section/login";
-import Signup from "../section/signup";
+import Login from "../components/loginSignup/login";
+import Signup from "../components/loginSignup/signup";
 
 const LoginSignupPage = () => {
     const {path} = useRouteMatch();

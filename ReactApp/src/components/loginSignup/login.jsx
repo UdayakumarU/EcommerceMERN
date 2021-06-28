@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { Tile, Field } from "../library"; 
-import { loginUser } from "../redux/user/user.action";
+import { Tile, Field } from "../../library"; 
+import { loginUser } from "../../redux/user/user.action";
 
 const mapDispatchToProps = dispatch =>({
     loginUser : (user) => dispatch(loginUser(user))

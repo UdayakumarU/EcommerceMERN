@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 
-import { Tile } from  '../library';
-import { addHomeProducts } from "../redux/product/product.action";
-import { getHomeProducts } from "../redux/product/product.selector";
-import ProductOverview from "../components/productOverview";
-import * as api from "../api/api.js";
+import { Tile } from  '../../library';
+import { addHomeProducts } from "../../redux/product/product.action";
+import { getHomeProducts } from "../../redux/product/product.selector";
+import ProductOverview from "../product/productOverview";
+import * as api from "../../api/api.js";
 
 const mapDispatchToProps = dispatch =>({
     addHomeProducts : (products) => dispatch(addHomeProducts(products))

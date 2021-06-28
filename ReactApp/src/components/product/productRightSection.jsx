@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { calculatePriceAfterDiscount, calculateSavingPrice } from "../utils/util";
+import { calculatePriceAfterDiscount, calculateSavingPrice } from "../../utils/util";
 
 export default class ProductRightSection extends Component {
     render() {

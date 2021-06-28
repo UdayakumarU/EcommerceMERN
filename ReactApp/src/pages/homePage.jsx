@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Banner from "../core-components/banner";
 
-import Footer from "../section/footer";
-import Header from "../section/header";
-import Directory from "../section/directory";
-import Products from "../section/products";
+import Footer from "../components/misc/footer";
+import Header from "../components/misc/header";
+import Directory from "../components/misc/directory";
+import Products from "../components/misc/products";
 
 const caroselitems = [
     {imageUrl:"./banners/banner1.jpg", altName:"First slide"},

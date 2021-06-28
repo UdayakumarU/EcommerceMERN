@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 
 import ProductLeftSection from "./productLeftSection";
 import ProductRightSection from "./productRightSection";
-import { getSelectedProduct } from "../redux/product/product.selector";
-import { isNotEmpty } from "../utils/modelutils";
+import { getSelectedProduct } from "../../redux/product/product.selector";
+import { isNotEmpty } from "../../utils/modelutils";
 
 const mapStateToProps = (state) => ({
     product : getSelectedProduct(state)

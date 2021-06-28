@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Tile } from  '../library';
+import { Tile } from  '../../library';
 
 class ProductOverview extends Component{
     render(){

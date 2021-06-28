@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getSections } from "../redux/directory/directory.selector";
+import { getSections } from "../../redux/directory/directory.selector";
 
 const mapStateToProps = state =>({
     sections : getSections(state)

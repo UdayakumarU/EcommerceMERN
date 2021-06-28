@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Footer from "../section/footer";
-import Header from "../section/header";
-import Directory from "../section/directory";
-import ProductDetails from "../components/productDetails";
+import Footer from "../components/misc/footer";
+import Header from "../components/misc/header";
+import Directory from "../components/misc/directory";
+import ProductDetails from "../components/product/productDetails";
 import * as api from "../api/api.js";
 
 import { setCurrentProduct } from "../redux/product/product.action";
