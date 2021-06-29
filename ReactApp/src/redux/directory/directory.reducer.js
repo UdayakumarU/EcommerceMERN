@@ -1,35 +1,28 @@
 const INITIAL_STATE = {sections: [
     {
-      title: "hats",
-      imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
+      title: "fashion",
       id: 1,
-      linkUrl: "shop/hats"
+      linkUrl: "shop/fashion"
     },
     {
-      title: "jackets",
-      imageUrl: "https://i.ibb.co/px2tCc3/jackets.png",
+      title: "electronics",
       id: 2,
-      linkUrl: "shop/jackets"
+      linkUrl: "shop/electronics"
     },
     {
-      title: "sneakers",
-      imageUrl: "https://i.ibb.co/0jqHpnp/sneakers.png",
+      title: "appliances",
       id: 3,
-      linkUrl: "shop/sneakers"
+      linkUrl: "shop/appliances"
     },
     {
-      title: "womens",
-      imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
-      size: "large",
+      title: "home",
       id: 4,
-      linkUrl: "shop/womens"
+      linkUrl: "shop/home"
     },
     {
-      title: "mens",
-      imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
-      size: "large",
+      title: "toys",
       id: 5,
-      linkUrl: "shop/mens"
+      linkUrl: "shop/toys"
     }
   ]};
 
