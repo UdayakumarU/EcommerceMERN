@@ -5,20 +5,27 @@ import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
 import ProductDetails from "../components/product/productDetails";
-import * as api from "../api/api.js";
+import { getProductById } from "../utils/util";
 
 import { setCurrentProduct } from "../redux/product/product.action";
+import { getHomeProducts } from "../redux/product/product.selector";
 
-const mapDispatchToProps = dispatch =>({
+const mapStateToProps = (state, props) => {
+    const availableProducts = getHomeProducts(state);
+    const selectedProduct = getProductById(availableProducts, props.match.params.productId);
+    return { selectedProduct };
+};
+
+const mapDispatchToProps = (dispatch) =>({
     setCurrentProduct : (selectedProduct) => dispatch(setCurrentProduct(selectedProduct))
 });
 
 class ProductPage extends Component {
     componentDidMount(){
-        api.getProductById(this.props.match.params.productId).then( response => {
-            this.props.setCurrentProduct(response);
-        });
+        const { setCurrentProduct, selectedProduct } = this.props;
+        setCurrentProduct(selectedProduct); // need to persist this else lose it on page refresh
     }
+
     render(){
         return (
             <React.Fragment>
@@ -31,4 +38,4 @@ class ProductPage extends Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(ProductPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

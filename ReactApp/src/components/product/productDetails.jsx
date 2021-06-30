@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({
     product : getSelectedProduct(state)
 });
 
-class ProductPage extends Component {
+class ProductDetails extends Component {
     render(){
         const { product } = this.props;
         return ( 
@@ -30,4 +30,4 @@ class ProductPage extends Component {
     }
 }
 
-export default connect(mapStateToProps)(ProductPage);
+export default connect(mapStateToProps)(ProductDetails);
