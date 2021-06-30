@@ -1,20 +1,25 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
 
-import { getSections } from "../../redux/directory/directory.selector";
+import { getCategories } from "../../redux/directory/directory.selector";
 
 const mapStateToProps = state =>({
-    sections : getSections(state)
+    categories : getCategories(state)
 });
 
-const Directory = ({sections}) => {
+const Directory = ({categories}) => {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg navbar-expand-lg">
             <ul className="navbar-nav text-md-center nav-justified w-100">
             {
-                sections.map((section, index) => (
-                    <li className={`nav-item ${index === 0 ? 'active' : ''}`} key={index}>
-                        <a className="nav-link" href="/">{section.title.toUpperCase()}</a>
+                categories.map((category) => (
+                    <li className="nav-item" key={category.title}>
+                        <Link 
+                            className="nav-link" 
+                            to={'/category/' + category.title.toLowerCase()}>
+                                {category.title.toUpperCase()}
+                        </Link>
                     </li>)
                 )
             }

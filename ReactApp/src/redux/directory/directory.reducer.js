@@ -1,4 +1,4 @@
-const INITIAL_STATE = {sections: [
+const INITIAL_STATE = {categories: [
     {
       title: "fashion",
       id: 1,

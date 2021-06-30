@@ -12,3 +12,7 @@ export const calculateSavingPrice = (actualPrice,discount) =>{
 export const getProductById = (products, productId) =>{
     return products.find( product => getValue(product, 'productId', "") === productId );
 } 
+
+export const getProductsByCategory = (products, category) =>{
+    return products.filter( product => getValue(product, 'category', "") === category );
+} 

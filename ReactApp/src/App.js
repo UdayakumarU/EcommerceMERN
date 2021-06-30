@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import LoginSignupPage from "./pages/loginSignupPage";
 import ProductPage from "./pages/productPage";
+import CategoryPage from "./pages/categoryPage";
 
 class App extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/user" component={LoginSignupPage} />
           <Route path="/product/:productId" component={ProductPage} />
+          <Route path="/category/:category" component={CategoryPage} />
         </Switch>
       </div>
     );
