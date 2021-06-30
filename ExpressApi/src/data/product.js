@@ -2,8 +2,8 @@
 const sampleProducts = [{
         "productId": "PRCL1001",
         "productName": "Yellow Jersey",
-        "category": "clothings",
-        "subCategory": "unisex",
+        "category": "fashion",
+        "subCategory": "sports wear",
         "productActualPrice": 499,
         "discount": 10,
         "productQuantity": 10,
@@ -24,7 +24,7 @@ const sampleProducts = [{
       {
         "productId": "PREL1001",
         "productName": "Apple Watch",
-        "category": "Electronics",
+        "category": "electronics",
         "subCategory": "watch",
         "productActualPrice": 33499,
         "discount": 10,
@@ -48,7 +48,7 @@ const sampleProducts = [{
       {
         "productId": "PRFO1001",
         "productName": "Fashion Red shoes",
-        "category": "footwear",
+        "category": "fashion",
         "subCategory": "casual shoes",
         "productActualPrice": 1499,
         "discount": 10,
@@ -69,7 +69,7 @@ const sampleProducts = [{
       {
         "productId": "PRBA1001",
         "productName": "American Tourister Bag",
-        "category": "Bags",
+        "category": "fashion",
         "subCategory": "backpacks",
         "productActualPrice": 1699,
         "discount": 10,
