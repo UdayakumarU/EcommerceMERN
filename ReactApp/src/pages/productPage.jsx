@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
+import Breadcrum from "../components/misc/breadcrum";
 import ProductDetails from "../components/product/productDetails";
-import { getProductById } from "../utils/util";
+import { getProductById, getBreadcrumSections } from "../utils/util";
 
 import { setCurrentProduct } from "../redux/product/product.action";
 import { getHomeProducts } from "../redux/product/product.selector";
@@ -13,7 +14,11 @@ import { getHomeProducts } from "../redux/product/product.selector";
 const mapStateToProps = (state, props) => {
     const availableProducts = getHomeProducts(state);
     const selectedProduct = getProductById(availableProducts, props.match.params.productId);
-    return { selectedProduct };
+    const breadcrumSections = getBreadcrumSections(selectedProduct);
+    return { 
+        selectedProduct, 
+        breadcrumSections 
+    };
 };
 
 const mapDispatchToProps = (dispatch) =>({
@@ -31,6 +36,7 @@ class ProductPage extends Component {
             <React.Fragment>
                 <Header/>
                 <Directory/>
+                <Breadcrum sections={this.props.breadcrumSections}/>
                 <ProductDetails/>
                 <Footer/>
             </React.Fragment>
