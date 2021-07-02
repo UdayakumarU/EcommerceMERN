@@ -16,3 +16,6 @@ export const getProductById = (products, productId) =>{
 export const getProductsByCategory = (products, category) =>{
     return products.filter( product => getValue(product, 'category', "") === category );
 } 
+export const getBreadcrumSections = (sections) =>{
+    return ['Home', ...sections];
+}
