@@ -6,7 +6,7 @@ class Breadcrum extends Component{
         const {sections} = this.props;
         return <Tile>
             <div className = "row">
-                { sections.map( (section) => <span key={section}>{section}</span>) }
+                { sections.map( (section) => <span key={section}>{section + " "}</span>) }
             </div>
         </Tile>
     }
