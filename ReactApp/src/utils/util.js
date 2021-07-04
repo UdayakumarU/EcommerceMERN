@@ -26,7 +26,7 @@ export const capitalize = ( str ) => str.charAt(0).toUpperCase() + str.slice(1);
 */
 export const getBreadcrumSections = (item) =>{
     const sections = [{ id: "home", name:"Home", link: '/' }];
-    if(item.productId) {
+    if(getValue(item, 'productId', '')) {
         sections.push({id: item.category, name: capitalize(item.category), link : "/category/"+item.category});
         sections.push({id: item.subCategory, name: capitalize(item.subCategory), link : "#"});
         sections.push({id: item.productId, name: capitalize(item.productName)});
