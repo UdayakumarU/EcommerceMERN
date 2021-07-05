@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) =>({
 class ProductPage extends Component {
     componentDidMount(){
         const { setCurrentProduct, selectedProduct } = this.props;
-        setCurrentProduct(selectedProduct); // need to persist this else lose it on page refresh
+        setCurrentProduct(selectedProduct);
     }
 
     render(){
