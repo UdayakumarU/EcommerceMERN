@@ -11,7 +11,7 @@ const Header = () => (
                 <button className="btn btn-outline-dark">Login</button>
             </Link>
             <Link to={'/cart'} className ="my-2 my-sm-0">
-                <button className="btn btn-dark">
+                <button className="btn">
                     <i className="material-icons">shopping_cart</i>
                     <span className="align-straight">Cart</span>
                 </button>
