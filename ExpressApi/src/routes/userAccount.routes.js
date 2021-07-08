@@ -4,7 +4,7 @@ const {userAuth} = require('../middleware/auth');
 
 const userAccountRouter = express.Router();
 
-userAccountRouter.post("/create-account", (req, res, next) => {
+userAccountRouter.post("/create-customer", (req, res, next) => {
     userAccountService.createCustomerAccount(req.body)
         .then(response => res.send(response))
         .catch(error => next(error));

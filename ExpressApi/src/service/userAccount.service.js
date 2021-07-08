@@ -53,6 +53,7 @@ userAccountService.loginCustomer = async loginDetails  => {
                 return { message, token, customerData}
             }
         }
+        throw new ApiError("Invalid username or password", 401) 
     }
     catch(e){ 
         throw new ApiError("Invalid username or password", 401) 
