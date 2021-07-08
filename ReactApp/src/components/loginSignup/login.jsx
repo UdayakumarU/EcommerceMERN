@@ -5,13 +5,19 @@ import { Link } from "react-router-dom";
 import { Tile, Field } from "../../library"; 
 import { loginUser } from "../../redux/user/user.action";
 
+import {isValidUserId} from "../../utils/loginUtils";
+
 const mapDispatchToProps = dispatch =>({
     loginUser : (user) => dispatch(loginUser(user))
 });
 
 const INITIAL_STATE = {
     userId: "",
-    password: ""
+    password: "",
+    error :{
+        userId:"",
+        password:""
+    }
 };
 
 class Login extends Component {
@@ -19,11 +25,16 @@ class Login extends Component {
         super();
         this.state = INITIAL_STATE;
     }
+    validateForm = () => {
+       return isValidUserId(this.state.userId)
+    }
 
     handleSubmit = event => {
         event.preventDefault();
-        this.props.loginUser(this.state);
-        this.setState(INITIAL_STATE);
+        if(this.validateForm()){
+            this.props.loginUser(this.state);
+            this.setState(INITIAL_STATE);
+        }
     };
 
     handleChange = event => {
@@ -32,7 +43,7 @@ class Login extends Component {
     };
 
     render() {
-        const {userId, password} = this.state;
+        const {userId, password, error} = this.state;
         return (
             <React.Fragment> 
                 <Tile 
@@ -43,6 +54,7 @@ class Login extends Component {
                         inputType="TEXTBOX"
                         name="userId"
                         value = {userId}
+                        errorLabel = {error.userId}
                         onChange = {this.handleChange}
                         label = "Email or mobile phone number"/>
                     <Field
@@ -50,6 +62,7 @@ class Login extends Component {
                         inputType="PASSWORD"
                         name="password"
                         value = {password}
+                        errorLabel = {error.password}
                         onChange = {this.handleChange}
                         label="Password"/>
                     <button 

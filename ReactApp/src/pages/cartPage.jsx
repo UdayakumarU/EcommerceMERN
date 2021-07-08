@@ -8,7 +8,7 @@ class CartPage extends Component {
     render(){
         return (
             <React.Fragment>
-                <Header/>
+                <Header hideCart={true}/>
                 <EmptyCart/>
                 <Footer/>
             </React.Fragment>
