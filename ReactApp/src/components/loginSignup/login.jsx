@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 import { Tile, Field } from "../../library"; 
 import { loginUser } from "../../redux/user/user.action";
-
-import {isValidUserId} from "../../utils/loginUtils";
+import * as api from "../../api/api.js";
+import { validateUserId, validatePassword } from "../../utils/loginUtils";
 
 const mapDispatchToProps = dispatch =>({
     loginUser : (user) => dispatch(loginUser(user))
@@ -25,21 +25,37 @@ class Login extends Component {
         super();
         this.state = INITIAL_STATE;
     }
+
     validateForm = () => {
-       return isValidUserId(this.state.userId)
+        const error = {};
+        error.userId = validateUserId(this.state.userId);
+        error.password = validatePassword(this.state.password);
+        this.setState({error});
+        return !(error.userId||error.password);
     }
 
     handleSubmit = event => {
         event.preventDefault();
         if(this.validateForm()){
-            this.props.loginUser(this.state);
-            this.setState(INITIAL_STATE);
+            api.loginCustomer(this.state).then( response =>{
+                this.props.loginUser({
+                    userId: response.customerId, 
+                    userName: response.customerName,
+                    loginStatus:true
+                });
+                this.setState(INITIAL_STATE);
+            }, reject =>{ 
+                console.log(reject);//throw ui error message later
+            })
         }
     };
 
     handleChange = event => {
         const { name, value } = event.target;
+        const error = {...this.state.error};
+        error[name] = "";
         this.setState({ [name]: value });
+        this.setState({ error });
     };
 
     render() {
@@ -54,7 +70,7 @@ class Login extends Component {
                         inputType="TEXTBOX"
                         name="userId"
                         value = {userId}
-                        errorLabel = {error.userId}
+                        errorlabel = {error.userId}
                         onChange = {this.handleChange}
                         label = "Email or mobile phone number"/>
                     <Field
@@ -62,7 +78,7 @@ class Login extends Component {
                         inputType="PASSWORD"
                         name="password"
                         value = {password}
-                        errorLabel = {error.password}
+                        errorlabel = {error.password}
                         onChange = {this.handleChange}
                         label="Password"/>
                     <button 

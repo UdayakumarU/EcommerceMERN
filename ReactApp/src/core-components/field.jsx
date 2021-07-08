@@ -27,12 +27,12 @@ export default class Field extends Component {
         }
     }
     render() {
-        const { id, label, errorLabel } = this.props;
+        const { id, label, errorlabel } = this.props;
         return (
             <div className="form-group _text_sm_dark">
                 <label htmlFor={id}>{label}</label>
                 {this.getFieldByType(this.props)}
-                {errorLabel && <small className="text-danger">{errorLabel}</small>}
+                {errorlabel && <small className="text-danger"><strong>{errorlabel}</strong></small>}
             </div>
         );
     }
