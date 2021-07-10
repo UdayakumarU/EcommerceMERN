@@ -38,10 +38,12 @@ class Login extends Component {
         event.preventDefault();
         if(this.validateForm()){
             api.loginCustomer(this.state).then( response =>{
+                const {token, customerData} = response;
                 this.props.loginUser({
-                    userId: response.customerId, 
-                    userName: response.customerName,
-                    loginStatus:true
+                    userId: customerData.customerId, 
+                    userName: customerData.customerName,
+                    loginStatus:true,
+                    loginToken:token
                 });
                 this.setState(INITIAL_STATE);
             }, reject =>{ 
