@@ -65,6 +65,29 @@ button._primary_bg:focus {
   padding: 0 .3em;
 }
 
+._center_child {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+._page_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color:rgba(0, 0, 0, 0.6);
+  z-index:9999;
+}
+
+._loader_lg{
+  width: 5rem;
+  height: 5rem; 
+}
 
 #sticky-footer {
     flex-shrink: none;

@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Tile, Field } from "../../library"; 
-import { loginUser } from "../../redux/user/user.action";
+import { loginCustomer } from "../../redux/customer/customer.action";
+import { setLoader } from "../../redux/loader/loader.action";
 import * as api from "../../api/api.js";
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
 
 const mapDispatchToProps = dispatch =>({
-    loginUser : (user) => dispatch(loginUser(user))
+    loginCustomer : (user) => dispatch(loginCustomer(user)),
+    setLoader : (status) => dispatch(setLoader(status)),
 });
 
 const INITIAL_STATE = {
@@ -35,19 +37,23 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
+        const {loginCustomer, setLoader} = this.props;
         event.preventDefault();
         if(this.validateForm()){
+            setLoader(true);
             api.loginCustomer(this.state).then( response =>{
                 const {token, customerData} = response;
-                this.props.loginUser({
-                    userId: customerData.customerId, 
-                    userName: customerData.customerName,
+                loginCustomer({
+                    id: customerData.customerId, 
+                    name: customerData.customerName,
                     loginStatus:true,
                     loginToken:token
                 });
                 this.setState(INITIAL_STATE);
+                setLoader(false);
             }, reject =>{ 
                 console.log(reject);//throw ui error message later
+                setLoader(false);
             })
         }
     };

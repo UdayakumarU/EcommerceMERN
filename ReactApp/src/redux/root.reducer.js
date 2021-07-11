@@ -2,20 +2,22 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-import userReducer from './user/user.reducer';
+import customerReducer from './customer/customer.reducer';
 import productReducer from './product/product.reducer';
 import directoryReducer from './directory/directory.reducer'; 
+import loaderReducer from './loader/loader.reducer'; 
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist : ['Product']
+    whitelist : ['Product','Customer']
 }
 
 const rootReducer = combineReducers ({
-    User:userReducer,
+    Customer:customerReducer,
     Directory:directoryReducer,
-    Product:productReducer
+    Product:productReducer,
+    Loader:loaderReducer
 });
 
 

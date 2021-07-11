@@ -1,13 +1,13 @@
-import USER_CONST from './user.const';
+import CUSTOMER_CONST from './customer.const';
 const INITIAL_STATE = null;
 
 const userReducer = (currentState = INITIAL_STATE, action) => {
     switch(action.type){
-        case USER_CONST.LOGIN_USER:{
+        case CUSTOMER_CONST.CUSTOMER_LOGIN:{
             return { ...currentState, loginDetails: action.payload }
         }
-        case USER_CONST.LOGOUT_USER:{
-            return { ...currentState, user: null }
+        case CUSTOMER_CONST.CUSTOMER_LOGOUT:{
+            return { ...currentState, loginDetails: null }
         }
         default : return currentState;
     }
