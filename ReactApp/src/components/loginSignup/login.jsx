@@ -4,13 +4,14 @@ import { Link } from "react-router-dom";
 
 import { Tile, Field } from "../../library"; 
 import { loginCustomer } from "../../redux/customer/customer.action";
-import { setLoader } from "../../redux/loader/loader.action";
+import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
 import * as api from "../../api/api.js";
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
 
 const mapDispatchToProps = dispatch =>({
     loginCustomer : (user) => dispatch(loginCustomer(user)),
     setLoader : (status) => dispatch(setLoader(status)),
+    setErrorMessage : (errors) => dispatch(setErrorMessage(errors))
 });
 
 const INITIAL_STATE = {
@@ -37,7 +38,7 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
-        const {loginCustomer, setLoader} = this.props;
+        const {loginCustomer, setLoader, setErrorMessage} = this.props;
         event.preventDefault();
         if(this.validateForm()){
             setLoader(true);
@@ -52,7 +53,7 @@ class Login extends Component {
                 this.setState(INITIAL_STATE);
                 setLoader(false);
             }, reject =>{ 
-                console.log(reject);//throw ui error message later
+                setErrorMessage(reject);
                 setLoader(false);
             })
         }

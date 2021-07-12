@@ -1,25 +1,24 @@
 import React from "react";
 import 'bootstrap/js/src/alert'
 
-const styleError = {
-  position: "absolute",
-  top: "65px"
-};
 
-const Error = () => (
-  <div className="offset-md-2 col-md-8 offset-sm-1 col-sm-10 animate-error" style={styleError}>
-    <div className="alert alert-danger alert-dismissible fade show text-center" role="alert">
-      {this.props.message}!{this.props.message === "Network Error" ? " Please contact technical team." : ""}
-      <button
-        type="button"
-        className="close"
-        data-dismiss="alert"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
+
+const Error = ({messages}) => {
+  return(
+    <div className="offset-md-3 col-md-6 offset-sm-1 col-sm-10 animate-error">
+      <div className="alert alert-danger alert-dismissible" role="alert">
+        <ul className="mb-0"> {messages.map((message,index) =><li key={index}><h6>{message}</h6></li>)} </ul>
+        <button
+          type="button"
+          className="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     </div>
-  </div>
-);
+  )
+}
 
 export default Error;

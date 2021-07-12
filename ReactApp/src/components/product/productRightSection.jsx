@@ -7,7 +7,7 @@ export default class ProductRightSection extends Component {
         const { productName, rating, productActualPrice, discount, description, highlights } = this.props.product;
         return (
           <div>
-            <h4 className="blue-header">{productName}</h4>
+            <h4>{productName}</h4>
               <h6><span className="badge badge-primary">{rating}</span></h6>
               <table>
                 <tbody>
@@ -17,24 +17,24 @@ export default class ProductRightSection extends Component {
                   </tr>
                   <tr>
                     <td>Price </td>
-                    <td>: <span className="price-text blue-body">
+                    <td>: <span className="_text_lg_dark">
                             &#8377; {calculatePriceAfterDiscount(productActualPrice, discount)}
                           </span>
                     </td>
                   </tr>
                   <tr>
                     <td>You Save </td>
-                    <td>: <span className="blue-body">
+                    <td>: <span>
                             &#8377; {calculateSavingPrice(productActualPrice, discount)} ({discount}%)
                           </span>
                     </td>
                   </tr>
                 </tbody>
               </table><br/>
-              <h5 className="blue-header">Description</h5>
-              <p className="blue-body">{description}</p>
-              <h5 className="blue-header">Highlight</h5>
-              <ul className="blue-body">{highlights.map((highlight, key) => <li key={key}>{highlight}</li>)}
+              <h5>Description</h5>
+              <p>{description}</p>
+              <h5>Highlight</h5>
+              <ul>{highlights.map((highlight, key) => <li key={key}>{highlight}</li>)}
               </ul>
             </div>
         )
