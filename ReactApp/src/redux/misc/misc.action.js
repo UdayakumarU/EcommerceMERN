@@ -5,7 +5,7 @@ export const setLoader = (status) => ({
     payload: {status}
 });
 
-export const setErrorMessage = (errorMsg) => ({
+export const setErrorMessage = (errorMsgs) => ({
     type: MISC_CONST.ERROR_MSG,
-    payload: {message:[errorMsg]}
+    payload: {message:errorMsgs}
 });

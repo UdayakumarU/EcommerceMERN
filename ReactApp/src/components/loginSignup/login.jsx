@@ -53,7 +53,7 @@ class Login extends Component {
                 this.setState(INITIAL_STATE);
                 setLoader(false);
             }, reject =>{ 
-                setErrorMessage(reject);
+                setErrorMessage([reject]);
                 setLoader(false);
             })
         }
