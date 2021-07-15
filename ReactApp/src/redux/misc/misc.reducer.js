@@ -9,6 +9,9 @@ const loaderReducer = ( currentState = INITIAL_STATE, action) =>{
         case MISC_CONST.ERROR_MSG:{
             return { ...currentState, error: action.payload }
         }
+        case MISC_CONST.SUCCESS_MSG:{
+            return { ...currentState, success: action.payload }
+        }
         default: 
             return currentState;
     }

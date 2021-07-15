@@ -9,3 +9,8 @@ export const setErrorMessage = (errorMsgs) => ({
     type: MISC_CONST.ERROR_MSG,
     payload: {message:errorMsgs}
 });
+
+export const setSuccessMessage = (successMsgs) => ({
+    type: MISC_CONST.SUCCESS_MSG,
+    payload: {message:successMsgs}
+});

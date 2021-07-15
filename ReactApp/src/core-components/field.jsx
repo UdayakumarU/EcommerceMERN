@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 
 export default class Field extends Component {
-    constructor(props){
-        super(props);
-        this.getFieldByType = this.getFieldByType.bind(this);
-    }
 
-    getFieldByType(props){
+    getFieldByType = (props) => {
         const { inputType, handleChange, ...otherProps} = props;
         switch(inputType){
             case "TEXTBOX": return(
@@ -26,6 +22,7 @@ export default class Field extends Component {
             default: return "wew";
         }
     }
+    
     render() {
         const { id, label, errorlabel } = this.props;
         return (

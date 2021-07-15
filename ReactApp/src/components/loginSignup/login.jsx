@@ -4,14 +4,15 @@ import { Link } from "react-router-dom";
 
 import { Tile, Field } from "../../library"; 
 import { loginCustomer } from "../../redux/customer/customer.action";
-import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
+import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
 import * as api from "../../api/api.js";
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
 
 const mapDispatchToProps = dispatch =>({
     loginCustomer : (user) => dispatch(loginCustomer(user)),
     setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (errors) => dispatch(setErrorMessage(errors))
+    setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
+    setSuccessMessage : (success) => dispatch(setSuccessMessage(success))
 });
 
 const INITIAL_STATE = {
@@ -38,12 +39,12 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
-        const {loginCustomer, setLoader, setErrorMessage} = this.props;
+        const {loginCustomer, setLoader, setErrorMessage, setSuccessMessage} = this.props;
         event.preventDefault();
         if(this.validateForm()){
             setLoader(true);
             api.loginCustomer(this.state).then( response =>{
-                const {token, customerData} = response;
+                const {token, customerData, message} = response;
                 loginCustomer({
                     id: customerData.customerId, 
                     name: customerData.customerName,
@@ -51,7 +52,10 @@ class Login extends Component {
                     loginToken:token
                 });
                 this.setState(INITIAL_STATE);
+                this.props.history.push('/');
                 setLoader(false);
+                setErrorMessage([]);
+                setSuccessMessage([message]);
             }, reject =>{ 
                 setErrorMessage([reject]);
                 setLoader(false);
