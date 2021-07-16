@@ -18,7 +18,7 @@ customersModel.deleteAccountById = customerId => {
 
 customersModel.getCustomer = customerDetails => {
     return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
-        .then(model => model.findOne(customerDetails))
+        .then(model => model.findOne({ $or:[...customerDetails] }))
         .then(response =>  response);
 }
 

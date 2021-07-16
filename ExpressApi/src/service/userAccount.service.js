@@ -38,7 +38,9 @@ userAccountService.deleteAccountById = customerId => {
 
 userAccountService.loginCustomer = async loginDetails  => {
     try{
-        const customerdata = await customersModel.getCustomer({customerEmail : loginDetails.customerEmail});
+        const {email, mobile} = loginDetails;
+        const customerMobile = isNaN(parseInt(mobile))? 0: mobile;
+        const customerdata = await customersModel.getCustomer([{customerEmail:email}, {customerMobile}]);
         if(customerdata){
             const isMatch = await bycrypt.compare(loginDetails.customerPassword, customerdata.customerPassword);
             if (isMatch) {

@@ -30,7 +30,7 @@ export const createCustomerAccount = accountDetails => {
 
 export const loginCustomer = loginDetails => {
     const {userId, password} = loginDetails;
-    return axios.post(URL.LOGIN_CUSTOMER, {customerEmail:userId, customerPassword:password})
+    return axios.post(URL.LOGIN_CUSTOMER, {email:userId, mobile:userId, customerPassword:password})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {
