@@ -18,8 +18,8 @@ export const getProductById = (productId) => {
 }
 
 export const createCustomerAccount = accountDetails => {
-    const {customerName,customerEmail,customerMobile,customerPassword} = accountDetails;
-    return axios.post(URL.CREATE_CUSTOMER_ACCOUNT,{customerName,customerEmail,customerMobile,customerPassword})
+    const {username, email, password} = accountDetails;
+    return axios.post(URL.CREATE_CUSTOMER_ACCOUNT, {customerName:username,customerEmail:email,customerPassword:password})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {
@@ -27,10 +27,9 @@ export const createCustomerAccount = accountDetails => {
     });
 }
 
-
 export const loginCustomer = loginDetails => {
     const {userId, password} = loginDetails;
-    return axios.post(URL.LOGIN_CUSTOMER, {email:userId, mobile:userId, customerPassword:password})
+    return axios.post(URL.LOGIN_CUSTOMER, {customerEmail:userId, customerMobile:userId, customerPassword:password})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {

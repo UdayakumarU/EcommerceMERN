@@ -8,7 +8,7 @@ const { generateId } = require('../utilites/serviceUtils');
 const userAccountService ={};
 
 userAccountService.createCustomerAccount = accountDetails => {
-    return customersModel.getCustomer({ customerEmail: accountDetails.customerEmail })
+    return customersModel.getCustomer([{ customerEmail: accountDetails.customerEmail }])
         .then(user => {
             if (!user) return;
             throw new ApiError("Email already exist!", 409);
@@ -38,9 +38,9 @@ userAccountService.deleteAccountById = customerId => {
 
 userAccountService.loginCustomer = async loginDetails  => {
     try{
-        const {email, mobile} = loginDetails;
-        const customerMobile = isNaN(parseInt(mobile))? 0: mobile;
-        const customerdata = await customersModel.getCustomer([{customerEmail:email}, {customerMobile}]);
+        const {customerEmail, customerMobile} = loginDetails;
+        const mobile = isNaN(parseInt(customerMobile))? 0: customerMobile;
+        const customerdata = await customersModel.getCustomer([{customerEmail}, {customerMobile: mobile}]);
         if(customerdata){
             const isMatch = await bycrypt.compare(loginDetails.customerPassword, customerdata.customerPassword);
             if (isMatch) {

@@ -53,9 +53,9 @@ class Login extends Component {
                 });
                 this.setState(INITIAL_STATE);
                 this.props.history.push('/');
-                setLoader(false);
                 setErrorMessage([]);
                 setSuccessMessage([message]);
+                setLoader(false);
             }, reject =>{ 
                 setErrorMessage([reject]);
                 setLoader(false);
