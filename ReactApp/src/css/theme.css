@@ -50,6 +50,10 @@ button._primary_bg:focus {
   box-shadow:  0 0 0 1px rgb(172, 172, 172);
 }
 
+._light_bg{
+  background-color: #eee;
+}
+
 ._cut_text{ 
   width: 190px; 
   overflow: hidden; 

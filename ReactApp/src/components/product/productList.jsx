@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Tile } from  '../../library';
-import ProductOverview from "../product/productOverview";
+import ProductOverview from "./productOverview";
 
 class ProductList extends Component{
     render(){

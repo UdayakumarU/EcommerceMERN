@@ -14,7 +14,7 @@ export const getProductById = (products, productId) =>{
 } 
 
 export const getProductsByCategory = (products, category) =>{
-    return products.filter( product => getValue(product, 'category', "") === category );
+    return products.filter( product => getValue(product, 'category', "").toLowerCase() === category.toLowerCase() );
 } 
 
 export const capitalize = ( str ) => str.charAt(0).toUpperCase() + str.slice(1);

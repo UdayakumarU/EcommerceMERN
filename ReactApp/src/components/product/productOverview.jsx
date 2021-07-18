@@ -14,7 +14,7 @@ class ProductOverview extends Component{
                     <h5 className="_cut_text">{product.productName}</h5>
                     <h6>{product.productActualPrice}</h6>
                     <h6>{product.discount}</h6>
-                    <button className="btn btn-dark">Buy now</button>
+                    <button className="btn btn-outline-dark">Buy now</button>
                     <button className="btn btn-outline-dark" style={{ "float": "right" }}>Add to cart</button>
                 </React.Fragment>
             }

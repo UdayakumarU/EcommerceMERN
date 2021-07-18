@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
-import ProductList from "../components/misc/productList";
 import Breadcrum from "../components/misc/breadcrum";
+import ProductList from "../components/product/productList";
 
 import {getProductsByCategory, getBreadcrumSections} from "../utils/util";
 
