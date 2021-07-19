@@ -2,28 +2,32 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Tile } from  '../../library';
+import WishlistButton from './wishlistButton';
+import { calculatePriceAfterDiscount } from '../../utils/util';
 
 class ProductOverview extends Component{
     render(){
-        const {product} = this.props;
+        const {brand, productName, productActualPrice, discount, productId, productImages} = this.props.product;
         return <Tile
             className="col-md-3"
-            footerClass="_primary_bg"
             footer={
                 <React.Fragment>
-                    <h5 className="_cut_text">{product.productName}</h5>
-                    <h6>{product.productActualPrice}</h6>
-                    <h6>{product.discount}</h6>
-                    <button className="btn btn-outline-dark">Buy now</button>
-                    <button className="btn btn-outline-dark" style={{ "float": "right" }}>Add to cart</button>
+                    <h6 className="text-muted">{brand}</h6>
+                    <span className="_cut_text">{productName}</span>
+                    <div> 
+                        <strong className="mr-2">₹{calculatePriceAfterDiscount(productActualPrice, discount)}</strong>
+                        <s className="mr-2">{productActualPrice}</s>
+                        <small className="text-success"><strong>{discount}% off</strong></small>  
+                    </div>
                 </React.Fragment>
             }
         >
-            <Link to={'/product/' + product.productId}>
+            <WishlistButton/>
+            <Link to={'/product/' + productId}>
                 <img
-                    src={product.productImages[0]}
+                    src={productImages[0]}
                     className="card-img-top"
-                    alt={product.productName}
+                    alt={productName}
                 />
             </Link>
         </Tile>
