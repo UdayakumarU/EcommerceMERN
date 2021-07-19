@@ -40,6 +40,7 @@ const customersObj = {
 const productsObj = {
     "productId":{ type:String, required:true },
     "productName": {type:String, required: true },
+    "brand": {type:String, required:true},
     "category": {type:String, required: true },
     "subCategory": {type:String, required: true },
     "productActualPrice": { type:Number, required: true },

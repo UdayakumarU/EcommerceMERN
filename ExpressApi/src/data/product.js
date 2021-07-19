@@ -2,6 +2,7 @@
 const sampleProducts = [{
         "productId": "PRFA1001",
         "productName": "Yellow Jersey",
+        "brand":"Sportigo",
         "category": "fashion",
         "subCategory": "sports wear",
         "productActualPrice": 499,
@@ -24,6 +25,7 @@ const sampleProducts = [{
       {
         "productId": "PREL1001",
         "productName": "Apple Watch",
+        "brand":"Apple",
         "category": "electronics",
         "subCategory": "watch",
         "productActualPrice": 33499,
@@ -48,6 +50,7 @@ const sampleProducts = [{
       {
         "productId": "PRFA1002",
         "productName": "Fashion Red shoes",
+        "brand":"Fila",
         "category": "fashion",
         "subCategory": "casual shoes",
         "productActualPrice": 1499,
@@ -69,6 +72,7 @@ const sampleProducts = [{
       {
         "productId": "PRFA1003",
         "productName": "American Tourister Bag",
+        "brand":"American Tourister",
         "category": "fashion",
         "subCategory": "bag",
         "productActualPrice": 1699,
@@ -92,6 +96,7 @@ const sampleProducts = [{
       {
         "productId": "PREL1002",
         "productName": "Lenovo ideapad330C I7 Notebook",
+        "brand":"lenovo",
         "category": "electronics",
         "subCategory": "laptop",
         "productActualPrice": 84990,
@@ -113,6 +118,7 @@ const sampleProducts = [{
       {
         "productId": "PRAP1001",
         "productName": "LG Fully Automatic Washing Machine",
+        "brand":"LG",
         "category": "appliances",
         "subCategory": "washing machine",
         "productActualPrice": 60961,
@@ -136,6 +142,7 @@ const sampleProducts = [{
       {
         "productId": "PRAP1002",
         "productName": "LG 32 L Microwave Oven",
+        "brand":"LG",
         "category": "appliances",
         "subCategory": "microwave oven",
         "productActualPrice": 31000,
@@ -159,6 +166,7 @@ const sampleProducts = [{
       {
         "productId": "PRHO1001",
         "productName": "Divine Casa 100% Cotton Bed Sheet",
+        "brand":"Divine Casa",
         "category": "home",
         "subCategory": "bedsheets",
         "productActualPrice": 1870,
@@ -180,6 +188,7 @@ const sampleProducts = [{
       {
         "productId": "PRHO1002",
         "productName": "Trident Cotton Bath Towel Set",
+        "brand":"Trident",
         "category": "home",
         "subCategory": "towel",
         "productActualPrice": 449,
@@ -201,6 +210,7 @@ const sampleProducts = [{
       {
         "productId": "PRTO1001",
         "productName": "Rastar Radio Remote Control Sports Car",
+        "brand":"Rastar",
         "category": "toys",
         "subCategory": "car",
         "productActualPrice": 449,
