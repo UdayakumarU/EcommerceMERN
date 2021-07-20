@@ -92,7 +92,9 @@ button._primary_bg:focus {
   background-color:rgba(0, 0, 0, 0.6);
   z-index:9999;
 }
-
+._align_middle{
+  vertical-align: middle;
+}
 ._loader_lg{
   width: 5rem;
   height: 5rem; 

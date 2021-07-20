@@ -10,15 +10,14 @@ export default class ProductLeftSection extends Component {
         <div className="row">
           <div className="col-md-7">
             <button className="btn btn-dark btn-md btn-block">
-              <i className="material-icons">play_arrow</i>
-              <span className="align-straight">Buy Now</span>
+              <i className="material-icons _align_middle">play_arrow</i>
+              <span className="align-straight _align_middle">Buy Now</span>
             </button>
-
           </div>
           <div className="col-md-5">
             <button className="btn btn-outline-dark btn-md btn-block">
-              <i className="material-icons">shopping_cart</i>
-              <span className="align-straight">Add to Cart</span> </button>
+              <i className="material-icons _align_middle">shopping_cart</i>
+              <span className="align-straight _align_middle">Add to Cart</span> </button>
           </div>
         </div>
       </div>
