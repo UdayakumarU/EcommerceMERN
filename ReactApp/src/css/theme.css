@@ -101,8 +101,9 @@ button._primary_bg:focus {
 }
 
 
-#sticky-footer {
+._sticky_footer {
     flex-shrink: none;
+    margin-top: 130px; 
   }
 
   /* other styles */
