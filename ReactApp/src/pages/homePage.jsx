@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch =>({
 const mapStateToProps = (state) => {
     const products = getHomeProducts(state);
     return {
-        trending : products.slice(4,8),
+        trending : products,
         fashions : getProductsByCategory(products,"Fashion"),
         electronics : getProductsByCategory(products,"Electronics")
     };

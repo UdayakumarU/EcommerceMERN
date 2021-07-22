@@ -100,6 +100,19 @@ button._primary_bg:focus {
   height: 5rem; 
 }
 
+._absolute_mid_left{
+  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+._absolute_mid_right{
+  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  right: 0;
+}
 
 ._sticky_footer {
     flex-shrink: none;
