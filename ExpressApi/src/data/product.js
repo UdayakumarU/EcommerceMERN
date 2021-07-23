@@ -228,6 +228,76 @@ const sampleProducts = [{
         "productImages":
         ["https://images-na.ssl-images-amazon.com/images/I/5181XtSxdaL._AC_.jpg"],
         "sellerId":"SE4001"
+      },
+      {
+        "productId": "PREL1003",
+        "productName": "iPhone 12 Blue 128GB",
+        "brand":"Apple",
+        "category": "electronics",
+        "subCategory": "mobile phone",
+        "productActualPrice": 84900,
+        "discount": 6,
+        "productQuantity": 10,
+        "description": "The iPhone 12 in blue color and 128GB of storage has 5G technology, 6.1-inch Super Retina XDR OLED screen with a resolution of 1170x2532 pixels, 12+12MP rear cameras and 12MP front camera, Apple A14 Bionic processor and 2815mAh battery.",
+        "highlights": ["Chip: A14 Bionic chip",
+          "Camera: Dual 12MP camera system, Ultra Wide and Wide cameras",
+          "Operating System: iOS 14",
+          "Colour: Blue",
+          "SIM Card: Dual SIM (nano‑SIM and eSIM)",
+          "Dimensions: 146.7 x 71.5 x 7.4 mm",
+          "Power and Battery: Qi wireless charging up to 7.5W",
+          "Memory Storage Capacity:	128 GB"
+        ],
+        "rating": 4.5,
+        "productImages":
+        ["https://cdn.movertix.com/media/catalog/product/i/p/iphone-12-blue-128gb.jpg"],
+        "sellerId":"SE4001"
+      },
+      {
+        "productId": "PRFA1004",
+        "productName": "Allen Solly Navy Shirt",
+        "brand":"Allen Solly",
+        "category": "fashion",
+        "subCategory": "shirts",
+        "productActualPrice": 1999,
+        "discount": 20,
+        "productQuantity": 10,
+        "description": "Look effortlessly stylish when you don this navy check shirt, tailored for a Slim Fit, from Solly Jeans Co by Allen Solly.",
+        "highlights": ["Fit: Regular Fit",
+          "Occasion: Casual",
+          "Color: Navy",
+          "Material: 100% cotton",
+          "Sleeves: Full Sleeves",
+          "Model Size: The model (height 6'2) is wearing a size 40",
+          "Cuffs: Regular Cuff",
+          "Collar: Regular Collar"
+        ],
+        "rating": 4.5,
+        "productImages":
+        ["https://i.pinimg.com/originals/92/ed/d4/92edd49704fbd64bb6166ded1f973e3d.jpg"],
+        "sellerId":"SE4001"
+      },
+      {
+        "productId": "PRFA1005",
+        "productName": "Trackpack Women Flip-Flops",
+        "brand":"Trackpack",
+        "category": "fashion",
+        "subCategory": "flip flops",
+        "productActualPrice": 799,
+        "discount": 5,
+        "productQuantity": 10,
+        "description": "Flaunt with these stylish and unique flip flops as per the latest fashion trend from the house of Trackpack. Super comfortable flip flops with rubber as upper material and rubber as sole material.",
+        "highlights": ["Colour: Grey ",
+          "Sole: EVA & Rubber",
+          "Closure: Slip On",
+          "Shoe Width: Medium",
+          "Outer Material: Rubber",
+          "Closure Type: Slip On"
+        ],
+        "rating": 4.0,
+        "productImages":
+        ["https://trackpack.in/image/cache/catalog/Slippers/SUB_4756-min-600x600.JPG"],
+        "sellerId":"SE4001"
       }
     ]
 
