@@ -55,7 +55,7 @@ button._primary_bg:focus {
 }
 
 ._cut_text{ 
-  width: 190px; 
+  width: 90%; 
   overflow: hidden; 
   display:inline-block;
   text-overflow: ellipsis;
@@ -111,6 +111,13 @@ button._primary_bg:focus {
   z-index: 1000;
   position: absolute;
   top: 50%;
+  right: 0;
+}
+
+._absolute_top_right{
+  z-index: 1000;
+  position: absolute;
+  top: 0;
   right: 0;
 }
 
