@@ -1,6 +1,28 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
-export default class ProductLeftSection extends Component {
+import { isCartHasThisItem } from "../../utils/cartUtils";
+import { getCartItems } from "../../redux/cart/cart.selector";
+import { addItemToCart } from '../../redux/cart/cart.action';
+
+const mapDispatchToProps = dispatch =>({
+  addItemToCart : (item) => dispatch(addItemToCart(item))
+});
+
+const mapStateToProps = state =>({
+  cartItems : getCartItems(state)
+});
+
+class ProductLeftSection extends Component {
+  addToCart = () =>{
+    const { addItemToCart, product, cartItems, history } = this.props;
+    if(!isCartHasThisItem(cartItems, product)){
+      addItemToCart(product);
+    }
+    history.push('/cart');
+  } 
+
   render() {
     const { productImages, productName } = this.props.product;
     return (
@@ -15,12 +37,15 @@ export default class ProductLeftSection extends Component {
             </button>
           </div>
           <div className="col-md-5">
-            <button className="btn btn-outline-dark btn-md btn-block">
+            <button className="btn btn-outline-dark btn-md btn-block" onClick={this.addToCart}>
               <i className="material-icons _align_middle">shopping_cart</i>
-              <span className="align-straight _align_middle">Add to Cart</span> </button>
+              <span className="align-straight _align_middle">Add to Cart</span> 
+            </button>
           </div>
         </div>
       </div>
     )
   }
 }
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductLeftSection));

@@ -15,7 +15,7 @@ const mapStateToProps = (state, props) =>{
     const products = getHomeProducts(state);
     const productsByCategory = getProductsByCategory(products, props.match.params.category);
     const breadcrumSections = getBreadcrumSections([props.match.params.category]);
-    return { 
+    return {
         productsByCategory, 
         breadcrumSections 
     };
