@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { Tile } from "../../library";
 import { getCartItems } from "../../redux/cart/cart.selector";
+import { removeItemFromCart } from "../../redux/cart/cart.action";
 
 import {calculatePriceAfterDiscount} from "../../utils/util";
 
@@ -10,7 +11,15 @@ const mapStateToProps = (state) => ({
     cartItems: getCartItems(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+    removeItemFromCart : (productId) => dispatch(removeItemFromCart(productId))
+});
+
 class CartItemList extends Component {
+    removeItem = (productId) =>{
+       this.props.removeItemFromCart(productId);
+    }
+
     render() {
         const { cartItems } = this.props;
         return (
@@ -38,7 +47,7 @@ class CartItemList extends Component {
                                 </div>
                                 <div className ="col-md-1">
                                     <div className="_absolute_top_right">
-                                        <span className="btn text-danger _danger_hover">
+                                        <span className="btn text-danger" onClick={() => this.removeItem(productId)}>
                                             <span className="material-icons">delete</span>
                                         </span>
                                     </div>
@@ -52,4 +61,4 @@ class CartItemList extends Component {
     }
 }
 
-export default connect(mapStateToProps)(CartItemList);
+export default connect(mapStateToProps, mapDispatchToProps)(CartItemList);

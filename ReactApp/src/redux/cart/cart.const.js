@@ -1,5 +1,6 @@
 const CART_CONST = {
-    ADD_ITEM : "ADD_ITEM_TO_CART"
+    ADD_ITEM : "ADD_ITEM_TO_CART",
+    REMOVE_ITEM : "REMOVE_ITEM_FROM_CART"
 }
 
 export default CART_CONST;

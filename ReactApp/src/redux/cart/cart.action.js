@@ -5,3 +5,8 @@ export const addItemToCart = product => ({
     payload: product
 });
 
+export const removeItemFromCart = productId => ({
+    type: CART_CONST.REMOVE_ITEM,
+    payload: productId
+});
+
