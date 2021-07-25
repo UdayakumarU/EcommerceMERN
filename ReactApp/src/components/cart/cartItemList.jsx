@@ -16,12 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class CartItemList extends Component {
-    removeItem = (productId) =>{
-       this.props.removeItemFromCart(productId);
-    }
-
     render() {
-        const { cartItems } = this.props;
+        const { cartItems, removeItemFromCart } = this.props;
         return (
             <Tile className ="container mt-4"> 
                 <h5>{"My Cart"}</h5>
@@ -47,7 +43,7 @@ class CartItemList extends Component {
                                 </div>
                                 <div className ="col-md-1">
                                     <div className="_absolute_top_right">
-                                        <span className="btn text-danger" onClick={() => this.removeItem(productId)}>
+                                        <span className="btn text-danger" onClick={() => removeItemFromCart(productId)}>
                                             <span className="material-icons">delete</span>
                                         </span>
                                     </div>
