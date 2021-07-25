@@ -20,7 +20,7 @@ class CartItemList extends Component {
         const { cartItems, removeItemFromCart } = this.props;
         return (
             <Tile className ="container mt-4"> 
-                <h5>{"My Cart"}</h5>
+                <h5>{`My Cart (${cartItems.length})`}</h5>
                 {cartItems.map(item => {
                     const {brand, productName, productActualPrice, discount, productId, productImages} = item;
                     return(<div key={productId}>
