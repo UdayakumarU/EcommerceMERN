@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { Tile } from "../../library";
 import { getCartItems } from "../../redux/cart/cart.selector";
@@ -27,10 +28,10 @@ class CartItemList extends Component {
                             <hr/>
                             <div className="mt-2 row">
                                 <div className ="col-md-2">
-                                    <img className="img-thumbnail" src={productImages[0]} alt={productName} />
+                                <Link to={`product/${productId}`}><img className="img-thumbnail" src={productImages[0]} alt={productName} /></Link>
                                 </div>
                                 <div className ="col-md-6">
-                                    <p className="blockquote _cut_text">{productName}</p>
+                                    <Link to={`product/${productId}`}><p className="blockquote _cut_text">{productName}</p></Link>
                                     <h6 className="text-muted">{brand}</h6>
                                     <div> 
                                         <strong className="mr-2">₹{calculatePriceAfterDiscount(productActualPrice, discount)}</strong>
