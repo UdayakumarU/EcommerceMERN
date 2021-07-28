@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { calculatePriceAfterDiscount, calculateSavingPrice } from "../../utils/util";
+import { calculatePriceAfterDiscount, calculateSavingPrice, numberToPrice } from "../../utils/util";
 
 export default class ProductRightSection extends Component {
     render() {
@@ -18,14 +18,14 @@ export default class ProductRightSection extends Component {
                   <tr>
                     <td>Price </td>
                     <td>: <span className="_text_lg_dark">
-                            &#8377; {calculatePriceAfterDiscount(productActualPrice, discount)}
+                            &#8377; {numberToPrice(calculatePriceAfterDiscount(productActualPrice, discount))}
                           </span>
                     </td>
                   </tr>
                   <tr>
                     <td>You Save </td>
                     <td>: <span>
-                            &#8377; {calculateSavingPrice(productActualPrice, discount)} ({discount}%)
+                            &#8377; {numberToPrice(calculateSavingPrice(productActualPrice, discount))} ({discount}%)
                           </span>
                     </td>
                   </tr>

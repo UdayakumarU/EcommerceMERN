@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { Tile } from  '../../library';
 import WishlistButton from './wishlistButton';
-import { calculatePriceAfterDiscount } from '../../utils/util';
+import { calculatePriceAfterDiscount, numberToPrice } from '../../utils/util';
 
 class ProductOverview extends Component{
     render(){
@@ -15,7 +15,7 @@ class ProductOverview extends Component{
                     <h6 className="text-muted">{brand}</h6>
                     <span className="_cut_text">{productName}</span>
                     <div> 
-                        <strong className="mr-2">₹{calculatePriceAfterDiscount(productActualPrice, discount)}</strong>
+                        <strong className="mr-2">₹{numberToPrice(calculatePriceAfterDiscount(productActualPrice, discount))}</strong>
                         <s className="mr-2">{productActualPrice}</s>
                         <small className="text-success"><strong>{discount}% off</strong></small>  
                     </div>
