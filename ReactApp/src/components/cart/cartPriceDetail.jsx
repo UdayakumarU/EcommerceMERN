@@ -24,10 +24,10 @@ class CartPriceDetail extends Component {
         return (
             <div>
                 <Tile className="mt-4">
-                    <h6>PRICE DETAILS</h6>
+                    <h6 className="text-muted">PRICE DETAILS</h6>
                     <hr/>
                     <div className="d-flex justify-content-between">
-                        <p>Price ({totalItems} items)</p> 
+                        <p>Price ({`${totalItems} item${totalItems>1? 's': ''}`})</p> 
                         <p>₹{actualTotalPrice}</p>
                     </div>
                     <div className="d-flex justify-content-between">
@@ -40,11 +40,11 @@ class CartPriceDetail extends Component {
                     </div>
                     <hr/>
                     <div className="d-flex justify-content-between">
-                        <strong>Total Amount</strong> 
-                        <strong>₹{totalPrice} </strong>
+                        <h5>Total Amount</h5> 
+                        <h5>₹{totalPrice} </h5>
                     </div>
                     <hr/>
-                    <p className="text-success">You will save ₹2,700 on this order</p> 
+                    <p className="text-success">You will save ₹{discountPrice} on this order</p> 
                 </Tile>
             </div>
         )
