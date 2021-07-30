@@ -296,7 +296,7 @@ const sampleProducts = [{
         ],
         "rating": 4.0,
         "productImages":
-        ["https://trackpack.in/image/cache/catalog/Slippers/SUB_4756-min-600x600.JPG"],
+        ["https://www.moochuufootwear.eu/wp-content/uploads/2018/04/MC01-019-600x600.jpg"],
         "sellerId":"SE4001"
       }
     ]
