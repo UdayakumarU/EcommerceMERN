@@ -10,3 +10,7 @@ export const removeItemFromCart = productId => ({
     payload: productId
 });
 
+export const mergeCustomerCart = customerCartItems => ({
+    type: CART_CONST.MERGE_CUSTOMER_CART,
+    payload: customerCartItems
+});

@@ -10,6 +10,10 @@ const cartReducer = (currentState = INITIAL_STATE, action) =>{
             const { cartItems } = currentState;
             return { ...currentState, cartItems: cartItems.filter(product => action.payload !== product.productId ) }
         }
+        case CART_CONST.MERGE_CUSTOMER_CART:{
+            const { cartItems } = currentState;
+            return { ...currentState, cartItems: [...cartItems, ...action.payload] }
+        }
         default:
             return currentState;
     }

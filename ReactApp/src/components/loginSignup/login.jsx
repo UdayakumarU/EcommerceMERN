@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Tile, Field } from "../../library"; 
 import { loginCustomer } from "../../redux/customer/customer.action";
+import { mergeCustomerCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
 import * as api from "../../api/api.js";
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
@@ -12,7 +13,8 @@ const mapDispatchToProps = dispatch =>({
     loginCustomer : (user) => dispatch(loginCustomer(user)),
     setLoader : (status) => dispatch(setLoader(status)),
     setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-    setSuccessMessage : (success) => dispatch(setSuccessMessage(success))
+    setSuccessMessage : (success) => dispatch(setSuccessMessage(success)),
+    mergeCustomerCart : (cartProducts) => dispatch(mergeCustomerCart(cartProducts)),
 });
 
 const INITIAL_STATE = {
@@ -38,6 +40,10 @@ class Login extends Component {
         return !(error.userId||error.password);
     }
 
+    mergeCustomerCart= (cartProductIds) => {
+        this.props.mergeCustomerCart(cartProductIds);
+    }
+
     handleSubmit = event => {
         const {loginCustomer, setLoader, setErrorMessage, setSuccessMessage} = this.props;
         event.preventDefault();
@@ -51,6 +57,7 @@ class Login extends Component {
                     loginStatus:true,
                     loginToken:token
                 });
+                this.mergeCustomerCart([]);
                 this.setState(INITIAL_STATE);
                 this.props.history.push('/');
                 setErrorMessage([]);
