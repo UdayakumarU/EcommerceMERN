@@ -14,6 +14,9 @@ const cartReducer = (currentState = INITIAL_STATE, action) =>{
             const { cartItems } = currentState;
             return { ...currentState, cartItems: [...cartItems, ...action.payload] }
         }
+        case CART_CONST.EMPTY_CART:{
+            return { ...currentState, cartItems: [] }
+        }
         default:
             return currentState;
     }

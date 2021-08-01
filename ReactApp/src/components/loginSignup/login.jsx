@@ -19,8 +19,8 @@ const mapDispatchToProps = dispatch =>({
 });
 
 const mapStateToProps = state => {
-    const product = getHomeProducts(state);
-    return { product };
+    const products = getHomeProducts(state);
+    return { products };
 };
 
 const INITIAL_STATE = {
@@ -46,13 +46,13 @@ class Login extends Component {
         return !(error.userId||error.password);
     }
 
-    mergeCustomerCart = (cartProductIds) => {
+    mergeCustomerCart = (cartItems) => {
        const { products, mergeCustomerCart } = this.props;
        const cartProducts = [];
-       cartProductIds.forEach(productId => {
-            let result = products.filter(product => product.productId === productId);
+       cartItems.forEach(cartItem => {
+            let result = products.find(product => product.productId === cartItem.productId);
             result && cartProducts.push(result);
-        })
+        });
         mergeCustomerCart(cartProducts);
     }
 
@@ -69,7 +69,7 @@ class Login extends Component {
                     loginStatus:true,
                     loginToken:token
                 });
-                this.mergeCustomerCart([]);
+                this.mergeCustomerCart(customerData.cart);
                 this.setState(INITIAL_STATE);
                 this.props.history.push('/');
                 setErrorMessage([]);

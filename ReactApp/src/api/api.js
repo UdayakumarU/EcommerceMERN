@@ -36,3 +36,13 @@ export const loginCustomer = loginDetails => {
         throw response? response.data.errorMessage : message;
     });
 }
+
+export const saveCartItems = (cartProductIds, customerLoginToken ) => {
+    const headers = { Authorization : customerLoginToken };
+    return axios.put(URL.SAVE_CART_ITEMS, {cartProducts: cartProductIds}, {headers})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}

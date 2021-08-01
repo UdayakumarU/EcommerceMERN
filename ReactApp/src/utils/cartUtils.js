@@ -22,3 +22,7 @@ export const calculateCartTotalPrice = (cartItems) =>{
     cartItems.forEach( item=> { discountPrice += calculateSavingPrice(item.productActualPrice, item.discount) });
     return discountPrice;
 }
+
+export const mapCartProductsToIds = (cartItems) =>{
+   return cartItems.map( item => ({productId:item.productId, quantity:1}) );
+}

@@ -14,3 +14,8 @@ export const mergeCustomerCart = customerCartItems => ({
     type: CART_CONST.MERGE_CUSTOMER_CART,
     payload: customerCartItems
 });
+
+export const emptyCart = () => ({
+    type: CART_CONST.EMPTY_CART,
+    payload: []
+});
