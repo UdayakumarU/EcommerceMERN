@@ -95,9 +95,18 @@ userAccountService.updateCustomerPassword = (customerId,{currentPassword, newPas
         });
 }
 
+userAccountService.saveCartProducts = (customerId, {cartProducts}) => {
+    return customersModel.saveCartProducts(customerId, cartProducts)
+        .then(response => {
+            if (response){
+                const message = "Cart products saved successfully";
+                return {message};
+            }
+            throw new ApiError("Products not saved to cart. Please! login again", 500);
+        });
+}
 
 userAccountService.addToCart = (customerId, productId) => {
-    console.log(customerId,productId);
     return customersModel.isProductExistInCart(customerId, productId)
         .then(isExist => {
             console.log(isExist);

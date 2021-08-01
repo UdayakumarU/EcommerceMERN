@@ -49,6 +49,15 @@ customersModel.setCustomerPassword = (customerId, newPassword)  => {
         .then(response =>  response);
 }
 
+customersModel.saveCartProducts = (customerId, cartProducts) => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOneAndUpdate(
+            { customerId },
+            { cart: cartProducts },
+            { new: true, rawResult: true, runValidators: true }))
+        .then(response => response);
+}
+
 customersModel.isProductExistInCart = (customerId, productId) => {
     return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
         .then(model => model.findOne({ "customerId" : customerId, "cart.productId" : productId }))

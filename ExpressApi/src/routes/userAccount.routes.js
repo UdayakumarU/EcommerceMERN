@@ -40,6 +40,12 @@ userAccountRouter.put("/update-password/:customerId", userAuth, (req, res, next)
         .catch(error => next(error));
 });
 
+userAccountRouter.put("/save-cart-products/", userAuth, (req, res, next) => {
+    userAccountService.saveCartProducts(req.auth.customerId, req.body)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
 userAccountRouter.put("/add-to-cart/:productId", userAuth, (req, res, next) => {
     userAccountService.addToCart(req.auth.customerId, req.params.productId)
         .then(response => res.send(response))
