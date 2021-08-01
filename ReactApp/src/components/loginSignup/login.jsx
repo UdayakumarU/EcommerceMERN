@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { Tile, Field } from "../../library"; 
+import { Tile, Field } from "../../library";
 import { loginCustomer } from "../../redux/customer/customer.action";
 import { mergeCustomerCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
+import { getHomeProducts } from "../../redux/product/product.selector";
 import * as api from "../../api/api.js";
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
 
@@ -16,6 +17,11 @@ const mapDispatchToProps = dispatch =>({
     setSuccessMessage : (success) => dispatch(setSuccessMessage(success)),
     mergeCustomerCart : (cartProducts) => dispatch(mergeCustomerCart(cartProducts)),
 });
+
+const mapStateToProps = state => {
+    const product = getHomeProducts(state);
+    return { product };
+};
 
 const INITIAL_STATE = {
     userId: "",
@@ -40,8 +46,14 @@ class Login extends Component {
         return !(error.userId||error.password);
     }
 
-    mergeCustomerCart= (cartProductIds) => {
-        this.props.mergeCustomerCart(cartProductIds);
+    mergeCustomerCart = (cartProductIds) => {
+       const { products, mergeCustomerCart } = this.props;
+       const cartProducts = [];
+       cartProductIds.forEach(productId => {
+            let result = products.filter(product => product.productId === productId);
+            result && cartProducts.push(result);
+        })
+        mergeCustomerCart(cartProducts);
     }
 
     handleSubmit = event => {
@@ -119,4 +131,4 @@ class Login extends Component {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
