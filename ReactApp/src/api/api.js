@@ -38,7 +38,7 @@ export const loginCustomer = loginDetails => {
 }
 
 export const saveCartItems = (cartProductIds, customerLoginToken ) => {
-    const headers = { Authorization : customerLoginToken };
+    const headers = { authorization : customerLoginToken };
     return axios.put(URL.SAVE_CART_ITEMS, {cartProducts: cartProductIds}, {headers})
     .then( ({ data }) =>{
         return data;
