@@ -46,7 +46,7 @@ userAccountService.loginCustomer = async loginDetails  => {
             if (isMatch) {
                 const message = "Logged in successfully";
                 const payload = { customerId: customerdata.customerId, customerEmail: customerdata.customerEmail };
-                const token = "Bearer " + jwt.sign(payload, JWT_KEY.SECRET, { expiresIn: 30000 });
+                const token = "Bearer " + jwt.sign(payload, JWT_KEY.SECRET);
                 const customerData = {  
                                         customerId: customerdata.customerId,
                                         cart: customerdata.cart,
