@@ -3,12 +3,17 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { Tile, Field } from "../../library";
+
 import { loginCustomer } from "../../redux/customer/customer.action";
 import { mergeCustomerCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
 import { getHomeProducts } from "../../redux/product/product.selector";
-import * as api from "../../api/api.js";
+import { getCartItems } from "../../redux/cart/cart.selector";
+
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
+import { removeCurrentFromSavedCart } from "../../utils/cartUtils";
+
+import * as api from "../../api/api.js";
 
 const mapDispatchToProps = dispatch =>({
     loginCustomer : (user) => dispatch(loginCustomer(user)),
@@ -20,7 +25,8 @@ const mapDispatchToProps = dispatch =>({
 
 const mapStateToProps = state => {
     const products = getHomeProducts(state);
-    return { products };
+    const cartItems = getCartItems(state);
+    return { products, cartItems };
 };
 
 const INITIAL_STATE = {
@@ -46,10 +52,11 @@ class Login extends Component {
         return !(error.userId||error.password);
     }
 
-    mergeCustomerCart = (cartItems) => {
-       const { products, mergeCustomerCart } = this.props;
+    mergeCustomerCart = (savedCartItems) => {
+       const { products, cartItems, mergeCustomerCart } = this.props;
        const cartProducts = [];
-       cartItems.forEach(cartItem => {
+       const savedCartItemsAfterFilter = removeCurrentFromSavedCart(cartItems, savedCartItems);
+       savedCartItemsAfterFilter.forEach(cartItem => {
             let result = products.find(product => product.productId === cartItem.productId);
             result && cartProducts.push(result);
         });
