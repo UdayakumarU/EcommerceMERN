@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const Header = ({hideCart, customerLoggedIn}) => {
 
     return (
-        <nav className="navbar navbar-dark text-dark sticky-top _primary_bg">
+        <nav className="navbar navbar-dark text-dark sticky-top _primary_bg pt-0 pb-0">
             <Link to={'/'}>
                 <img src={"../logo.png"} alt="UKART" style={{ width: "8rem" }} className="img-responsive" />
             </Link>

@@ -28,8 +28,10 @@ class CategoryPage extends Component {
             <React.Fragment>
                 <Header/>
                 <Directory/>
-                <Breadcrum sections = {breadcrumSections}/> 
-                <ProductList products = {productsByCategory}/>
+                <div className ="container">
+                    <Breadcrum sections = {breadcrumSections}/>
+                    <ProductList products = {productsByCategory}/>
+                </div>
                 <Footer/>
             </React.Fragment>
         );

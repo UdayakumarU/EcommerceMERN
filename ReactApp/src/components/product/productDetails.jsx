@@ -13,19 +13,17 @@ const mapStateToProps = (state) => ({
 class ProductDetails extends Component {
     render(){
         const { product } = this.props;
-        return ( 
-             <div className="container">
-                {isNotEmpty(product) && (
-                    <div className="row">
-                        <div className="col-md-5">
-                            <ProductLeftSection product = {product}/>
-                        </div>
-                        <div className ="col-md-7">
-                            <ProductRightSection product = {product}/>
-                        </div>
-                    </div>)
-                }
-            </div>
+        return (
+            isNotEmpty(product) && (
+                <div className="row">
+                    <div className="col-md-5">
+                        <ProductLeftSection product={product}/>
+                    </div>
+                    <div className="col-md-7">
+                        <ProductRightSection product={product}/>
+                    </div>
+                </div>
+            )
         );
     }
 }
