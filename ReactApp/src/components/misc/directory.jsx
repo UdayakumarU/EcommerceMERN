@@ -10,13 +10,13 @@ const mapStateToProps = state =>({
 
 const Directory = ({categories}) => {
     return (
-        <nav className="navbar navbar-dark bg-dark navbar-expand-lg navbar-expand-lg p-0">
+        <nav className="navbar navbar-dark bg-dark navbar-expand-lg navbar-expand-lg p-1">
             <ul className="navbar-nav text-md-center nav-justified w-100">
             {
                 categories.map((category) => (
                     <li className="nav-item" key={category.id}>
                         <Link 
-                            className="nav-link" 
+                            className="nav-link small text-light" 
                             to={'/category/' + category.title.toLowerCase()}>
                                 {category.title.toUpperCase()}
                         </Link>
