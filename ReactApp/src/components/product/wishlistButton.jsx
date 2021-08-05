@@ -15,7 +15,7 @@ export default class WishlistButton extends Component {
         const fillHeart = "M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z";
         return (
             <span className="float-right" onClick={this.toggleHeart}>
-                <svg width="16" height="16">
+                <svg width="16" height="16" fill="red">
                     <path d={this.state.wish?fillHeart:emptyHeart}/>
                 </svg>
             </span>

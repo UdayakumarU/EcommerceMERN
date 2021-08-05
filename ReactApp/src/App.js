@@ -6,7 +6,7 @@ import { Loader, Notifier } from "./library";
 import HomePage from "./pages/homePage";
 import LoginSignupPage from "./pages/loginSignupPage";
 import ProductPage from "./pages/productPage";
-import CategoryPage from "./pages/categoryPage";
+import DirectoryPage from "./pages/directoryPage";
 import CartPage from "./pages/cartPage";
 
 
@@ -32,7 +32,8 @@ class App extends React.Component {
             <Route path="/user" component={LoginSignupPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/product/:productId" component={ProductPage} />
-            <Route path="/category/:category" component={CategoryPage} />
+            <Route path="/:category/:subCategory" component={DirectoryPage} />
+            <Route path="/:category" component={DirectoryPage} />
           </Switch>
       </div>
     );

@@ -17,7 +17,7 @@ const Directory = ({categories}) => {
                     <li className="nav-item" key={category.id}>
                         <Link 
                             className="nav-link small text-light" 
-                            to={'/category/' + category.title.toLowerCase()}>
+                            to={`/${category.title.toLowerCase()}`}>
                                 {category.title.toUpperCase()}
                         </Link>
                     </li>)

@@ -10,7 +10,7 @@ import * as api from "../api/api.js";
 
 import { addHomeProducts } from "../redux/product/product.action";
 import { getHomeProducts } from "../redux/product/product.selector";
-import { getProductsByCategory } from "../utils/util";
+import { getProductsByType } from "../utils/util";
 
 const caroselitems = [
     {imageUrl:"./banners/banner1.jpg", altName:"First slide"},
@@ -26,8 +26,8 @@ const mapStateToProps = (state) => {
     const products = getHomeProducts(state);
     return {
         trending : products,
-        fashions : getProductsByCategory(products,"Fashion"),
-        electronics : getProductsByCategory(products,"Electronics")
+        fashions : getProductsByType(products, "Fashion", 'category'),
+        electronics : getProductsByType(products, "Electronics", 'category')
     };
 }
 
