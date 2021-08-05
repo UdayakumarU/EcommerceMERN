@@ -43,12 +43,10 @@ class CutomerQuickLinks extends Component {
     render() {
         const {customerName} = this.props;
         return (
-            <span className="dropdown">
-                <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {customerName}
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <span className="btn dropdown-item" onClick={this.logoutCustomer}>Logout</span>
+            <span className="_dropdown py-3 btn">
+                <div className="_dropdown_link py-1"> {customerName} </div>
+                <div className="_dropdown_menu mt-3">
+                    <div className="_dropdown_item" onClick={this.logoutCustomer}>Logout</div>
                 </div>
             </span>
         )

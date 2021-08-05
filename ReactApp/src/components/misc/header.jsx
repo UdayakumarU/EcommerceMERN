@@ -16,10 +16,10 @@ const Header = ({hideCart, customerLoggedIn}) => {
 
     return (
         <nav className="navbar navbar-dark text-dark sticky-top _primary_bg pt-0 pb-0">
-            <Link to={'/'}>
+            <Link to={'/'} className="my-2 mx-2">
                 <img src={"../logo.png"} alt="UKART" style={{ width: "8rem" }} className="img-responsive" />
             </Link>
-            <div className ="my-2">
+            <div className ="mx-2">
                 {customerLoggedIn?
                     <CutomerQuickLinks/>:
                     <Link to={'/user/login'} className="mr-sm-2">

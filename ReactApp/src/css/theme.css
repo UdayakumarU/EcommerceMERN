@@ -126,7 +126,54 @@ button._primary_bg:focus {
     margin-top: 130px; 
   }
 
-  /* other styles */
+._dropdown {
+    position: relative;
+    display: inline-block;
+}
+._dropdown_link::after{
+  content: '\25BC';
+  font-size: x-small;
+}
+
+._dropdown_menu{
+  display: none;
+  position: absolute;
+  left: -60%;
+  background-color: #343a40;
+  color: #f7f7f7;
+  min-width: 150px;
+  box-shadow: 1px 5px 6px 0px rgba(0,0,0,2);
+  z-index: 1;
+}
+
+._dropdown_item{
+  padding: 8% 12%;
+  cursor: pointer;  
+}
+
+._dropdown_item:hover{
+  background-color: #191b1f;
+}
+
+._dropdown:hover ._dropdown_menu {
+  display: block;
+}
+
+._dropdown:hover ._dropdown_link::after{
+  content: '\25B2';
+}
+
+._dropdown:hover::after{
+  position: absolute;
+  bottom: -15%;
+  left: 30%;
+  content: '\25B2';
+  font-size: x-large;
+  color: #343a40;
+}
+ 
+
+/* other styles */
   .animate-error {
     position: fixed;
     top: 65px;
