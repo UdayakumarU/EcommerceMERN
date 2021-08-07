@@ -8,7 +8,7 @@ import LoginSignupPage from "./pages/loginSignupPage";
 import ProductPage from "./pages/productPage";
 import DirectoryPage from "./pages/directoryPage";
 import CartPage from "./pages/cartPage";
-
+import CheckoutPage from "./pages/checkoutPage";
 
 import { getLoaderStatus, getErrorMessages, getSuccessMessages } from "./redux/misc/misc.selector";
 import APP_CONST from "./APP_CONST";
@@ -31,6 +31,7 @@ class App extends React.Component {
             <Route exact path="/" component={HomePage} />
             <Route path="/user" component={LoginSignupPage} />
             <Route path="/cart" component={CartPage} />
+            <Route path="/checkout" component={CheckoutPage} />
             <Route path="/product/:productId" component={ProductPage} />
             <Route path="/:category/:subCategory" component={DirectoryPage} />
             <Route path="/:category" component={DirectoryPage} />

@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
     };
 }
 
-const Header = ({hideCart, customerLoggedIn}) => {
+const Header = ({hideCart, hideLogin, customerLoggedIn}) => {
 
     return (
         <nav className="navbar navbar-dark text-dark sticky-top _primary_bg pt-0 pb-0">
@@ -20,11 +20,11 @@ const Header = ({hideCart, customerLoggedIn}) => {
                 <img src={"../logo.png"} alt="UKART" style={{ width: "8rem" }} className="img-responsive" />
             </Link>
             <div className ="mx-2">
-                {customerLoggedIn?
+                {!hideLogin && (customerLoggedIn?
                     <CutomerQuickLinks/>:
                     <Link to={'/user/login'} className="mr-sm-2">
                         <button className="btn btn-outline-dark">Login</button>
-                    </Link>
+                    </Link>)
                 }
                 {!hideCart && <Link to={'/cart'} className ="my-2 my-sm-0">
                     <span className="btn">
