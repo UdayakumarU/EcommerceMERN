@@ -75,7 +75,7 @@ class Signup extends Component {
         return (
                 <Tile 
                     id = "CREATE_ACCOUNT"
-                    title = "Create account">
+                    header = {<h4>Create account</h4>}>
                     <Field
                         id="username"
                         inputType="TEXTBOX"

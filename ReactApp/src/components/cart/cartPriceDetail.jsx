@@ -23,7 +23,7 @@ class CartPriceDetail extends Component {
         const {totalItems, actualTotalPrice, discountPrice, totalPrice} = this.props;
         return (
             <div>
-                <Tile className="mt-4">
+                <Tile>
                     <h6 className="text-muted">PRICE DETAILS</h6>
                     <hr/>
                     <div className="d-flex justify-content-between">

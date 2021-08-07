@@ -103,7 +103,7 @@ class Login extends Component {
             <React.Fragment> 
                 <Tile 
                     id = "LOGIN"
-                    title = "Login">
+                    header = {<h4>Login</h4>}>
                     <Field
                         id="user-id" 
                         inputType="TEXTBOX"
