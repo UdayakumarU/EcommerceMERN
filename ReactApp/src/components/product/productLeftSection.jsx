@@ -22,7 +22,15 @@ class ProductLeftSection extends Component {
     }
     history.push('/cart');
   } 
-
+  
+  buyNow = () => {
+    const { addItemToCart, product, cartItems, history } = this.props;
+    if(!isCartHasThisItem(cartItems, product)){
+      addItemToCart(product);
+    }
+    history.push('/checkout');
+  }
+  
   render() {
     const { productImages, productName } = this.props.product;
     return (
@@ -31,7 +39,7 @@ class ProductLeftSection extends Component {
         <br /><br />
         <div className="row">
           <div className="col-md-7">
-            <button className="btn btn-dark btn-md btn-block">
+            <button className="btn btn-dark btn-md btn-block" onClick={this.buyNow}>
               <i className="material-icons _align_middle">play_arrow</i>
               <span className="align-straight _align_middle">Buy Now</span>
             </button>

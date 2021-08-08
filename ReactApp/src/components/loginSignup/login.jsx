@@ -64,7 +64,7 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
-        const {loginCustomer, setLoader, setErrorMessage, setSuccessMessage} = this.props;
+        const {loginCustomer, setLoader, setErrorMessage, setSuccessMessage, history} = this.props;
         event.preventDefault();
         if(this.validateForm()){
             setLoader(true);
@@ -78,7 +78,7 @@ class Login extends Component {
                 });
                 this.mergeCustomerCart(customerData.cart);
                 this.setState(INITIAL_STATE);
-                this.props.history.push('/');
+                history.goBack();
                 setErrorMessage([]);
                 setSuccessMessage([message]);
                 setLoader(false);

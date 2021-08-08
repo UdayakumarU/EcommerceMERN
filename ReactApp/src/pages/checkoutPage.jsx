@@ -9,20 +9,20 @@ import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
 
 const mapStateToProps = (state) => {
     return{
-        loginChecked : getCustomerLoginStatus(state)
+        loginCheck : getCustomerLoginStatus(state)
     }
 };
 
 class CheckoutPage extends Component {
     render() {
-        const {loginChecked} = this.props;
+        const {loginCheck} = this.props;
         return (
             <React.Fragment>
                 <Header hideCart={true} hideLogin={true}/>
                 <div className = 'container-fluid'>
                     <div className='row mt-4'>
                         <div className = "col-md-8">
-                            <LoginCheck checked={loginChecked}/>
+                            <LoginCheck loginCheck={loginCheck}/>
                         </div>
                         <div className="col-md-4">
                             <CartPriceDetails/>

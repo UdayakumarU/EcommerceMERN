@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 
 import {Tile} from "../../library";
 import { getCustomerName } from "../../redux/customer/customer.selector";
@@ -33,7 +34,8 @@ class LoginCheck extends Component {
     constructor(props){
         super(props);
         this.state = { 
-            isChecked : this.props.checked, 
+            isLoggedIn : this.props.loginCheck,
+            isChecked : this.props.loginCheck, 
             headerContent : (
                 <h6>
                     <span className="badge badge-dark px-2 py-1">1</span>
@@ -63,21 +65,29 @@ class LoginCheck extends Component {
     }
 
     showUncheckedLogin = () => (
-        <div className="container">
+        this.state.isLoggedIn? (
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-5">
+                        <div className="small py-1">
+                            <span className="text-muted">Name</span>
+                            <strong className="ml-2">{this.props.customerName}</strong>
+                        </div>
+                        <button className="btn btn-link p-0" onClick={this.logoutAndSignin}><small>Logout & Sign in to another account</small></button>
+                        <button className="btn btn-dark btn-block btn-lg my-3" onClick={this.toggleChange}><small> CONTINUE CHECKOUT </small></button>
+                    </div>
+                </div>
+                <div className="row">
+                    <small className="col-md-12 text-muted"> Please note that upon clicking "Logout" you will lose all items in cart and will be redirected to home page</small>
+                </div>
+            </div>):(
             <div className="row">
                 <div className="col-md-5">
-                    <div className="small py-1">
-                        <span className="text-muted">Name</span>
-                        <strong className="ml-2">{this.props.customerName}</strong>
-                    </div>
-                    <button className="btn btn-link p-0" onClick={this.logoutAndSignin}><small>Logout & Sign in to another account</small></button>
-                    <button className="btn btn-dark btn-block btn-lg my-3" onClick={this.toggleChange}><small> CONTINUE CHECKOUT </small></button>
+                    <Link to={"./user/login"} className="btn btn-dark btn-block btn-lg my-3"><small> LOGIN TO CHECKOUT </small></Link>
                 </div>
+                <small className="col-md-12 text-muted"> Please note that upon clicking "Login" your last saved cart items will be added with current cart items</small>
             </div>
-            <div className="row">
-                <small className="col-md-12 text-muted"> Please note that upon clicking "Logout" you will lose all items in cart and will be redirected to home page</small>
-            </div>
-        </div>
+        )
     );
 
     showCheckedLogin = () => (
@@ -101,7 +111,7 @@ class LoginCheck extends Component {
     render() {
         const {isChecked, headerContent} = this.state;
         return (
-            <Tile 
+            <Tile
                 className="mb-3"
                 headerClass ="_primary_bg"
                 header={!isChecked && headerContent}>
