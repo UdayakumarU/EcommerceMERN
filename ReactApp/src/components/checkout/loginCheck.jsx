@@ -36,14 +36,15 @@ class LoginCheck extends Component {
         this.state = { 
             isLoggedIn : this.props.loginCheck,
             isChecked : this.props.loginCheck, 
-            headerContent : (
-                <h6>
-                    <span className="badge badge-dark px-2 py-1">1</span>
-                    <span className="text-muted px-3">LOGIN</span>
-                </h6>
-            )
         }
     }
+
+    getHeaderContent = (color) => (
+        <React.Fragment>
+            <span className={`badge badge-${color} px-2 py-1`}>1</span>
+            <span className="text-muted px-3"><strong>LOGIN</strong></span>
+        </React.Fragment>
+    );
 
     logoutAndSignin = () =>{
         const {cartItems, customerLoginToken, emptyCart, logoutCustomer, setLoader, setErrorMessage, history} = this.props;
@@ -91,30 +92,31 @@ class LoginCheck extends Component {
     );
 
     showCheckedLogin = () => (
-        <div className="row">
-            <div className="col-md-1">
-                <span className="badge badge-light px-2 py-1">1</span>
+        <React.Fragment>
+            <div className="row">
+                <div className="col-md-9 col-sm-9 col-9">
+                    {this.getHeaderContent('light')}
+                    <span className="text-dark"><strong>&#x2713;</strong></span>
+                </div>
+                <div className="col">
+                    <button className="btn btn-outline-dark float-right" onClick={this.toggleChange}>Change</button>
+                </div>
             </div>
-            <div className="col-md-9">
-                <h6>
-                    <span className="text-muted">LOGIN</span>
-                    <span className="text-dark ml-2"><strong>&#x2713;</strong></span>
-                </h6>
-                <small>{this.props.customerName}</small>
+            <div className="row">
+                <div className="col-md-10 pl-5 ml-2">
+                    <small><strong>{this.props.customerName}</strong></small>
+                </div>
             </div>
-            <div className="col-md-2">
-                <button className="btn btn-outline-dark" onClick={this.toggleChange}>Change</button>
-            </div>
-        </div>
+        </React.Fragment>
     );
 
     render() {
-        const {isChecked, headerContent} = this.state;
+        const {isChecked} = this.state;
         return (
             <Tile
                 className="mb-3"
                 headerClass ="_primary_bg"
-                header={!isChecked && headerContent}>
+                header={!isChecked && this.getHeaderContent('dark')}>
                 {isChecked? this.showCheckedLogin(): this.showUncheckedLogin()}
             </Tile>
         )
