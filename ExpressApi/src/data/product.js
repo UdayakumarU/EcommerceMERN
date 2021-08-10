@@ -278,6 +278,30 @@ const sampleProducts = [{
         "sellerId":"SE4001"
       },
       {
+        "productId": "PREL1005",
+        "productName": "oppo 12 Blue 128GB",
+        "brand":"Apple",
+        "category": "electronics",
+        "subCategory": "mobile phone",
+        "productActualPrice": 84900,
+        "discount": 6,
+        "productQuantity": 10,
+        "description": "The iPhone 12 in blue color and 128GB of storage has 5G technology, 6.1-inch Super Retina XDR OLED screen with a resolution of 1170x2532 pixels, 12+12MP rear cameras and 12MP front camera, Apple A14 Bionic processor and 2815mAh battery.",
+        "highlights": ["Chip: A14 Bionic chip",
+          "Camera: Dual 12MP camera system, Ultra Wide and Wide cameras",
+          "Operating System: iOS 14",
+          "Colour: Blue",
+          "SIM Card: Dual SIM (nano‑SIM and eSIM)",
+          "Dimensions: 146.7 x 71.5 x 7.4 mm",
+          "Power and Battery: Qi wireless charging up to 7.5W",
+          "Memory Storage Capacity:	128 GB"
+        ],
+        "rating": 4.5,
+        "productImages":
+        ["https://www.thechennaimobiles.com/image/cache/catalog/f19p-slr-600x600.jpg"],
+        "sellerId":"SE4001"
+      },
+      {
         "productId": "PRFA1005",
         "productName": "Trackpack Women Flip-Flops",
         "brand":"Trackpack",
