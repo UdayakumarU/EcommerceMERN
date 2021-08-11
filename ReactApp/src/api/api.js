@@ -2,7 +2,7 @@ import axios from 'axios';
 import {URL} from './api.const';
 
 export const getProducts = () => {
-    return axios.get(URL.GET_PRODUCT).then( ({ data })=>{
+    return axios.get(URL.PRODUCTS).then( ({ data })=>{
         return data;
     }).catch( ({response,message}) =>{
         throw response? response.data.errorMessage : message;
@@ -10,7 +10,7 @@ export const getProducts = () => {
 }
 
 export const getProductById = (productId) => {
-    return axios.get(URL.GET_PRODUCT_BY_ID+productId).then( ({ data }) =>{
+    return axios.get(URL.PRODUCTS+productId).then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {
         throw response? response.data.errorMessage : message;
@@ -19,7 +19,7 @@ export const getProductById = (productId) => {
 
 export const createCustomerAccount = accountDetails => {
     const {username, email, password} = accountDetails;
-    return axios.post(URL.CREATE_CUSTOMER_ACCOUNT, {customerName:username,customerEmail:email,customerPassword:password})
+    return axios.post(URL.CUSTOMER_ACCOUNT_CREATE, {customerName:username,customerEmail:email,customerPassword:password})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {
@@ -29,7 +29,7 @@ export const createCustomerAccount = accountDetails => {
 
 export const loginCustomer = loginDetails => {
     const {userId, password} = loginDetails;
-    return axios.post(URL.LOGIN_CUSTOMER, {customerEmail:userId, customerMobile:userId, customerPassword:password})
+    return axios.post(URL.CUSTOMER_LOGIN, {customerEmail:userId, customerMobile:userId, customerPassword:password})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {
@@ -39,7 +39,17 @@ export const loginCustomer = loginDetails => {
 
 export const saveCartItems = (cartProductIds, customerLoginToken ) => {
     const headers = { 'Authorization' : customerLoginToken };
-    return axios.put(URL.SAVE_CART_ITEMS, {cartProducts: cartProductIds}, {headers})
+    return axios.put(URL.CART_ITEMS_SAVE, {cartProducts: cartProductIds}, {headers})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}
+
+export const getCustomerAddresses = (customerLoginToken ) => {
+    const headers = { 'Authorization' : customerLoginToken };
+    return axios.get(URL.CUSTOMER_ADDRESSES, {headers})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {

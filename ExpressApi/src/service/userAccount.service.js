@@ -62,6 +62,14 @@ userAccountService.loginCustomer = async loginDetails  => {
     }
 }
 
+userAccountService.getCustomerAddresses = (customerId) => {
+    return customersModel.getCustomerAddresses(customerId) 
+        .then(response => {
+            if(response) return response;
+            throw new ApiError("Can't get address.Please! try Later", 500);
+        });
+}
+
 userAccountService.addCustomerAddress = (customerId, customerAddress) => {
     return customersModel.addCustomerAddress(customerId, customerAddress)
         .then(response => {

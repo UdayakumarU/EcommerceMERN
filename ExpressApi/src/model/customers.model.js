@@ -22,6 +22,12 @@ customersModel.getCustomer = customerDetails => {
         .then(response =>  response);
 }
 
+customersModel.getCustomerAddresses = (customerId)  => {
+    return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
+        .then(model => model.findOne({ customerId }, "addresses") )
+        .then(response => response);
+}
+
 customersModel.addCustomerAddress = (customerId, customerAddress)  => {
     return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
         .then(model => model.findOneAndUpdate(

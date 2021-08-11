@@ -9,6 +9,9 @@ const userReducer = (currentState = INITIAL_STATE, action) => {
         case CUSTOMER_CONST.CUSTOMER_LOGOUT:{
             return { ...currentState, loginDetails: null }
         }
+        case CUSTOMER_CONST.CUSTOMER_ADDRESSES:{
+            return { ...currentState, addresses: action.payload }
+        }
         default : return currentState;
     }
 }

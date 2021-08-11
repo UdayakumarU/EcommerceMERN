@@ -1,7 +1,7 @@
 export const URL = {
-    GET_PRODUCT : "http://localhost:5000/products",
-    GET_PRODUCT_BY_ID : "http://localhost:5000/products/",
-    CREATE_CUSTOMER_ACCOUNT:"http://localhost:5000/account/create-customer",
-    LOGIN_CUSTOMER:"http://localhost:5000/account/login-customer",
-    SAVE_CART_ITEMS:"http://localhost:5000/account/save-cart-products"
+    PRODUCTS : "http://localhost:5000/products",
+    CUSTOMER_ACCOUNT_CREATE:"http://localhost:5000/account/create-customer",
+    CUSTOMER_LOGIN:"http://localhost:5000/account/login-customer",
+    CART_ITEMS_SAVE:"http://localhost:5000/account/save-cart-products",
+    CUSTOMER_ADDRESSES:"http://localhost:5000/account/get-customer-addresses"
 }

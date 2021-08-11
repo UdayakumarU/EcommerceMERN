@@ -24,7 +24,7 @@ class CheckoutPage extends Component {
                     <div className='row mt-4'>
                         <div className = "col-md-8">
                             <LoginCheck loginCheck={loginCheck}/>
-                            <DeliveryAddressCheck deliveryCheck={true}/>
+                            <DeliveryAddressCheck deliveryCheck={false}/>
                         </div>
                         <div className="col-md-4">
                             <CartPriceDetails/>

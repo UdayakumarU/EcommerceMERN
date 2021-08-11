@@ -26,8 +26,10 @@ const customersObj = {
     "uCurrency": { type : Number, default : 10 },
     "addresses":{
         type:[{
-            "doorNumber":{ type : String},
-            "street":{ type : String, required:[true,"street is required"]},
+            "receiverName": { type : String, required:true},
+            "receiverName": { type : Number, required:true},
+            "landmark":{ type : String},
+            "area":{ type : String, required:[true,"Area is required"]},
             "city" : { type : String , required:[true,"City is required"]},
             "state":{type : String,required:[true,"State is required"]},
             "pincode":{ type : Number, required:[true,"Pincode is required"]},

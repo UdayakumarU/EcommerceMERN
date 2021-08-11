@@ -8,3 +8,8 @@ export const loginCustomer = user => ({
 export const logoutCustomer = () => ({
     type: CUSTOMER_CONST.CUSTOMER_LOGOUT
 });
+
+export const setCustomerAddresses = (addresses) => ({
+    type: CUSTOMER_CONST.CUSTOMER_ADDRESSES,
+    payload: addresses
+});

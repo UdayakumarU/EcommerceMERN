@@ -22,6 +22,12 @@ userAccountRouter.get("/delete-account/:customerId", userAuth, (req, res, next) 
         .catch(error => next(error));
 });
 
+userAccountRouter.get("/get-customer-addresses/", userAuth, (req, res, next) => {
+    userAccountService.getCustomerAddresses(req.auth.customerId)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
 userAccountRouter.put("/add-address/:customerId", userAuth, (req, res, next) => {
     userAccountService.addCustomerAddress(req.params.customerId, req.body)
         .then(response => res.send(response))
