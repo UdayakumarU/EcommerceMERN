@@ -47,8 +47,8 @@ class HomePage extends Component {
                 <div className="_light_bg">
                     <Banner items={caroselitems}/>
                     <ProductSlider products = {trending} title="Trending Offers"/>
-                    <ProductSlider products = {fashions} title="Fashions" link="/category/fashion"/>
-                    <ProductSlider products = {electronics} title="Electronics" link="/category/electronics"/>
+                    <ProductSlider products = {fashions} title="Fashions" link="/fashion"/>
+                    <ProductSlider products = {electronics} title="Electronics" link="/electronics"/>
                     <Footer/>
                 </div>
             </React.Fragment>
