@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from "react-redux";
 
 import { Tile } from "../../library";
+import AddAddressForm from "./addAddressForm";
 import { getCustomerLoginToken, getCustomerAddresses } from "../../redux/customer/customer.selector";
 import { setCustomerAddresses } from "../../redux/customer/customer.action";
 import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
@@ -25,6 +26,7 @@ class DeliveryAddressCheck extends Component {
         super(props);
         this.state = { 
             isChecked : this.props.deliveryCheck, 
+            addAddress : false
         }
     }
     
@@ -52,12 +54,25 @@ class DeliveryAddressCheck extends Component {
         this.setState({isChecked:!this.state.isChecked})
     }
 
+    toggleAddAddressform = () => {
+        this.setState({addAddress:!this.state.addAddress})
+    }
+
     showUncheckedDeliveryAddress = () => {
         const { addresses } = this.props;
+        const { addAddress } = this.state;
         return (
             <div className="container">
-                {addresses.length>0 ? addresses.map( address => <p>{address.pincode}</p>) :
-                 <p> + Add a new address </p>}
+                {addresses.length>0 && addresses.map( address => <p>{address.pincode}</p>)}
+                {addAddress ?
+                    <AddAddressForm closeform = {this.toggleAddAddressform}/>:
+                    <Tile 
+                        title={<div 
+                                className="text-primary _pointer" 
+                                onClick={this.toggleAddAddressform}> 
+                                    + Add a new address
+                                </div>}/> 
+                }
             </div>
         );
     }

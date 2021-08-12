@@ -8,23 +8,30 @@ export default class Field extends Component {
         switch(inputType){
             case "TEXTBOX": return(
                 <input
-                    type = "text"
+                    type="text"
                     className={className}
                     {...otherProps}
                 />
             );
             case "PASSWORD": return(
                 <input
-                    type = "password"
+                    type="password"
                     className={className}
                     {...otherProps}
                 />
             );
             case "NUMBER": return(
                 <input
-                    type = "text"
+                    type="text"
                     pattern="\d*"
                     className={className}
+                    {...otherProps}
+                />
+            );
+            case "RADIO": return (
+                <input
+                    type="radio"
+                    className="custom-control-input"
                     {...otherProps}
                 />
             );
@@ -33,14 +40,20 @@ export default class Field extends Component {
     }
     
     render() {
-        const { id, label, errorlabel } = this.props;
+        const { id, label, errorlabel, inputType } = this.props;
         return (
-            <div className="form-group _text_sm_dark">
-                <label htmlFor={id}>{label}</label>
-                {this.getFieldByType(this.props)}
-                {errorlabel && 
-                <div class="invalid-feedback">{errorlabel}</div>}
-            </div>
+            inputType === "RADIO"?(
+                <div className="custom-control custom-radio custom-control-inline">
+                    {this.getFieldByType(this.props)}
+                    <label className="custom-control-label _text_sm" htmlFor={id}>{label}</label>
+                </div>
+            ):(
+                <div className="form-group _text_sm_dark">
+                    <label htmlFor={id}>{label}</label>
+                    {this.getFieldByType(this.props)}
+                    {errorlabel && <div className="invalid-feedback">{errorlabel}</div>}
+                </div>
+            )
         );
     }
 }

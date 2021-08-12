@@ -171,7 +171,10 @@ button._primary_bg:focus {
   font-size: x-large;
   color: #343a40;
 }
- 
+
+._pointer{
+  cursor: pointer;
+}
 
 /* other styles */
   .animate-error {

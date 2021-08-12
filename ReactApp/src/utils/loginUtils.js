@@ -10,7 +10,7 @@ export const validateMobileNumber = (mobileNo) => {
 
 export const validateUsername = (username) => {
     const usernameReg = /^[a-z,A-Z]+$/;
-    return usernameReg.test(username)?"":"Username should contains alphabets";
+    return usernameReg.test(username)?"":"Username should only contains alphabets";
 }
 
 export const validateUserId = (userId) =>{
@@ -27,4 +27,19 @@ export const validatePassword = (password) => {
     else{
         return password.length >=6? "": "Password must be at least 6 characters";
     }
+}
+
+export const validateName = (name) => {
+    const usernameReg = /^([a-z,A-Z]{3,}\s?)*$/;
+    return usernameReg.test(name)?"":"Name should only contains alphabets";
+}
+
+export const validatePincode = (pin) => {
+    const pincodeReg = /^[1-9]?\d{5}$/; // 6 digit indian pincode
+    return pincodeReg.test(pin)?"":"Please enter valid Pincode";
+}
+
+export const validateText = (text, errorLabel) => {
+    const textReg = /^[0-9a-zA-Z]{1,3}[0-9a-zA-Z/,: ]+$/; 
+    return textReg.test(text)?"":errorLabel;
 }
