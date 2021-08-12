@@ -27,7 +27,7 @@ const customersObj = {
     "addresses":{
         type:[{
             "receiverName": { type : String, required:true},
-            "receiverName": { type : Number, required:true},
+            "receiverMobile": { type : Number, required:true},
             "landmark":{ type : String},
             "area":{ type : String, required:[true,"Area is required"]},
             "city" : { type : String , required:[true,"City is required"]},
