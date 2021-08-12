@@ -66,7 +66,7 @@ const sampleProducts = [{
         ],
         "rating": 4.2,
         "productImages":
-          ["https://shoesclub.pk/wp-content/uploads/2019/09/FASION-RED-B-600x600.jpg"],
+          ["https://2.wlimg.com/product_images/bc-full/dir_170/5076092/zx-11-mens-grey-red-shoes-01-1509343064_p_3421782_639840.jpeg"],
           "sellerId":"SE4001"
       },
       {
@@ -279,26 +279,26 @@ const sampleProducts = [{
       },
       {
         "productId": "PREL1005",
-        "productName": "oppo 12 Blue 128GB",
-        "brand":"Apple",
+        "productName": "Vivo V17",
+        "brand":"Vivo",
         "category": "electronics",
         "subCategory": "mobile phone",
-        "productActualPrice": 84900,
+        "productActualPrice": 22990,
         "discount": 6,
         "productQuantity": 10,
         "description": "The iPhone 12 in blue color and 128GB of storage has 5G technology, 6.1-inch Super Retina XDR OLED screen with a resolution of 1170x2532 pixels, 12+12MP rear cameras and 12MP front camera, Apple A14 Bionic processor and 2815mAh battery.",
-        "highlights": ["Chip: A14 Bionic chip",
-          "Camera: Dual 12MP camera system, Ultra Wide and Wide cameras",
-          "Operating System: iOS 14",
-          "Colour: Blue",
-          "SIM Card: Dual SIM (nano‑SIM and eSIM)",
-          "Dimensions: 146.7 x 71.5 x 7.4 mm",
-          "Power and Battery: Qi wireless charging up to 7.5W",
-          "Memory Storage Capacity:	128 GB"
+        "highlights": ["Chip: Qualcomm SDM675 Snapdragon 675 (11 nm)",
+          "Camera: 32MP selfi and 48MP rear camera system, Ultra Wide and Wide cameras",
+          "Operating System: Android 9.0 (Pie), Funtouch 9.2",
+          "Colour: Midnight Ocean Black",
+          "SIM Card: Single SIM (Nano-SIM) or Dual SIM (Nano-SIM, dual stand-by)",
+          "Dimensions: 159 x 74.2 x 8.5 mm (6.26 x 2.92 x 0.33 in)",
+          "Power and Battery: Li-Po 4500 mAh with fast charging 18W",
+          "Memory Storage Capacity:	128 GB 8GB RAM"
         ],
-        "rating": 4.5,
+        "rating": 3.8,
         "productImages":
-        ["https://www.thechennaimobiles.com/image/cache/catalog/f19p-slr-600x600.jpg"],
+        ["https://static.compareindia.news18.com/compareindia/gallery/images/2019/dec/vivov17front1_181518558846.jpg"],
         "sellerId":"SE4001"
       },
       {
