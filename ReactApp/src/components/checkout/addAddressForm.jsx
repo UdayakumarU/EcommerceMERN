@@ -1,7 +1,23 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
 import { Tile, Field } from "../../library";
+import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
+import { setCustomerAddresses } from "../../redux/customer/customer.action";
+import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
 import { validateName, validateMobileNumber, validatePincode, validateText } from "../../utils/loginUtils";
+import * as api from "../../api/api";
+
+const mapStateToProps = (state) =>{
+    const loginToken = getCustomerLoginToken(state);
+    return {loginToken}
+}
+
+const mapDispatchToProps= (dispatch) =>({
+    setLoader : (status) => dispatch(setLoader(status)),
+    setErrorMessage : (error) => dispatch(setErrorMessage(error)),
+    setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses))
+})
 
 const INITIAL_STATE = {
     receiverName: "",
@@ -24,7 +40,7 @@ const INITIAL_STATE = {
     }
 };
 
-export default class AddAddressForm extends Component {
+class AddAddressForm extends Component {
     constructor() {
         super();
         this.state = INITIAL_STATE;
@@ -43,10 +59,19 @@ export default class AddAddressForm extends Component {
     }
 
     saveAndDeliver = event => {
-        const {closeform} = this.props; 
+        const {closeform, loginToken, setLoader, setErrorMessage, setCustomerAddresses} = this.props; 
+        const {error, ...deliveryAddress} = this.state;
         event.preventDefault();
         if(this.validateForm()){
-            closeform();
+            setLoader(true);
+            api.addCustomerAddress(deliveryAddress, loginToken).then( response => {
+                setCustomerAddresses(response.addresses);
+                closeform();
+                setLoader(false);
+            }, reject =>{
+                setErrorMessage([reject]);
+                setLoader(false);
+            })
         }
     }
 
@@ -177,3 +202,5 @@ export default class AddAddressForm extends Component {
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddAddressForm);

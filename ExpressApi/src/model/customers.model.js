@@ -33,7 +33,7 @@ customersModel.addCustomerAddress = (customerId, customerAddress)  => {
         .then(model => model.findOneAndUpdate(
             { customerId },
             { "$push": { "addresses": customerAddress } },
-            { new: true, rawResult: true, runValidators: true }))
+            { new: true, fields: {addresses:1}, runValidators: true }))
         .then(response => response);
 }
 

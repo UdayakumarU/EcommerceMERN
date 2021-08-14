@@ -34,7 +34,7 @@ class DeliveryAddressCheck extends Component {
         const {logintoken, addresses, setCustomerAddresses, setLoader, setErrorMessage} = this.props;
         setLoader(true);
         api.getCustomerAddresses(logintoken).then( response => {
-            setCustomerAddresses(response);
+            setCustomerAddresses(response.addresses);
             setLoader(false);
             this.setState({ isChecked : (addresses.length > 0) });
         }, reject => {

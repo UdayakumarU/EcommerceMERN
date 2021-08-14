@@ -56,3 +56,13 @@ export const getCustomerAddresses = (customerLoginToken ) => {
         throw response? response.data.errorMessage : message;
     });
 }
+
+export const addCustomerAddress = (addressDetails, customerLoginToken) => {
+    const headers = { 'Authorization' : customerLoginToken };
+    return axios.put(URL.CUSTOMER_ADDRESS_ADD, {...addressDetails}, {headers})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}
