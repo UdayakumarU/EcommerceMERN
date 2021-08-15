@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import {connect} from "react-redux";
 
-import { Tile } from "../../library";
+import { Tile } from "../../../library";
 import AddAddressForm from "./addAddressForm";
-import { getCustomerLoginToken, getCustomerAddresses } from "../../redux/customer/customer.selector";
-import { setCustomerAddresses } from "../../redux/customer/customer.action";
-import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
+import AddressList from "./addressList";
+import { getCustomerLoginToken, getCustomerAddresses } from "../../../redux/customer/customer.selector";
+import { setCustomerAddresses } from "../../../redux/customer/customer.action";
+import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
-import * as api from "../../api/api";
+import * as api from "../../../api/api";
 
 const mapStateToProps = (state) => {
     return {
@@ -63,7 +64,7 @@ class DeliveryAddressCheck extends Component {
         const { addAddress } = this.state;
         return (
             <div className="container">
-                {addresses.length>0 && addresses.map( address => <p>{address.pincode}</p>)}
+                {addresses.length>0 && <AddressList addresses ={addresses}/>}
                 {addAddress ?
                     <AddAddressForm closeform = {this.toggleAddAddressform}/>:
                     <Tile 

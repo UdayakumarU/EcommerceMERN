@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Header  from "../components/misc/header";
 import LoginCheck from "../components/checkout/loginCheck";
-import DeliveryAddressCheck from "../components/checkout/deliveryAddressCheck";
+import DeliveryAddressCheck from "../components/checkout/deliveryAddress/deliveryAddressCheck";
 import CartPriceDetails from "../components/cart/cartPriceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
