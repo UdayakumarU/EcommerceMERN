@@ -91,10 +91,11 @@ class AddressForm extends Component {
     };
 
     render() {
-        const {closeform} = this.props;
+        const {closeform, address} = this.props;
         const {receiverName, receiverMobile, area, pincode, city, state, landmark, error} = this.state;
+        const title = address?"EDIT ADDRESS":"ADD A NEW ADDRESS";
         return (
-            <Tile title= {<h6 className="text-muted">ADD A NEW ADDRESS</h6>}>
+            <Tile title= {<h6 className="text-muted">{title}</h6>}>
                 <div className="form-row">
                     <div className="form-group col-md-6">
                         <Field
