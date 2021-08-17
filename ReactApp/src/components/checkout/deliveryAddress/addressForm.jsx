@@ -40,12 +40,19 @@ const INITIAL_STATE = {
     }
 };
 
-class AddAddressForm extends Component {
+class AddressForm extends Component {
     constructor() {
         super();
         this.state = INITIAL_STATE;
     }
     
+    componentDidMount(){
+        const {address} = this.props;
+        if(address){
+            this.setState({...address})
+        }
+    }
+
     validateForm = () => {
         const error = {};
         error.receiverName = validateName(this.state.receiverName);
@@ -203,4 +210,4 @@ class AddAddressForm extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddAddressForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddressForm);
