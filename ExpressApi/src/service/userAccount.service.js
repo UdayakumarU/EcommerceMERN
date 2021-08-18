@@ -66,7 +66,7 @@ userAccountService.getCustomerAddresses = (customerId) => {
     return customersModel.getCustomerAddresses(customerId) 
         .then(response => {
             if(response) return response;
-            throw new ApiError("Can't get address.Please! try Later", 500);
+            throw new ApiError("Can't get address. Please! try Later", 500);
         });
 }
 
@@ -74,7 +74,7 @@ userAccountService.addCustomerAddress = (customerId, customerAddress) => {
     return customersModel.addCustomerAddress(customerId, customerAddress)
         .then(response => {
             if(response) return response;
-            throw new ApiError("Address not added.Please! try Later", 500);
+            throw new ApiError("Address not added. Please! try Later", 500);
         });
 }
 
@@ -82,7 +82,19 @@ userAccountService.deleteCustomerAddress = (customerId, addressId) => {
     return customersModel.deleteCustomerAddress(customerId, addressId)
         .then(response => {
             if(response) return response;
-            throw new ApiError("Address not deleted.Please! try Later", 500);
+            throw new ApiError("Address not deleted. Please! try Later", 500);
+        });
+}
+
+// comeup with better approach instead of delete and add a new one
+userAccountService.updateCustomerAddress = (customerId, addressId, customerAddress) => {
+    return customersModel.deleteCustomerAddress(customerId, addressId)
+        .then(response => {
+            if(response) return customersModel.addCustomerAddress(customerId, customerAddress)
+        })
+        .then(response => {
+            if(response) return response;
+            throw new ApiError("Address not updated. Please! try Later", 500);
         });
 }
 
@@ -117,7 +129,6 @@ userAccountService.saveCartProducts = (customerId, {cartProducts}) => {
 userAccountService.addToCart = (customerId, productId) => {
     return customersModel.isProductExistInCart(customerId, productId)
         .then(isExist => {
-            console.log(isExist);
             if(!isExist) return customersModel.addToCart(customerId, {productId,quantity:1})
             return {message : "Product added already"}
         })

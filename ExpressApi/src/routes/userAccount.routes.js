@@ -34,8 +34,14 @@ userAccountRouter.put("/add-address", userAuth, (req, res, next) => {
         .catch(error => next(error));
 });
 
-userAccountRouter.put("/delete-address/:customerId/:addressId", userAuth, (req, res, next) => {
-    userAccountService.deleteCustomerAddress(req.params.customerId, req.params.addressId)
+userAccountRouter.delete("/delete-address/:addressId", userAuth, (req, res, next) => {
+    userAccountService.deleteCustomerAddress(req.auth.customerId, req.params.addressId)
+        .then(response => res.send(response))
+        .catch(error => next(error));
+});
+
+userAccountRouter.put("/update-address/:addressId", userAuth, (req, res, next) => {
+    userAccountService.updateCustomerAddress(req.auth.customerId, req.params.addressId, req.body)
         .then(response => res.send(response))
         .catch(error => next(error));
 });
