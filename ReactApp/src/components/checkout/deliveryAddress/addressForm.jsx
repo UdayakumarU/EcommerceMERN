@@ -66,12 +66,13 @@ class AddressForm extends Component {
     }
 
     saveAndDeliver = event => {
-        const {closeform, loginToken, setLoader, setErrorMessage, setCustomerAddresses} = this.props; 
+        const {closeform, loginToken, setLoader, setErrorMessage, setCustomerAddresses, address} = this.props; 
         const {error, ...deliveryAddress} = this.state;
+        const serviceApi = address? api.updateCustomerAddress: api.addCustomerAddress;
         event.preventDefault();
         if(this.validateForm()){
             setLoader(true);
-            api.addCustomerAddress(deliveryAddress, loginToken).then( response => {
+            serviceApi(deliveryAddress, loginToken).then( response => {
                 setCustomerAddresses(response.addresses);
                 closeform();
                 setLoader(false);
@@ -92,7 +93,7 @@ class AddressForm extends Component {
 
     render() {
         const {closeform, address} = this.props;
-        const {receiverName, receiverMobile, area, pincode, city, state, landmark, error} = this.state;
+        const {receiverName, receiverMobile, area, pincode, city, state, landmark, addressType, error} = this.state;
         const title = address?"EDIT ADDRESS":"ADD A NEW ADDRESS";
         return (
             <Tile title= {<h6 className="text-muted">{title}</h6>}>
@@ -180,6 +181,7 @@ class AddressForm extends Component {
                         inputType="RADIO"
                         name="addressType"
                         value="H"
+                        checked={addressType === 'H'}
                         onChange={this.handleChange}
                         label="Home (All day delivery)" />
                     <Field
@@ -187,6 +189,7 @@ class AddressForm extends Component {
                         inputType="RADIO"
                         name="addressType"
                         value="W"
+                        checked={addressType === 'W'}
                         onChange={this.handleChange}
                         label="Work (Delivery between 10AM - 5PM)" />
                 </div>
