@@ -9,3 +9,7 @@ export const getCustomerName = state => getValue(state, 'Customer.loginDetails.n
 export const getCustomerLoginToken = state => getValue(state, 'Customer.loginDetails.loginToken', "");
 
 export const getCustomerAddresses = state => getValue(state, 'Customer.addresses', []);
+
+export const getSelectedAddressId = state => getValue(state, 'Customer.selectedAddressId', "");
+
+export const getConfirmedAddressId = state => getValue(state, 'Customer.deliveryAddressId', "");

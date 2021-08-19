@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
 import AddressForm from './addressForm';
 import AddressDetails from './addressDetails';
 
-export default class AddressList extends Component {
+import { getSelectedAddressId } from "../../../redux/customer/customer.selector";
+
+const mapStateToProps = (state) => {
+    const selectedAddressId = getSelectedAddressId(state);
+    return {selectedAddressId};
+}
+
+class AddressList extends Component {
     constructor(){
         super();
         this.state = { editAddressId: "" }
@@ -16,9 +24,9 @@ export default class AddressList extends Component {
     closeform =() =>{
         this.setState({editAddressId:""});
     }
-    
+
     render() {
-        const {addresses} = this.props;
+        const {addresses, selectedAddressId} = this.props;
         const {editAddressId} = this.state;
         return (
             addresses.map(address => (
@@ -28,11 +36,14 @@ export default class AddressList extends Component {
                         address={address}
                         closeform={this.closeform}/>):(
                     <AddressDetails 
-                        key={address._id} 
+                        key={address._id}
                         address={address}
+                        selectedAddressId={selectedAddressId}
                         setEditAddressId={this.setEditAddressId}/>
                 )
             ))
         )
     }
 }
+
+export default connect(mapStateToProps)(AddressList);

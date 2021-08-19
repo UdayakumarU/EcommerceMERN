@@ -13,3 +13,13 @@ export const setCustomerAddresses = (addresses) => ({
     type: CUSTOMER_CONST.CUSTOMER_ADDRESSES,
     payload: addresses
 });
+
+export const setSelectedAddressId = (addressId) => ({
+    type: CUSTOMER_CONST.DELIVERY_ADDRESS_SELECTED,
+    payload: addressId
+});
+
+export const setDeliveryAddressId = (addressId) => ({
+    type: CUSTOMER_CONST.DELIVERY_ADDRESS_CONFIRMED,
+    payload: addressId
+});

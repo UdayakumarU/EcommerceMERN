@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { Tile } from '../../../library';
+import { setSelectedAddressId, setDeliveryAddressId } from "../../../redux/customer/customer.action";
 
-export default class AddressDetails extends Component {
+const mapDispatchToProps = (dispatch) =>({
+    setSelectedAddressId : (id) => dispatch(setSelectedAddressId(id)),
+    setDeliveryAddressId : (id) => dispatch(setDeliveryAddressId(id))
+});
+
+class AddressDetails extends Component {
     getAddressType = (type) =>{
         return type && <span className=" badge badge-secondary mx-2">{ type === 'H'? "HOME": "WORK"}</span>
     }
@@ -11,10 +18,20 @@ export default class AddressDetails extends Component {
         this.props.setEditAddressId(id);
     }
 
+    handleSelectedAddress = (id) => {
+        this.props.setSelectedAddressId(id);
+    }
+
+    handleDeliveryAddress = (id) => {
+        this.props.setDeliveryAddressId(id);
+    }
+    
     render() {
-        const { address } = this.props;
+        const { address, selectedAddressId } = this.props;
+        const isSelectedAddress = selectedAddressId === address._id;
+        const selectClass = isSelectedAddress? "card border-dark": "";
         return (
-            <Tile>
+            <Tile className={`${selectClass} _pointer _hoverable`} onClick={() => this.handleSelectedAddress(address._id)}>
                 <div className="row">
                     <div className="col-md-10">
                         <div className="small">
@@ -29,13 +46,24 @@ export default class AddressDetails extends Component {
                             <span><strong>{address.pincode}</strong></span>
                         </div>
                     </div>
-                    <div className="col">
+                    {isSelectedAddress && <div className="col">
                         <button
                             className="btn btn-light text-primary float-right _text_sm_dark"
                             onClick={() => this.editAddress(address._id)}>EDIT</button>
-                    </div>
+                    </div>}
                 </div>
+                {isSelectedAddress && <div className="row">
+                    <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                        <button 
+                            className="btn btn-dark btn-block btn-lg my-3" 
+                            onClick={() => this.handleDeliveryAddress(address._id)}>
+                                <small> DELIVER HERE </small>
+                        </button>    
+                    </div>
+                </div>}
             </Tile>
         )
     }
 }
+
+export default connect(null, mapDispatchToProps)(AddressDetails);
