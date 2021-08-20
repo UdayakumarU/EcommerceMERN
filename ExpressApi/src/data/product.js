@@ -322,6 +322,28 @@ const sampleProducts = [{
         "productImages":
         ["https://www.moochuufootwear.eu/wp-content/uploads/2018/04/MC01-019-600x600.jpg"],
         "sellerId":"SE4001"
+      },
+      {
+        "productId": "PRTO1002",
+        "productName": "Green Monster Toy",
+        "brand":"plasmic",
+        "category": "toys",
+        "subCategory": "car",
+        "productActualPrice": 599,
+        "discount": 5,
+        "productQuantity": 10,
+        "description": "1/14 Scale Radio Control Bugatti Chiron. Full Function Radio Controlled; Licensed RC Model Car Forward, Reverse, Stop, Left & Right; Detailed Interior / Exterior; Independent Suspension System; Detailed Interior / Exterior. Factory Assembled Ready to Run: Request Run 5 AA Batteries (Not Included) 9v Battery of the Controller (Not including)",
+        "highlights": [
+          "Ideal For: Boys & Girls, Baby Girls, Baby Boys",
+          "Design: Plane",
+          "Fabric Care: Cotton",
+          "Character: Soft",
+          "Size: 27.55 inch x 55.11 inch"
+        ],
+        "rating": 4.0,
+        "productImages":
+        ["https://atlas-content-cdn.pixelsquid.com/stock-images/green-monster-toy-car-z0nOPZ7-600.jpg"],
+        "sellerId":"SE4001"
       }
     ]
 
