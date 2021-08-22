@@ -4,44 +4,46 @@ import {connect} from "react-redux";
 import { Tile } from "../../../library";
 import AddressForm from "./addressForm";
 import AddressList from "./addressList";
-import { getCustomerLoginToken, getCustomerAddresses } from "../../../redux/customer/customer.selector";
-import { setCustomerAddresses } from "../../../redux/customer/customer.action";
+import { getCustomerLoginToken, getCustomerAddresses, getCheckoutStepStatus } from "../../../redux/customer/customer.selector";
+import { setCustomerAddresses, setCheckoutStepStatus } from "../../../redux/customer/customer.action";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
 import * as api from "../../../api/api";
+import APP_CONST from '../../../APP_CONST';
 
 const mapStateToProps = (state) => {
     return {
         logintoken : getCustomerLoginToken(state),
-        addresses : getCustomerAddresses(state)}
+        addresses : getCustomerAddresses(state),
+        stepTwoStatus: getCheckoutStepStatus(state, "two")}
 }
 
 const mapDispatchToProps = (dispatch) => ({
     setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses)),
     setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (errors) => dispatch(setErrorMessage(errors))
+    setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
+    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 
-class DeliveryAddressCheck extends Component {
+class DeliveryAddressCheck extends Component { 
     constructor(props){
         super(props);
-        this.state = { 
-            isChecked : this.props.deliveryCheck, 
-            addAddress : false
-        }
+        this.state = { addAddress : false }
     }
-    
-    componentDidMount()  {
-        const {logintoken, addresses, setCustomerAddresses, setLoader, setErrorMessage} = this.props;
-        setLoader(true);
-        api.getCustomerAddresses(logintoken).then( response => {
-            setCustomerAddresses(response.addresses);
-            setLoader(false);
-            this.setState({ isChecked : (addresses.length > 0) });
-        }, reject => {
-            setErrorMessage([reject]);
-            setLoader(false);
-        })
+
+    //yet to check few other scenrio for populating address list
+    componentDidMount() {
+        const {logintoken, setCustomerAddresses, setLoader, setErrorMessage, stepTwoStatus} = this.props;
+        if(stepTwoStatus){
+            setLoader(true);
+            api.getCustomerAddresses(logintoken).then( response => {
+                setCustomerAddresses(response.addresses);
+                setLoader(false);
+            }, reject => {
+                setErrorMessage([reject]);
+                setLoader(false);
+            })
+        }
     }
     
     getHeaderContent = (color) => (
@@ -60,9 +62,10 @@ class DeliveryAddressCheck extends Component {
     }
 
     showUncheckedDeliveryAddress = () => {
-        const { addresses } = this.props;
+        const { addresses, stepTwoStatus } = this.props;
         const { addAddress } = this.state;
         return (
+           stepTwoStatus?(
             <div className="container">
                 {addresses.length>0 && <AddressList addresses ={addresses}/>}
                 {addAddress ?
@@ -72,8 +75,14 @@ class DeliveryAddressCheck extends Component {
                                 className="text-primary _pointer" 
                                 onClick={this.toggleAddressform}> 
                                     + Add a new address
-                                </div>}/> 
+                                </div>}
+                    /> 
                 }
+            </div>):
+            <div className="row">
+                <div className="col-md-9 col-sm-9 col-9">
+                    {this.getHeaderContent('light')}
+                </div>
             </div>
         );
     }
@@ -98,13 +107,13 @@ class DeliveryAddressCheck extends Component {
     );
 
     render() {
-        const {isChecked} = this.state;
+        const {stepTwoStatus} = this.props;
         return (
             <Tile
                 className="mb-3"
                 headerClass ="_primary_bg"
-                header={!isChecked && this.getHeaderContent('dark')}>
-                {isChecked? this.showCheckedDeliveryAddress(): this.showUncheckedDeliveryAddress()}
+                header={stepTwoStatus === APP_CONST.OPEN && this.getHeaderContent('dark')}>
+                {stepTwoStatus === APP_CONST.CHECKED? this.showCheckedDeliveryAddress(): this.showUncheckedDeliveryAddress()}
             </Tile>
         )
     }

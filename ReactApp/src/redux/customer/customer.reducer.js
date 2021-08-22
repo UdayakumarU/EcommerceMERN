@@ -7,7 +7,7 @@ const userReducer = (currentState = INITIAL_STATE, action) => {
             return { ...currentState, loginDetails: action.payload }
         }
         case CUSTOMER_CONST.CUSTOMER_LOGOUT:{
-            return { ...currentState, loginDetails: null }
+            return INITIAL_STATE 
         }
         case CUSTOMER_CONST.CUSTOMER_ADDRESSES:{
             return { ...currentState, addresses: action.payload }
@@ -17,6 +17,14 @@ const userReducer = (currentState = INITIAL_STATE, action) => {
         }
         case CUSTOMER_CONST.DELIVERY_ADDRESS_CONFIRMED:{
             return { ...currentState, deliveryAddressId: action.payload }
+        }
+        case CUSTOMER_CONST.CHECKOUT_INITIALIZE:{
+            return { ...currentState, checkout: action.payload }
+        }
+        case CUSTOMER_CONST.CHECKOUT_STEP:{
+            const { step } = currentState.checkout;
+            step[action.payload.step] = action.payload.status;
+            return { ...currentState, checkout:{step} }
         }
         default : return currentState;
     }

@@ -23,3 +23,13 @@ export const setDeliveryAddressId = (addressId) => ({
     type: CUSTOMER_CONST.DELIVERY_ADDRESS_CONFIRMED,
     payload: addressId
 });
+
+export const initializeCheckoutSteps = () => ({
+    type: CUSTOMER_CONST.CHECKOUT_INITIALIZE,
+    payload: {step: {one:false, two:false, three:false, four:false} }
+});
+
+export const setCheckoutStepStatus = (step, status) => ({
+    type: CUSTOMER_CONST.CHECKOUT_STEP,
+    payload: {step, status}
+});

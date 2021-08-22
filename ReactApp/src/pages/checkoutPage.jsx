@@ -7,6 +7,9 @@ import DeliveryAddressCheck from "../components/checkout/deliveryAddress/deliver
 import CartPriceDetails from "../components/cart/cartPriceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
+import { initializeCheckoutSteps, setCheckoutStepStatus } from "../redux/customer/customer.action";
+
+import APP_CONST from "../APP_CONST";
 
 const mapStateToProps = (state) => {
     return{
@@ -14,17 +17,28 @@ const mapStateToProps = (state) => {
     }
 };
 
+const mapDispatchToProps = (dispatch) => ({
+    initializeCheckout : () => dispatch(initializeCheckoutSteps()),
+    setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status))
+});
+
 class CheckoutPage extends Component {
+    componentDidMount(){
+        const {loginCheck, initializeCheckout, setCheckoutStepStatus} = this.props;
+        initializeCheckout();
+        setCheckoutStepStatus("one", loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
+        setCheckoutStepStatus("two", loginCheck? APP_CONST.OPEN: false);
+    }
+
     render() {
-        const {loginCheck} = this.props;
         return (
             <React.Fragment>
                 <Header hideCart={true} hideLogin={true}/>
                 <div className = 'container-fluid'>
                     <div className='row mt-4'>
                         <div className = "col-md-8">
-                            <LoginCheck loginCheck={loginCheck}/>
-                            <DeliveryAddressCheck deliveryCheck={false}/>
+                            <LoginCheck/>
+                            <DeliveryAddressCheck/>
                         </div>
                         <div className="col-md-4">
                             <CartPriceDetails/>
@@ -36,4 +50,4 @@ class CheckoutPage extends Component {
     }
 }
 
-export default connect(mapStateToProps)(CheckoutPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutPage);

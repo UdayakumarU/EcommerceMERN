@@ -4,20 +4,24 @@ import { withRouter } from "react-router";
 import { Link } from 'react-router-dom';
 
 import {Tile} from "../../library";
-import { getCustomerName } from "../../redux/customer/customer.selector";
-import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
+import { getCustomerLoginStatus, getCustomerName } from "../../redux/customer/customer.selector";
+import { getCustomerLoginToken, getCheckoutStepStatus } from "../../redux/customer/customer.selector";
 import { getCartItems } from "../../redux/cart/cart.selector";
-import { logoutCustomer } from "../../redux/customer/customer.action";
+import { logoutCustomer, setCheckoutStepStatus } from "../../redux/customer/customer.action";
 import { emptyCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
 import { mapCartProductsToIds } from "../../utils/cartUtils";
+
 import * as api from "../../api/api";
+import  APP_CONST from "../../APP_CONST";
 
 const mapStateToProps = (state) => {
     return {
         customerName : getCustomerName(state),
         customerLoginToken : getCustomerLoginToken(state),
-        cartItems : getCartItems(state)
+        cartItems : getCartItems(state),
+        isLoggedIn : getCustomerLoginStatus(state),
+        stepOneStatus: getCheckoutStepStatus(state, "one")
     }
 };
 
@@ -26,19 +30,12 @@ const mapDispatchToProps = (dispatch) => {
         logoutCustomer : () => dispatch(logoutCustomer()),
         emptyCart : () => dispatch(emptyCart()),
         setLoader : (status) => dispatch(setLoader(status)),
-        setErrorMessage : (errors) => dispatch(setErrorMessage(errors))
+        setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
+        setStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
     }
 };
 
 class LoginCheck extends Component {
-    constructor(props){
-        super(props);
-        this.state = { 
-            isLoggedIn : this.props.loginCheck,
-            isChecked : this.props.loginCheck, 
-        }
-    }
-
     getHeaderContent = (color) => (
         <React.Fragment>
             <span className={`badge badge-${color} px-2 py-1`}>1</span>
@@ -61,12 +58,20 @@ class LoginCheck extends Component {
         });
     }
 
-    toggleChange = () =>{
-        this.setState({isChecked:!this.state.isChecked})
+    changeDetail = () =>{
+        this.props.setStatus("one", APP_CONST.OPEN);
+        this.props.setStatus("two", false);
+        this.props.setStatus("three", false);
+        this.props.setStatus("four", false);
+    }
+
+    continueCheckout = () =>{
+        this.props.setStatus("one", APP_CONST.CHECKED);
+        this.props.setStatus("two", APP_CONST.OPEN);
     }
 
     showUncheckedLogin = () => (
-        this.state.isLoggedIn? (
+        this.props.isLoggedIn? (
             <div className="container">
                 <div className="row">
                     <div className="col-md-5">
@@ -75,7 +80,7 @@ class LoginCheck extends Component {
                             <strong className="ml-2">{this.props.customerName}</strong>
                         </div>
                         <button className="btn btn-link p-0" onClick={this.logoutAndSignin}><small>Logout & Sign in to another account</small></button>
-                        <button className="btn btn-dark btn-block btn-lg my-3" onClick={this.toggleChange}><small> CONTINUE CHECKOUT </small></button>
+                        <button className="btn btn-dark btn-block btn-lg my-3" onClick={this.continueCheckout}><small> CONTINUE CHECKOUT </small></button>
                     </div>
                 </div>
                 <div className="row">
@@ -99,7 +104,7 @@ class LoginCheck extends Component {
                     <span className="text-dark"><strong>&#x2713;</strong></span>
                 </div>
                 <div className="col">
-                    <button className="btn btn-outline-dark float-right" onClick={this.toggleChange}>Change</button>
+                    <button className="btn btn-outline-dark float-right" onClick={this.changeDetail}>Change</button>
                 </div>
             </div>
             <div className="row">
@@ -111,13 +116,13 @@ class LoginCheck extends Component {
     );
 
     render() {
-        const {isChecked} = this.state;
+        const {stepOneStatus} = this.props;
         return (
             <Tile
                 className="mb-3"
                 headerClass ="_primary_bg"
-                header={!isChecked && this.getHeaderContent('dark')}>
-                {isChecked? this.showCheckedLogin(): this.showUncheckedLogin()}
+                header={stepOneStatus === APP_CONST.OPEN && this.getHeaderContent('dark')}>
+                { stepOneStatus === APP_CONST.CHECKED? this.showCheckedLogin(): this.showUncheckedLogin() }
             </Tile>
         )
     }
