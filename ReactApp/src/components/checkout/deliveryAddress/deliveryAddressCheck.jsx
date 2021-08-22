@@ -4,18 +4,22 @@ import {connect} from "react-redux";
 import { Tile } from "../../../library";
 import AddressForm from "./addressForm";
 import AddressList from "./addressList";
-import { getCustomerLoginToken, getCustomerAddresses, getCheckoutStepStatus } from "../../../redux/customer/customer.selector";
+import { getCustomerLoginToken, getCustomerAddresses, getCheckoutStepStatus, getConfirmedAddressId } from "../../../redux/customer/customer.selector";
 import { setCustomerAddresses, setCheckoutStepStatus } from "../../../redux/customer/customer.action";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
+import {getAddressById} from "../../../utils/util";
 import * as api from "../../../api/api";
 import APP_CONST from '../../../APP_CONST';
 
 const mapStateToProps = (state) => {
+    const addresses = getCustomerAddresses(state);
+    const addressId = getConfirmedAddressId(state);
     return {
         logintoken : getCustomerLoginToken(state),
-        addresses : getCustomerAddresses(state),
-        stepTwoStatus: getCheckoutStepStatus(state, "two")}
+        addresses,
+        stepTwoStatus: getCheckoutStepStatus(state, "two"),
+        confirmedAddress: getAddressById(addresses, addressId)}
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -53,8 +57,10 @@ class DeliveryAddressCheck extends Component {
         </React.Fragment>
     );
 
-    toggleChange = () =>{
-        this.setState({isChecked:!this.state.isChecked})
+    changeDetail = () =>{
+        this.props.setCheckoutStatus("two", APP_CONST.OPEN);
+        this.props.setCheckoutStatus("three", false);
+        this.props.setCheckoutStatus("four", false);
     }
 
     toggleAddressform = () => {
@@ -87,24 +93,33 @@ class DeliveryAddressCheck extends Component {
         );
     }
 
-    showCheckedDeliveryAddress = () => (
-        <React.Fragment>
-            <div className="row">
-                <div className="col-md-9 col-sm-9 col-9">
-                    {this.getHeaderContent('light')}
-                    <span className="text-dark"><strong>&#x2713;</strong></span>
+    showCheckedDeliveryAddress = () => {
+        const {confirmedAddress} = this.props;
+        return(
+            <React.Fragment>
+                <div className="row">
+                    <div className="col-md-9 col-sm-9 col-9">
+                        {this.getHeaderContent('light')}
+                        <span className="text-dark"><strong>&#x2713;</strong></span>
+                    </div>
+                    <div className="col">
+                        <button className="btn btn-outline-dark float-right" onClick={this.changeDetail}>Change</button>
+                    </div>
                 </div>
-                <div className="col">
-                    <button className="btn btn-outline-dark float-right" onClick={this.toggleChange}>Change</button>
+                <div className="row">
+                    <div className="col-md-10 pl-5 ml-2">
+                        <small>
+                            <strong>{`${confirmedAddress.receiverName} `}</strong> 
+                            <span>{`${confirmedAddress.area}, `}</span>
+                            <span>{`${confirmedAddress.city}, `}</span>
+                            <span>{`${confirmedAddress.state} - `}</span>
+                            <span><strong>{confirmedAddress.pincode}</strong></span>
+                        </small>
+                    </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-md-10 pl-5 ml-2">
-                    <small><strong>Selected Address comes here</strong></small>
-                </div>
-            </div>
-        </React.Fragment>
-    );
+            </React.Fragment>
+        );
+    }
 
     render() {
         const {stepTwoStatus} = this.props;

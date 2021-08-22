@@ -43,3 +43,5 @@ export const getBreadcrumSections = (item) =>{
     }
     return sections;
 }
+
+export const getAddressById = (addresses, id) => addresses.find( address => address._id === id);

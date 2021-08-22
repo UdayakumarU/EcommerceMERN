@@ -31,7 +31,7 @@ const mapDispatchToProps = (dispatch) => {
         emptyCart : () => dispatch(emptyCart()),
         setLoader : (status) => dispatch(setLoader(status)),
         setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-        setStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
+        setCheckoutStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
     }
 };
 
@@ -59,15 +59,15 @@ class LoginCheck extends Component {
     }
 
     changeDetail = () =>{
-        this.props.setStatus("one", APP_CONST.OPEN);
-        this.props.setStatus("two", false);
-        this.props.setStatus("three", false);
-        this.props.setStatus("four", false);
+        this.props.setCheckoutStatus("one", APP_CONST.OPEN);
+        this.props.setCheckoutStatus("two", false);
+        this.props.setCheckoutStatus("three", false);
+        this.props.setCheckoutStatus("four", false);
     }
 
     continueCheckout = () =>{
-        this.props.setStatus("one", APP_CONST.CHECKED);
-        this.props.setStatus("two", APP_CONST.OPEN);
+        this.props.setCheckoutStatus("one", APP_CONST.CHECKED);
+        this.props.setCheckoutStatus("two", APP_CONST.OPEN);
     }
 
     showUncheckedLogin = () => (
