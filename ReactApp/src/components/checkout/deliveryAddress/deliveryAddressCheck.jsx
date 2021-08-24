@@ -35,10 +35,9 @@ class DeliveryAddressCheck extends Component {
         this.state = { addAddress : false }
     }
 
-    //yet to check few other scenrio for populating address list
-    componentDidMount() {
+    componentDidUpdate(prevProps) {
         const {logintoken, setCustomerAddresses, setLoader, setErrorMessage, stepTwoStatus} = this.props;
-        if(stepTwoStatus){
+        if(prevProps.stepTwoStatus === false && stepTwoStatus === APP_CONST.OPEN ){
             setLoader(true);
             api.getCustomerAddresses(logintoken).then( response => {
                 setCustomerAddresses(response.addresses);
