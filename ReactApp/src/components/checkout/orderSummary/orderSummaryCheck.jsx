@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
+
+import { getCheckoutStepStatus } from "../../../redux/customer/customer.selector";
 
 import { Tile } from "../../../library";
 import APP_CONST from "../../../APP_CONST";
+
+const mapStateToProps = (state) => {
+    return {stepThreeStatus: getCheckoutStepStatus(state, "three")}
+}
 
 export default class OrderSummaryCheck extends Component {
 
@@ -27,13 +34,16 @@ export default class OrderSummaryCheck extends Component {
     }
 
     render() {
+        const {stepThreeStatus} = this.props;
         return (
             <Tile
                 className="mb-3"
                 headerClass ="_primary_bg"
-                header={"stepThreeStatus" === APP_CONST.OPEN && this.getHeaderContent('dark')}>
-                {"stepThreeStatus" === APP_CONST.CHECKED? this.showCheckedOrderSummary(): this.showUncheckedOrderSummary()}
+                header={stepThreeStatus === APP_CONST.OPEN && this.getHeaderContent('dark')}>
+                {stepThreeStatus === APP_CONST.CHECKED? this.showCheckedOrderSummary(): this.showUncheckedOrderSummary()}
             </Tile>
         )
     }
 }
+
+export default connect(mapStateToProps)(OrderSummaryCheck);
