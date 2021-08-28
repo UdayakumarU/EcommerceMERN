@@ -4,15 +4,15 @@ import {connect} from "react-redux";
 import { Tile } from "../../../library";
 import CartItemList from '../../cart/cartItemList';
 
-import { getCheckoutStepStatus } from "../../../redux/customer/customer.selector";
+import { getCheckoutStepStatus } from "../../../redux/checkout/checkout.selector";
 import { getCartItems } from "../../../redux/cart/cart.selector";
-import { setCheckoutStepStatus } from "../../../redux/customer/customer.action";
+import { setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
 
 import APP_CONST from "../../../APP_CONST";
 
 const mapStateToProps = (state) => {
     return {
-        stepThreeStatus: getCheckoutStepStatus(state, "three"),
+        stepThreeStatus: getCheckoutStepStatus(state, APP_CONST.STEP.THREE),
         cartItems: getCartItems(state) 
     }
 };
@@ -23,8 +23,8 @@ const mapDispatchToProps = (dispatch) => ({
 
 class OrderSummaryCheck extends Component {
     changeDetail = () =>{
-        this.props.setCheckoutStatus("three", APP_CONST.OPEN);
-        this.props.setCheckoutStatus("four", false);
+        this.props.setCheckoutStatus(APP_CONST.STEP.THREE, APP_CONST.OPEN);
+        this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, false);
     }
 
     getHeaderContent = (color) => (
@@ -35,8 +35,8 @@ class OrderSummaryCheck extends Component {
     );
 
     confirmCheckoutItem = () =>{
-        this.props.setCheckoutStatus("three", APP_CONST.CHECKED);
-        this.props.setCheckoutStatus("four", APP_CONST.OPEN);
+        this.props.setCheckoutStatus(APP_CONST.STEP.THREE, APP_CONST.CHECKED);
+        this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, APP_CONST.OPEN);
     }
     
     showUncheckedOrderSummary = () =>{

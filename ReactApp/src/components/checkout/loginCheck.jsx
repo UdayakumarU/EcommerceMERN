@@ -5,9 +5,11 @@ import { Link } from 'react-router-dom';
 
 import {Tile} from "../../library";
 import { getCustomerLoginStatus, getCustomerName } from "../../redux/customer/customer.selector";
-import { getCustomerLoginToken, getCheckoutStepStatus } from "../../redux/customer/customer.selector";
+import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
 import { getCartItems } from "../../redux/cart/cart.selector";
-import { logoutCustomer, setCheckoutStepStatus } from "../../redux/customer/customer.action";
+import { getCheckoutStepStatus } from "../../redux/checkout/checkout.selector";
+import { logoutCustomer } from "../../redux/customer/customer.action";
+import { setCheckoutStepStatus } from "../../redux/checkout/checkout.action";
 import { emptyCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
 import { mapCartProductsToIds } from "../../utils/cartUtils";
@@ -21,7 +23,7 @@ const mapStateToProps = (state) => {
         customerLoginToken : getCustomerLoginToken(state),
         cartItems : getCartItems(state),
         isLoggedIn : getCustomerLoginStatus(state),
-        stepOneStatus: getCheckoutStepStatus(state, "one")
+        stepOneStatus: getCheckoutStepStatus(state, APP_CONST.STEP.ONE)
     }
 };
 
@@ -59,15 +61,15 @@ class LoginCheck extends Component {
     }
 
     changeDetail = () =>{
-        this.props.setCheckoutStatus("one", APP_CONST.OPEN);
-        this.props.setCheckoutStatus("two", false);
-        this.props.setCheckoutStatus("three", false);
-        this.props.setCheckoutStatus("four", false);
+        this.props.setCheckoutStatus(APP_CONST.STEP.ONE, APP_CONST.OPEN);
+        this.props.setCheckoutStatus(APP_CONST.STEP.TWO, false);
+        this.props.setCheckoutStatus(APP_CONST.STEP.THREE, false);
+        this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, false);
     }
 
     continueCheckout = () =>{
-        this.props.setCheckoutStatus("one", APP_CONST.CHECKED);
-        this.props.setCheckoutStatus("two", APP_CONST.OPEN);
+        this.props.setCheckoutStatus(APP_CONST.STEP.ONE, APP_CONST.CHECKED);
+        this.props.setCheckoutStatus(APP_CONST.STEP.TWO, APP_CONST.OPEN);
     }
 
     showUncheckedLogin = () => (

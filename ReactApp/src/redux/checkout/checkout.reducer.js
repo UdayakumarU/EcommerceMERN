@@ -1,0 +1,27 @@
+import CHECKOUT_CONST from './checkout.const';
+const INITIAL_STATE = {};
+
+const checkoutReducer = (currentState = INITIAL_STATE, action) =>{
+    switch(action.type){
+        case CHECKOUT_CONST.CHECKOUT_INITIALIZE:{
+            return { ...action.payload }
+        }
+        case CHECKOUT_CONST.STEP_STATUS:{
+            const step = currentState[`step${action.payload.step}`];
+            currentState[`step${action.payload.step}`] = {...step, status:action.payload.status,};
+            return { ...currentState};
+        }
+        case CHECKOUT_CONST.DELIVERY_ADDRESS_SELECTED:{
+            const { stepTwo } = currentState;
+            return { ...currentState, stepTwo:{...stepTwo, selectedAddressId:action.payload} }
+        }
+        case CHECKOUT_CONST.DELIVERY_ADDRESS_CONFIRMED:{
+            const { stepTwo } = currentState;
+            return { ...currentState, stepTwo:{...stepTwo, confirmedAddressId: action.payload} }
+        }
+        default:
+            return currentState;
+    }
+}
+
+export default checkoutReducer;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import AddressForm from './addressForm';
 import AddressDetails from './addressDetails';
 
-import { getSelectedAddressId } from "../../../redux/customer/customer.selector";
+import { getSelectedAddressId } from "../../../redux/checkout/checkout.selector";
 
 const mapStateToProps = (state) => {
     const selectedAddressId = getSelectedAddressId(state);

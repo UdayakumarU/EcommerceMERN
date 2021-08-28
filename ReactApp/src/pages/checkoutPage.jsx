@@ -8,7 +8,7 @@ import OrderSummaryCheck from "../components/checkout/orderSummary/orderSummaryC
 import CartPriceDetails from "../components/cart/cartPriceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
-import { initializeCheckoutSteps, setCheckoutStepStatus } from "../redux/customer/customer.action";
+import { initializeCheckoutSteps, setCheckoutStepStatus } from "../redux/checkout/checkout.action";
 
 import APP_CONST from "../APP_CONST";
 
@@ -27,8 +27,8 @@ class CheckoutPage extends Component {
     componentDidMount(){
         const {loginCheck, initializeCheckout, setCheckoutStepStatus} = this.props;
         initializeCheckout();
-        setCheckoutStepStatus("one", loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
-        setCheckoutStepStatus("two", loginCheck? APP_CONST.OPEN: false);
+        setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
+        setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
     }
 
     render() {

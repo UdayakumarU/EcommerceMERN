@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import APP_CONST from '../../../APP_CONST';
 
 import { Tile } from '../../../library';
-import { setSelectedAddressId, setDeliveryAddressId, setCheckoutStepStatus } from "../../../redux/customer/customer.action";
+import { setSelectedAddressId, setConfirmedAddressId, setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
 
 const mapDispatchToProps = (dispatch) =>({
     setSelectedAddressId : (id) => dispatch(setSelectedAddressId(id)),
-    setDeliveryAddressId : (id) => dispatch(setDeliveryAddressId(id)),
+    setConfirmedAddressId : (id) => dispatch(setConfirmedAddressId(id)),
     setCheckoutStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 
@@ -25,9 +25,9 @@ class AddressDetails extends Component {
     }
 
     handleDeliveryAddress = (id) => {
-        this.props.setDeliveryAddressId(id);
-        this.props.setCheckoutStatus("two", APP_CONST.CHECKED);
-        this.props.setCheckoutStatus("three", APP_CONST.OPEN);
+        this.props.setConfirmedAddressId(id);
+        this.props.setCheckoutStatus(APP_CONST.STEP.TWO, APP_CONST.CHECKED);
+        this.props.setCheckoutStatus(APP_CONST.STEP.THREE, APP_CONST.OPEN);
     }
     
     render() {

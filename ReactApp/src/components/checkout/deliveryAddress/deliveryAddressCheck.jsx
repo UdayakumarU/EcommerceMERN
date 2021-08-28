@@ -4,8 +4,10 @@ import {connect} from "react-redux";
 import { Tile } from "../../../library";
 import AddressForm from "./addressForm";
 import AddressList from "./addressList";
-import { getCustomerLoginToken, getCustomerAddresses, getCheckoutStepStatus, getConfirmedAddressId } from "../../../redux/customer/customer.selector";
-import { setCustomerAddresses, setCheckoutStepStatus } from "../../../redux/customer/customer.action";
+import { getCustomerLoginToken, getCustomerAddresses } from "../../../redux/customer/customer.selector";
+import { getCheckoutStepStatus, getConfirmedAddressId } from "../../../redux/checkout/checkout.selector";
+import { setCustomerAddresses } from "../../../redux/customer/customer.action";
+import { setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
 import {getAddressById} from "../../../utils/util";
@@ -18,7 +20,7 @@ const mapStateToProps = (state) => {
     return {
         logintoken : getCustomerLoginToken(state),
         addresses,
-        stepTwoStatus: getCheckoutStepStatus(state, "two"),
+        stepTwoStatus: getCheckoutStepStatus(state, APP_CONST.STEP.TWO),
         confirmedAddress: getAddressById(addresses, addressId)}
 }
 
@@ -57,9 +59,9 @@ class DeliveryAddressCheck extends Component {
     );
 
     changeDetail = () =>{
-        this.props.setCheckoutStatus("two", APP_CONST.OPEN);
-        this.props.setCheckoutStatus("three", false);
-        this.props.setCheckoutStatus("four", false);
+        this.props.setCheckoutStatus(APP_CONST.STEP.TWO, APP_CONST.OPEN);
+        this.props.setCheckoutStatus(APP_CONST.STEP.THREE, false);
+        this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, false);
     }
 
     toggleAddressform = () => {
