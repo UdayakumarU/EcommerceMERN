@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 
+import { Tile } from "../../../library";
+import CartItemList from '../../cart/cartItemList';
+
 import { getCheckoutStepStatus } from "../../../redux/customer/customer.selector";
 import { getCartItems } from "../../../redux/cart/cart.selector";
 import { setCheckoutStepStatus } from "../../../redux/customer/customer.action";
 
-import { Tile } from "../../../library";
 import APP_CONST from "../../../APP_CONST";
 
 const mapStateToProps = (state) => {
@@ -19,7 +21,7 @@ const mapDispatchToProps = (dispatch) => ({
     setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 
-export default class OrderSummaryCheck extends Component {
+class OrderSummaryCheck extends Component {
     changeDetail = () =>{
         this.props.setCheckoutStatus("three", APP_CONST.OPEN);
         this.props.setCheckoutStatus("four", false);
@@ -32,8 +34,28 @@ export default class OrderSummaryCheck extends Component {
         </React.Fragment>
     );
 
+    confirmCheckoutItem = () =>{
+        this.props.setCheckoutStatus("three", APP_CONST.CHECKED);
+        this.props.setCheckoutStatus("four", APP_CONST.OPEN);
+    }
+    
     showUncheckedOrderSummary = () =>{
+        const { stepThreeStatus } = this.props;
         return( 
+            stepThreeStatus?(
+                <React.Fragment>
+                    <CartItemList />
+                    <Tile>
+                        <div className="float-right">
+                            <button 
+                                className="btn btn-dark btn-lg px-5" 
+                                onClick={this.confirmCheckoutItem}>
+                                    <small> CONTINUE </small>
+                            </button>    
+                        </div>
+                    </Tile>
+                </React.Fragment>
+            ):
             <div className="row">
                 <div className="col-md-9 col-sm-9 col-9">
                     {this.getHeaderContent('light')}

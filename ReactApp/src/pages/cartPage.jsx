@@ -26,7 +26,11 @@ class CartPage extends Component {
                     <div className="container-fluid">
                         <div className="row mt-4">
                             <div className="col-md-8"> 
-                                <CartItemList/> 
+                                <Tile>
+                                    <h5>{`My Cart (${cartItems.length})`}</h5>
+                                    <hr/>
+                                    <CartItemList/>
+                                </Tile>
                                 <Tile>
                                     <div className= "col-md-3 offset-md-9">
                                         <Link to="./checkout"className="btn btn-block btn-lg btn-dark"> 
