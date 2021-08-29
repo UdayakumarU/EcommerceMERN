@@ -5,9 +5,9 @@ import { Tile } from "../../../library";
 import AddressForm from "./addressForm";
 import AddressList from "./addressList";
 import { getCustomerLoginToken, getCustomerAddresses } from "../../../redux/customer/customer.selector";
-import { getCheckoutStepStatus, getConfirmedAddressId } from "../../../redux/checkout/checkout.selector";
+import { getCheckoutStepStatus, getConfirmedAddressId, getSelectedAddressId } from "../../../redux/checkout/checkout.selector";
 import { setCustomerAddresses } from "../../../redux/customer/customer.action";
-import { setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
+import { setCheckoutStepStatus, setSelectedAddressId } from "../../../redux/checkout/checkout.action";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
 import {getAddressById} from "../../../utils/util";
@@ -21,14 +21,16 @@ const mapStateToProps = (state) => {
         logintoken : getCustomerLoginToken(state),
         addresses,
         stepTwoStatus: getCheckoutStepStatus(state, APP_CONST.STEP.TWO),
-        confirmedAddress: getAddressById(addresses, addressId)}
+        confirmedAddress: getAddressById(addresses, addressId),
+        selectedAddress: getSelectedAddressId(state)}
 }
 
 const mapDispatchToProps = (dispatch) => ({
     setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses)),
     setLoader : (status) => dispatch(setLoader(status)),
     setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status))
+    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status)),
+    setSelectedAddressId: (id) => dispatch(setSelectedAddressId(id))
 });
 
 class DeliveryAddressCheck extends Component { 
@@ -43,12 +45,19 @@ class DeliveryAddressCheck extends Component {
             setLoader(true);
             api.getCustomerAddresses(logintoken).then( response => {
                 setCustomerAddresses(response.addresses);
+                this.setDefaultSelectedAddress(response.addresses);
                 setLoader(false);
             }, reject => {
                 setErrorMessage([reject]);
                 setLoader(false);
             })
         }
+    }
+
+    setDefaultSelectedAddress = (addresses) =>{
+        const {selectedAddress, setSelectedAddressId} = this.props;
+        if(!selectedAddress && addresses.length > 0)
+            setSelectedAddressId(addresses[0]._id);
     }
     
     getHeaderContent = (color) => (
