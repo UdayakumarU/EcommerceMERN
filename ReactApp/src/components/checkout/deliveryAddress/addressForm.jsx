@@ -71,16 +71,19 @@ class AddressForm extends Component {
     }
     
     setAsDeliveryAddress = addressId => {
-        // how to set the deliveryaddress for a newly added address which don't have _id
+        // how to set the deliveryaddress for a newly added address which doesn't have _id
         if(addressId){ 
             this.props.setConfirmedAddressId(addressId);
+        }
+        this.props.closeform();
+        if(addressId){
             this.props.setCheckoutStepStatus(APP_CONST.STEP.TWO, APP_CONST.CHECKED);
             this.props.setCheckoutStepStatus(APP_CONST.STEP.THREE, APP_CONST.OPEN);
         }
     }
 
     saveAndDeliver = event => {
-        const {closeform, loginToken, setLoader, setErrorMessage, setCustomerAddresses, address} = this.props; 
+        const {loginToken, setLoader, setErrorMessage, setCustomerAddresses, address} = this.props; 
         const {error, ...deliveryAddress} = this.state;
         const serviceApi = address? api.updateCustomerAddress: api.addCustomerAddress;
         event.preventDefault();
@@ -89,7 +92,6 @@ class AddressForm extends Component {
             serviceApi(deliveryAddress, loginToken).then( response => {
                 setCustomerAddresses(response.addresses);
                 this.setAsDeliveryAddress(deliveryAddress._id);
-                closeform();
                 setLoader(false);
             }, reject =>{
                 setErrorMessage([reject]);
