@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import { Tile, Field } from "../../../library";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 import { setCustomerAddresses } from "../../../redux/customer/customer.action";
+import { setConfirmedAddressId, setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
 import { getCustomerLoginToken } from "../../../redux/customer/customer.selector";
 import { validateName, validateMobileNumber, validatePincode, validateText } from "../../../utils/loginUtils";
+
 import * as api from "../../../api/api";
+import APP_CONST from "../../../APP_CONST";
 
 const mapStateToProps = (state) =>{
     const loginToken = getCustomerLoginToken(state);
@@ -16,8 +19,10 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps= (dispatch) =>({
     setLoader : (status) => dispatch(setLoader(status)),
     setErrorMessage : (error) => dispatch(setErrorMessage(error)),
-    setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses))
-})
+    setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses)),
+    setConfirmedAddressId : (addressId) => dispatch(setConfirmedAddressId(addressId)),
+    setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
+});
 
 const INITIAL_STATE = {
     receiverName: "",
@@ -64,6 +69,15 @@ class AddressForm extends Component {
         this.setState({error});
         return !(error.receiverName||error.receiverMobile||error.pincode||error.area||error.city||error.state);
     }
+    
+    setAsDeliveryAddress = addressId => {
+        // how to set the deliveryaddress for a newly added address which don't have _id
+        if(addressId){ 
+            this.props.setConfirmedAddressId(addressId);
+            this.props.setCheckoutStepStatus(APP_CONST.STEP.TWO, APP_CONST.CHECKED);
+            this.props.setCheckoutStepStatus(APP_CONST.STEP.THREE, APP_CONST.OPEN);
+        }
+    }
 
     saveAndDeliver = event => {
         const {closeform, loginToken, setLoader, setErrorMessage, setCustomerAddresses, address} = this.props; 
@@ -74,6 +88,7 @@ class AddressForm extends Component {
             setLoader(true);
             serviceApi(deliveryAddress, loginToken).then( response => {
                 setCustomerAddresses(response.addresses);
+                this.setAsDeliveryAddress(deliveryAddress._id);
                 closeform();
                 setLoader(false);
             }, reject =>{
