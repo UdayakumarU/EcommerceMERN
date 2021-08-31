@@ -22,7 +22,14 @@ class PaymentOptionCheck extends Component {
     showUncheckedPaymentOption = () =>{
         const { stepFourStatus } = this.props;
         return( 
-            stepFourStatus?(<div/>):
+            stepFourStatus?(<div className="row">
+                <div className="col-md-6 col-sm-6 col-6">Cash on delivery</div>
+                <div className="col">
+                    <button className="btn btn-dark btn-lg px-5">
+                        <small> CONFIRM ORDER </small>
+                    </button> 
+                </div>
+            </div>):
             <div className="row">
                 <div className="col-md-9 col-sm-9 col-9">
                     {this.getHeaderContent('light')}
