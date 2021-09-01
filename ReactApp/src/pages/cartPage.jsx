@@ -11,23 +11,25 @@ import ItemList from "../components/itemList";
 
 import { getCartItems } from '../redux/cart/cart.selector';
 import { removeItemFromCart, emptyCart } from "../redux/cart/cart.action";
-import { moveItemsToCheckout } from "../redux/checkout/checkout.action";
+import { moveItemsToCheckout, initializeCheckoutSteps } from "../redux/checkout/checkout.action";
 
 const mapStateToProps = (state) => ({ 
     cartItems : getCartItems(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    initializeCheckout : () => dispatch(initializeCheckoutSteps()),
+    moveItemsToCheckout: cartItems => dispatch(moveItemsToCheckout(cartItems)),
     emptyCart: () => dispatch(emptyCart()),
-    removeItemFromCart : (productId) => dispatch(removeItemFromCart(productId)),
-    moveItemsToCheckout: cartItems => dispatch(moveItemsToCheckout(cartItems))
+    removeItemFromCart : (productId) => dispatch(removeItemFromCart(productId))
 });
 
 class CartPage extends Component {
     handlePlaceOrder = () =>{
-        const { moveItemsToCheckout, emptyCart, cartItems, history } = this.props;
-        moveItemsToCheckout(cartItems);
+        const { initializeCheckout, moveItemsToCheckout, emptyCart, cartItems, history } = this.props;
         history.push("./checkout");
+        initializeCheckout();
+        moveItemsToCheckout(cartItems);
         emptyCart();
     }
 
@@ -47,8 +49,10 @@ class CartPage extends Component {
                                 </Tile>
                                 <Tile>
                                     <div className= "col-md-3 offset-md-9">
-                                        <button className="btn btn-block btn-lg btn-dark"> 
-                                            <small>PLACE ORDER</small>  
+                                        <button 
+                                            className="btn btn-block btn-lg btn-dark" 
+                                            onClick={this.handlePlaceOrder}> 
+                                                <small>PLACE ORDER</small>  
                                         </button>
                                     </div>
                                 </Tile>

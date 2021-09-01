@@ -9,7 +9,7 @@ import PaymentOptionCheck from "../components/checkout/paymentOption/paymentOpti
 import CartPriceDetails from "../components/cart/cartPriceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
-import { initializeCheckoutSteps, setCheckoutStepStatus } from "../redux/checkout/checkout.action";
+import { setCheckoutStepStatus } from "../redux/checkout/checkout.action";
 import { getCheckoutItems, getCheckoutStepStatus } from "../redux/checkout/checkout.selector";
 import { mergeCustomerCart } from "../redux/cart/cart.action";
 
@@ -24,15 +24,13 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    initializeCheckout : () => dispatch(initializeCheckoutSteps()),
     setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status)),
     mergeCustomerCart : (cartItems) => dispatch(mergeCustomerCart(cartItems))
 });
 
 class CheckoutPage extends Component {
     componentDidMount(){
-        const {loginCheck, initializeCheckout, setCheckoutStepStatus} = this.props;
-        initializeCheckout();
+        const {loginCheck, setCheckoutStepStatus} = this.props;
         setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
         setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
     }
