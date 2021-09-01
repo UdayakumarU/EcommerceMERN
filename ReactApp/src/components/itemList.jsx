@@ -1,24 +1,12 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getCartItems } from "../../redux/cart/cart.selector";
-import { removeItemFromCart } from "../../redux/cart/cart.action";
+import {calculatePriceAfterDiscount} from "../utils/util";
 
-import {calculatePriceAfterDiscount} from "../../utils/util";
-
-const mapStateToProps = (state) => ({
-    cartItems: getCartItems(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    removeItemFromCart : (productId) => dispatch(removeItemFromCart(productId))
-});
-
-class CartItemList extends Component {
+export default class ItemList extends Component {
     render() {
-        const { cartItems, removeItemFromCart } = this.props;
-        return (cartItems.map((item, index) => {
+        const { items, handleRemoveItem } = this.props;
+        return (items.map((item, index) => {
             const {brand, productName, productActualPrice, discount, productId, productImages} = item;
                 return(<div key={productId}>
                     {index>0 && <hr/>}
@@ -40,7 +28,7 @@ class CartItemList extends Component {
                         </div>
                         <div className="col-md-1 col-sm-1 col-1">
                             <div className="_absolute_top_right">
-                                <span className="btn text-danger" onClick={() => removeItemFromCart(productId)}>
+                                <span className="btn text-danger" onClick={() => handleRemoveItem(productId)}>
                                     <span className="material-icons">delete</span>
                                 </span>
                             </div>
@@ -51,5 +39,3 @@ class CartItemList extends Component {
         )
     }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartItemList);

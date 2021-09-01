@@ -6,19 +6,33 @@ import { Tile } from "../library";
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import EmptyCart from "../components/cart/emptyCart";
-import CartItemList from "../components/cart/cartItemList";
 import CartPriceDetail from "../components/cart/cartPriceDetail";
+import ItemList from "../components/itemList";
 
 import { getCartItems } from '../redux/cart/cart.selector';
-import { Link } from "react-router-dom";
+import { removeItemFromCart, emptyCart } from "../redux/cart/cart.action";
+import { moveItemsToCheckout } from "../redux/checkout/checkout.action";
 
 const mapStateToProps = (state) => ({ 
     cartItems : getCartItems(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+    emptyCart: () => dispatch(emptyCart()),
+    removeItemFromCart : (productId) => dispatch(removeItemFromCart(productId)),
+    moveItemsToCheckout: cartItems => dispatch(moveItemsToCheckout(cartItems))
+});
+
 class CartPage extends Component {
+    handlePlaceOrder = () =>{
+        const { moveItemsToCheckout, emptyCart, cartItems, history } = this.props;
+        moveItemsToCheckout(cartItems);
+        history.push("./checkout");
+        emptyCart();
+    }
+
     render(){
-        const { cartItems } = this.props;
+        const { cartItems, removeItemFromCart } = this.props;
         return (
             <React.Fragment>
                 <Header hideCart={true}/>
@@ -29,13 +43,13 @@ class CartPage extends Component {
                                 <Tile>
                                     <h5>{`My Cart (${cartItems.length})`}</h5>
                                     <hr/>
-                                    <CartItemList/>
+                                    <ItemList items={cartItems} handleRemoveItem ={removeItemFromCart}/>
                                 </Tile>
                                 <Tile>
                                     <div className= "col-md-3 offset-md-9">
-                                        <Link to="./checkout"className="btn btn-block btn-lg btn-dark"> 
+                                        <button className="btn btn-block btn-lg btn-dark"> 
                                             <small>PLACE ORDER</small>  
-                                        </Link>
+                                        </button>
                                     </div>
                                 </Tile>
                             </div>
@@ -51,4 +65,4 @@ class CartPage extends Component {
     }
 }
 
-export default connect(mapStateToProps)(CartPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CartPage);

@@ -23,3 +23,13 @@ export const setConfirmedAddressId = (addressId) => ({
     type: CHECKOUT_CONST.DELIVERY_ADDRESS_CONFIRMED,
     payload: addressId
 });
+
+export const moveItemsToCheckout = (cartItems) => ({
+    type: CHECKOUT_CONST.ITEMS_TO_CHECKOUT,
+    payload: cartItems
+});
+
+export const removeItemFromCheckout = productId => ({
+    type: CHECKOUT_CONST.REMOVE_ITEM,
+    payload: productId
+});

@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 
 import { Tile } from "../../../library";
-import CartItemList from '../../cart/cartItemList';
+import ItemList from '../../itemList';
 
 import { getCheckoutStepStatus } from "../../../redux/checkout/checkout.selector";
-import { getCartItems } from "../../../redux/cart/cart.selector";
-import { setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
+import { getCheckoutItems } from "../../../redux/checkout/checkout.selector";
+import { setCheckoutStepStatus, removeItemFromCheckout } from "../../../redux/checkout/checkout.action";
 
 import APP_CONST from "../../../APP_CONST";
 
 const mapStateToProps = (state) => {
     return {
         stepThreeStatus: getCheckoutStepStatus(state, APP_CONST.STEP.THREE),
-        cartItems: getCartItems(state) 
+        checkoutItems: getCheckoutItems(state) 
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status))
+    removeItemFromCheckout: (productId)=> dispatch(removeItemFromCheckout(productId)),
+    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status)),
 });
 
 class OrderSummaryCheck extends Component {
@@ -39,12 +40,16 @@ class OrderSummaryCheck extends Component {
         this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, APP_CONST.OPEN);
     }
     
+    removeItemfromCheckout = (productId) => {
+        this.props.removeItemFromCheckout(productId);
+    }
+
     showUncheckedOrderSummary = () =>{
-        const { stepThreeStatus } = this.props;
+        const { stepThreeStatus, checkoutItems } = this.props;
         return( 
             stepThreeStatus?(
                 <React.Fragment>
-                    <CartItemList />
+                    <ItemList items={checkoutItems} handleRemoveItem= {this.removeItemfromCheckout}/>
                     <Tile>
                         <div className="float-right">
                             <button 
@@ -65,8 +70,8 @@ class OrderSummaryCheck extends Component {
     }
     
     showCheckedOrderSummary = () =>{
-        const {cartItems} = this.props;
-        const checkedItem = `${cartItems.length} item${cartItems.length>1? 's': ""}`
+        const {checkoutItems} = this.props;
+        const checkedItem = `${checkoutItems.length} item${checkoutItems.length>1? 's': ""}`
         return( 
             <React.Fragment>
                 <div className="row">

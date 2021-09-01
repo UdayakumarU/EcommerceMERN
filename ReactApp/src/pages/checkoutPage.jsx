@@ -10,18 +10,23 @@ import CartPriceDetails from "../components/cart/cartPriceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
 import { initializeCheckoutSteps, setCheckoutStepStatus } from "../redux/checkout/checkout.action";
+import { getCheckoutItems, getCheckoutStepStatus } from "../redux/checkout/checkout.selector";
+import { mergeCustomerCart } from "../redux/cart/cart.action";
 
 import APP_CONST from "../APP_CONST";
 
 const mapStateToProps = (state) => {
     return{
-        loginCheck : getCustomerLoginStatus(state)
+        loginCheck : getCustomerLoginStatus(state),
+        checkoutItems: getCheckoutItems(state),
+        isPaymentCompleted: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR)
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
     initializeCheckout : () => dispatch(initializeCheckoutSteps()),
-    setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status))
+    setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status)),
+    mergeCustomerCart : (cartItems) => dispatch(mergeCustomerCart(cartItems))
 });
 
 class CheckoutPage extends Component {
@@ -30,6 +35,11 @@ class CheckoutPage extends Component {
         initializeCheckout();
         setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
         setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
+    }
+
+    componentWillUnmount(){
+        if(!this.props.isPaymentCompleted)
+            this.props.mergeCustomerCart(this.props.checkoutItems);
     }
 
     render() {

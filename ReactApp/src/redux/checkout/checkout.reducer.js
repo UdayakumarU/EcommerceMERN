@@ -19,6 +19,15 @@ const checkoutReducer = (currentState = INITIAL_STATE, action) =>{
             const { stepTwo } = currentState;
             return { ...currentState, stepTwo:{...stepTwo, confirmedAddressId: action.payload} }
         }
+        case CHECKOUT_CONST.ITEMS_TO_CHECKOUT:{
+            const { stepThree } = currentState;
+            return { ...currentState, stepThree:{...stepThree, checkoutItems: [...action.payload]} }
+        }
+        case CHECKOUT_CONST.REMOVE_ITEM:{
+            const { stepThree } = currentState;
+            const { checkoutItems }= stepThree;
+            return { ...currentState,  stepThree:{...stepThree, checkoutItems: checkoutItems.filter(product => action.payload !== product.productId )} }
+        }
         default:
             return currentState;
     }
