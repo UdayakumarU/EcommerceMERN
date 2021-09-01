@@ -19,7 +19,7 @@ const mapStateToProps = (state) => {
     return{
         loginCheck : getCustomerLoginStatus(state),
         checkoutItems: getCheckoutItems(state),
-        isPaymentCompleted: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR)
+        paymentCheck: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR)
     }
 };
 
@@ -30,13 +30,15 @@ const mapDispatchToProps = (dispatch) => ({
 
 class CheckoutPage extends Component {
     componentDidMount(){
+        //Prone to inconsistent checkout state on page refresh
+        //since initializeCheckout has moved to PlaceOrder handler
         const {loginCheck, setCheckoutStepStatus} = this.props;
         setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
         setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
     }
 
     componentWillUnmount(){
-        if(!this.props.isPaymentCompleted)
+        if(this.props.paymentCheck !== APP_CONST.CHECKED)
             this.props.mergeCustomerCart(this.props.checkoutItems);
     }
 

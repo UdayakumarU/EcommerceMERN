@@ -4,11 +4,12 @@ import {connect} from "react-redux";
 import { Tile } from "../../../library";
 import ItemList from '../../itemList';
 
-import { getCheckoutStepStatus } from "../../../redux/checkout/checkout.selector";
-import { getCheckoutItems } from "../../../redux/checkout/checkout.selector";
+import { getCheckoutStepStatus, getCheckoutItems } from "../../../redux/checkout/checkout.selector";
 import { setCheckoutStepStatus, removeItemFromCheckout } from "../../../redux/checkout/checkout.action";
+import { mergeCustomerCart } from '../../../redux/cart/cart.action';
 
 import APP_CONST from "../../../APP_CONST";
+import { getProductById } from '../../../utils/util';
 
 const mapStateToProps = (state) => {
     return {
@@ -19,7 +20,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     removeItemFromCheckout: (productId)=> dispatch(removeItemFromCheckout(productId)),
-    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status)),
+    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status)),
+    mergeCustomerCart: (cartItems) => dispatch(mergeCustomerCart(cartItems))
 });
 
 class OrderSummaryCheck extends Component {
@@ -40,8 +42,10 @@ class OrderSummaryCheck extends Component {
         this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, APP_CONST.OPEN);
     }
     
-    removeItemfromCheckout = (productId) => {
-        this.props.removeItemFromCheckout(productId);
+    moveItemfromCheckoutToCart = (productId) => {
+        const { mergeCustomerCart, removeItemFromCheckout, checkoutItems } = this.props;
+        mergeCustomerCart([getProductById(checkoutItems, productId)]);
+        removeItemFromCheckout(productId);
     }
 
     showUncheckedOrderSummary = () =>{
@@ -49,7 +53,7 @@ class OrderSummaryCheck extends Component {
         return( 
             stepThreeStatus?(
                 <React.Fragment>
-                    <ItemList items={checkoutItems} handleRemoveItem= {this.removeItemfromCheckout}/>
+                    <ItemList items={checkoutItems} handleRemoveItem= {this.moveItemfromCheckoutToCart}/>
                     <Tile>
                         <div className="float-right">
                             <button 
