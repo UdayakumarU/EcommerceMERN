@@ -6,7 +6,7 @@ import LoginCheck from "../components/checkout/loginCheck";
 import DeliveryAddressCheck from "../components/checkout/deliveryAddress/deliveryAddressCheck";
 import OrderSummaryCheck from "../components/checkout/orderSummary/orderSummaryCheck";
 import PaymentOptionCheck from "../components/checkout/paymentOption/paymentOptionCheck";
-import CartPriceDetails from "../components/cart/cartPriceDetail";
+import PriceDetail from "../components/priceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
 import { setCheckoutStepStatus } from "../redux/checkout/checkout.action";
@@ -55,7 +55,7 @@ class CheckoutPage extends Component {
                             <PaymentOptionCheck/>
                         </div>
                         <div className="col-md-4">
-                            <CartPriceDetails/>
+                            <PriceDetail items={this.props.checkoutItems}/>
                         </div>
                     </div> 
                 </div>

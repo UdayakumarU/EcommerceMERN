@@ -6,7 +6,7 @@ import { Tile } from "../library";
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import EmptyCart from "../components/cart/emptyCart";
-import CartPriceDetail from "../components/cart/cartPriceDetail";
+import PriceDetail from "../components/priceDetail";
 import ItemList from "../components/itemList";
 
 import { getCartItems } from '../redux/cart/cart.selector';
@@ -58,7 +58,7 @@ class CartPage extends Component {
                                 </Tile>
                             </div>
                             <div className="col-md-4"> 
-                                <CartPriceDetail/> 
+                                <PriceDetail items={cartItems}/> 
                             </div>
                         </div>
                     </div>

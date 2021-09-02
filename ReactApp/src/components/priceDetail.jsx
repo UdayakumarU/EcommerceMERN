@@ -1,24 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-import {Tile} from '../../library';
-import { getCartItems } from "../../redux/cart/cart.selector";
-import {numberToPrice} from "../../utils/util";
-import { calculateCartActualPrice, calculateCartDiscountPrice } from "../../utils/cartUtils";
+import {Tile} from '../library';
+import { numberToPrice } from "../utils/util";
+import { calculateCartActualPrice, calculateCartDiscountPrice } from "../utils/cartUtils";
 
-const mapStateToProps = (state) => {
-    const cartItems = getCartItems(state)
-    const actualTotalPrice = numberToPrice(calculateCartActualPrice(cartItems));
-    const discountPrice = numberToPrice(calculateCartDiscountPrice(cartItems));
+const mapStateToProps = (state, props) => {
+    const actualTotalPrice = numberToPrice(calculateCartActualPrice(props.items));
+    const discountPrice = numberToPrice(calculateCartDiscountPrice(props.items));
     return{
         actualTotalPrice ,
         discountPrice,
-        totalItems : cartItems.length,
+        totalItems : props.items.length,
         totalPrice : numberToPrice(actualTotalPrice-discountPrice)
     }
 }
 
-class CartPriceDetail extends Component {
+class PriceDetail extends Component {
     render() {
         const {totalItems, actualTotalPrice, discountPrice, totalPrice} = this.props;
         return (
@@ -51,4 +49,4 @@ class CartPriceDetail extends Component {
     }
 }
 
-export default connect(mapStateToProps)(CartPriceDetail)
+export default connect(mapStateToProps)(PriceDetail)
