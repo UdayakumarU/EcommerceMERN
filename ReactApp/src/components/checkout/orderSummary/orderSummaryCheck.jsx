@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 
-import { Tile } from "../../../library";
+import { Tile, DialogModal } from "../../../library";
 import ItemList from '../../itemList';
 
 import { getCheckoutStepStatus, getCheckoutItems } from "../../../redux/checkout/checkout.selector";
@@ -52,7 +52,7 @@ class OrderSummaryCheck extends Component {
         const { stepThreeStatus, checkoutItems } = this.props;
         return( 
             stepThreeStatus?(
-                <React.Fragment>
+                checkoutItems.length?<React.Fragment>
                     <ItemList items={checkoutItems} handleRemoveItem= {this.moveItemfromCheckoutToCart}/>
                     <Tile>
                         <div className="float-right">
@@ -63,7 +63,8 @@ class OrderSummaryCheck extends Component {
                             </button>    
                         </div>
                     </Tile>
-                </React.Fragment>
+                </React.Fragment>:
+                <small>Your checkout has no items.</small>
             ):
             <div className="row">
                 <div className="col-md-9 col-sm-9 col-9">
@@ -99,14 +100,17 @@ class OrderSummaryCheck extends Component {
     }
 
     render() {
-        const {stepThreeStatus} = this.props;
+        const {stepThreeStatus, checkoutItems} = this.props;
         return (
-            <Tile
-                className="mb-3"
-                headerClass ="_primary_bg"
-                header={stepThreeStatus === APP_CONST.OPEN && this.getHeaderContent('dark')}>
-                {stepThreeStatus === APP_CONST.CHECKED? this.showCheckedOrderSummary(): this.showUncheckedOrderSummary()}
-            </Tile>
+            <React.Fragment>
+                <Tile
+                    className="mb-3"
+                    headerClass ="_primary_bg"
+                    header={stepThreeStatus === APP_CONST.OPEN && this.getHeaderContent('dark')}>
+                    {stepThreeStatus === APP_CONST.CHECKED? this.showCheckedOrderSummary(): this.showUncheckedOrderSummary()}
+                </Tile>
+                { !checkoutItems.length && <DialogModal/> }
+            </React.Fragment>
         )
     }
 }
