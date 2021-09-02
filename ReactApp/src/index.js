@@ -8,11 +8,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import "./css/theme.css";
 
 import App from "./App";
+import { ScrollToTop } from "./library";
 import {store, persistor} from "./redux/store";
 
 ReactDOM.render(
   <Provider store = {store}>
     <BrowserRouter>
+      <ScrollToTop/>
       <PersistGate persistor = {persistor}>
         <App />
       </PersistGate>
