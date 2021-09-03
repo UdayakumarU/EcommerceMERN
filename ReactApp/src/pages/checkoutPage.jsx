@@ -43,20 +43,22 @@ class CheckoutPage extends Component {
     }
 
     render() {
+        const {checkoutItems} = this.props;
+        const checkoutSecionClass = checkoutItems.length? "col-md-8": "offset-2 col-md-8";
         return (
             <React.Fragment>
                 <Header hideCart={true} hideLogin={true}/>
                 <div className = 'container-fluid'>
                     <div className='row mt-4'>
-                        <div className = "col-md-8">
+                        <div className = {checkoutSecionClass}>
                             <LoginCheck/>
                             <DeliveryAddressCheck/>
                             <OrderSummaryCheck/>
                             <PaymentOptionCheck/>
                         </div>
-                        <div className="col-md-4">
-                            <PriceDetail items={this.props.checkoutItems}/>
-                        </div>
+                        {checkoutItems.length > 0 && <div className="col-md-4">
+                            <PriceDetail items={checkoutItems}/>
+                        </div>}
                     </div> 
                 </div>
             </React.Fragment>
