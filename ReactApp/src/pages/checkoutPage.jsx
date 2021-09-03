@@ -9,14 +9,16 @@ import PaymentOptionCheck from "../components/checkout/paymentOption/paymentOpti
 import PriceDetail from "../components/priceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
-import { setCheckoutStepStatus } from "../redux/checkout/checkout.action";
+import { setCheckoutStepStatus, moveItemsToCheckout, initializeCheckoutSteps, terminateCheckout } from "../redux/checkout/checkout.action";
 import { getCheckoutItems, getCheckoutStepStatus } from "../redux/checkout/checkout.selector";
-import { mergeCustomerCart } from "../redux/cart/cart.action";
+import { mergeCustomerCart, emptyCart} from "../redux/cart/cart.action";
+import { getCartItems } from '../redux/cart/cart.selector';
 
 import APP_CONST from "../APP_CONST";
 
 const mapStateToProps = (state) => {
     return{
+        cartItems : getCartItems(state),
         loginCheck : getCustomerLoginStatus(state),
         checkoutItems: getCheckoutItems(state),
         paymentCheck: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR)
@@ -24,15 +26,22 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+    initializeCheckout : () => dispatch(initializeCheckoutSteps()),
+    moveItemsToCheckout : cartItems => dispatch(moveItemsToCheckout(cartItems)),
+    emptyCart : () => dispatch(emptyCart()),
     setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status)),
-    mergeCustomerCart : (cartItems) => dispatch(mergeCustomerCart(cartItems))
+    mergeCustomerCart : (checkoutItems) => dispatch(mergeCustomerCart(checkoutItems)),
+    terminateCheckout : ()=> dispatch(terminateCheckout())
 });
 
 class CheckoutPage extends Component {
     componentDidMount(){
         //Prone to inconsistent checkout state on page refresh
-        //since initializeCheckout has moved to PlaceOrder handler
-        const {loginCheck, setCheckoutStepStatus} = this.props;
+        //need to implement proper onbeforeunload handler
+        const { loginCheck, setCheckoutStepStatus, initializeCheckout, moveItemsToCheckout, emptyCart, cartItems } = this.props;
+        initializeCheckout();
+        moveItemsToCheckout(cartItems);
+        emptyCart();
         setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
         setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
     }
@@ -40,6 +49,7 @@ class CheckoutPage extends Component {
     componentWillUnmount(){
         if(this.props.paymentCheck !== APP_CONST.CHECKED)
             this.props.mergeCustomerCart(this.props.checkoutItems);
+        this.props.terminateCheckout();
     }
 
     render() {

@@ -28,6 +28,9 @@ const checkoutReducer = (currentState = INITIAL_STATE, action) =>{
             const { checkoutItems }= stepThree;
             return { ...currentState,  stepThree:{...stepThree, checkoutItems: checkoutItems.filter(product => action.payload !== product.productId )} }
         }
+        case CHECKOUT_CONST.CHECKOUT_TERMINATE:{
+            return action.payload;
+        }
         default:
             return currentState;
     }

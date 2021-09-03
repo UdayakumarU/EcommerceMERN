@@ -33,3 +33,8 @@ export const removeItemFromCheckout = productId => ({
     type: CHECKOUT_CONST.REMOVE_ITEM,
     payload: productId
 });
+
+export const terminateCheckout = () => ({
+    type: CHECKOUT_CONST.CHECKOUT_TERMINATE,
+    payload: {}
+})
