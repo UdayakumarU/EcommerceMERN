@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import {connect} from "react-redux";
-
-import { Tile } from "../../../library";
+import { React, Component, connect, Tile } from "../../../library";
 import { getCheckoutStepStatus } from "../../../redux/checkout/checkout.selector";
 import { setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
 import APP_CONST from "../../../APP_CONST";

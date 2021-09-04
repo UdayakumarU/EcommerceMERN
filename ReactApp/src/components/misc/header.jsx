@@ -1,6 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { React, Link, connect } from "../../library";
 
 import CutomerQuickLinks from '../loginSignup/cutomerQuickLinks';
 import { getCustomerLoginStatus } from "../../redux/customer/customer.selector";

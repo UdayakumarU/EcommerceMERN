@@ -1,7 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-
-import {Tile} from '../library';
+import { React, Component, connect, Tile } from '../library';
 import { numberToPrice } from "../utils/util";
 import { calculateCartActualPrice, calculateCartDiscountPrice } from "../utils/cartUtils";
 

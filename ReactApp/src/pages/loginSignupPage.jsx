@@ -1,5 +1,4 @@
-import React from "react";
-import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
+import { React, Link, Route, Switch, useRouteMatch } from "../library";
 
 import Login from "../components/loginSignup/login";
 import Signup from "../components/loginSignup/signup";

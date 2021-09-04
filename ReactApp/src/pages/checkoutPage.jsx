@@ -1,5 +1,4 @@
-import React, { Component } from "react"
-import { connect } from "react-redux";
+import { React, Component, connect } from "../library";
 
 import Header  from "../components/misc/header";
 import LoginCheck from "../components/checkout/loginCheck";
@@ -9,10 +8,10 @@ import PaymentOptionCheck from "../components/checkout/paymentOption/paymentOpti
 import PriceDetail from "../components/priceDetail";
 
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
-import { setCheckoutStepStatus, moveItemsToCheckout, initializeCheckoutSteps, terminateCheckout } from "../redux/checkout/checkout.action";
 import { getCheckoutItems, getCheckoutStepStatus } from "../redux/checkout/checkout.selector";
-import { mergeCustomerCart, emptyCart} from "../redux/cart/cart.action";
 import { getCartItems } from '../redux/cart/cart.selector';
+import { setCheckoutStepStatus, moveItemsToCheckout, initializeCheckoutSteps, terminateCheckout } from "../redux/checkout/checkout.action";
+import { mergeCustomerCart, emptyCart} from "../redux/cart/cart.action";
 
 import APP_CONST from "../APP_CONST";
 

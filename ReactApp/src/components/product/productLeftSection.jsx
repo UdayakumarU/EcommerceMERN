@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from "react-router";
+import { React, Component, connect, withRouter } from "../../library";
 
-import { isCartHasThisItem } from "../../utils/cartUtils";
 import { getCartItems } from "../../redux/cart/cart.selector";
 import { addItemToCart } from '../../redux/cart/cart.action';
+import { isCartHasThisItem } from "../../utils/cartUtils";
 
 const mapDispatchToProps = dispatch =>({
   addItemToCart : (item) => dispatch(addItemToCart(item))

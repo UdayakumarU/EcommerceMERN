@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { React, Component, connect } from "../../library";
 
 import { getCustomerName } from "../../redux/customer/customer.selector";
 import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
@@ -8,6 +7,7 @@ import { logoutCustomer } from "../../redux/customer/customer.action";
 import { emptyCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
 import { mapCartProductsToIds } from "../../utils/cartUtils";
+
 import * as api from "../../api/api";
 
 const mapStateToProps = (state) => {

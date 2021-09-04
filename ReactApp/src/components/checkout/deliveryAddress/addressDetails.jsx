@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import APP_CONST from '../../../APP_CONST';
-
-import { Tile } from '../../../library';
+import { React, Component, connect, Tile } from '../../../library';
 import { setSelectedAddressId, setConfirmedAddressId, setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
+import APP_CONST from '../../../APP_CONST';
 
 const mapDispatchToProps = (dispatch) =>({
     setSelectedAddressId : (id) => dispatch(setSelectedAddressId(id)),

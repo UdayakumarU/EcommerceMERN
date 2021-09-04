@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import { React, Component } from "../../library";
 
 class ProductSliderButtons extends Component {
     render() {

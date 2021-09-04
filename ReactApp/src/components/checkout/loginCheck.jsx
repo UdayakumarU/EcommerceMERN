@@ -1,9 +1,5 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
-import { withRouter } from "react-router";
-import { Link } from 'react-router-dom';
+import { React, Component, connect, withRouter, Link, Tile} from "../../library";
 
-import {Tile} from "../../library";
 import { getCustomerLoginStatus, getCustomerName } from "../../redux/customer/customer.selector";
 import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
 import { getCartItems } from "../../redux/cart/cart.selector";
@@ -12,10 +8,10 @@ import { logoutCustomer } from "../../redux/customer/customer.action";
 import { setCheckoutStepStatus } from "../../redux/checkout/checkout.action";
 import { emptyCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
-import { mapCartProductsToIds } from "../../utils/cartUtils";
 
-import * as api from "../../api/api";
+import { mapCartProductsToIds } from "../../utils/cartUtils";
 import  APP_CONST from "../../APP_CONST";
+import * as api from "../../api/api";
 
 const mapStateToProps = (state) => {
     return {

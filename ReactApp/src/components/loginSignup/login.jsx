@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { React, Component, connect, Link, Tile, Field } from "../../library";
 
-import { Tile, Field } from "../../library";
-
+import { getHomeProducts } from "../../redux/product/product.selector";
+import { getCartItems } from "../../redux/cart/cart.selector";
 import { loginCustomer } from "../../redux/customer/customer.action";
 import { mergeCustomerCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
-import { getHomeProducts } from "../../redux/product/product.selector";
-import { getCartItems } from "../../redux/cart/cart.selector";
 
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
 import { removeCurrentFromSavedCart } from "../../utils/cartUtils";

@@ -1,4 +1,4 @@
-import { get, isEmpty } from 'lodash';
+import { get, isEmpty } from "../library";
 
 export const getValue = (object, key, defaultValue) =>{
     return get(object, key, defaultValue);

@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import {connect} from "react-redux";
+import { React, Component, connect, Tile, DialogModal } from "../../../library";
 
-import { Tile, DialogModal } from "../../../library";
 import ItemList from '../../itemList';
 
 import { getCheckoutStepStatus, getCheckoutItems } from "../../../redux/checkout/checkout.selector";
 import { setCheckoutStepStatus, removeItemFromCheckout } from "../../../redux/checkout/checkout.action";
 import { mergeCustomerCart } from '../../../redux/cart/cart.action';
 
-import APP_CONST from "../../../APP_CONST";
 import { getProductById } from '../../../utils/util';
+import APP_CONST from "../../../APP_CONST";
 
 const mapStateToProps = (state) => {
     return {

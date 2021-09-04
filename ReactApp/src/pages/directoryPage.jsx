@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import { React, Component, connect } from "../library";
 
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
@@ -7,9 +6,9 @@ import Directory from "../components/misc/directory";
 import Breadcrum from "../components/misc/breadcrum";
 import ProductList from "../components/product/productList";
 
+import { getHomeProducts } from "../redux/product/product.selector";
 import { getProductsByType, getBreadcrumSections } from "../utils/util";
 
-import { getHomeProducts } from "../redux/product/product.selector";
 
 const mapStateToProps = (state, props) =>{
     const products = getHomeProducts(state);

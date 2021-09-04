@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { React, Component, Link, Tile } from  '../../library';
 
-import { Tile } from  '../../library';
 import WishlistButton from './wishlistButton';
 import { calculatePriceAfterDiscount, numberToPrice } from '../../utils/util';
 

@@ -1,8 +1,4 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom' ;
-import { connect } from 'react-redux';
-
-import { Tile } from "../../library";
+import { React, Component, Link, connect, Tile } from "../../library";
 import { getCustomerLoginStatus } from "../../redux/customer/customer.selector";
 
 const mapStateToProps = (state) => ({

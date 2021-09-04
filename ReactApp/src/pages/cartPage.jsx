@@ -1,11 +1,7 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import { Link } from "react-router-dom";
+import { React, Component, connect, Link, Tile } from "../library";
 
-import { Tile } from "../library";
-
-import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
+import Footer from "../components/misc/footer";
 import EmptyCart from "../components/cart/emptyCart";
 import PriceDetail from "../components/priceDetail";
 import ItemList from "../components/itemList";

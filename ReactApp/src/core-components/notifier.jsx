@@ -1,8 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import 'bootstrap/js/src/alert'
+import { React, connect } from "../library";
 
-import { setErrorMessage, setSuccessMessage } from "../redux/misc/misc.action" 
+import { setErrorMessage, setSuccessMessage } from "../redux/misc/misc.action";
 import APP_CONST from "../APP_CONST";
 
 const mapDispatchToProps = (dispatch) => ({

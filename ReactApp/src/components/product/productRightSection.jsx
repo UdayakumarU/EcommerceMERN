@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { React, Component } from "../../library";
 
 import { calculatePriceAfterDiscount, calculateSavingPrice, numberToPrice } from "../../utils/util";
 

@@ -1,5 +1,4 @@
-import React, {Component}  from 'react';
-import { Link } from "react-router-dom";
+import { React, Component, Link } from "../library";
 
 class DialogModal extends Component{
     componentDidMount(){

@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { React, Component, connect, Tile, Field } from "../../../library";
 
-import { Tile, Field } from "../../../library";
+import { getCustomerLoginToken } from "../../../redux/customer/customer.selector";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 import { setCustomerAddresses } from "../../../redux/customer/customer.action";
 import { setConfirmedAddressId, setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
-import { getCustomerLoginToken } from "../../../redux/customer/customer.selector";
 import { validateName, validateMobileNumber, validatePincode, validateText } from "../../../utils/loginUtils";
 
-import * as api from "../../../api/api";
 import APP_CONST from "../../../APP_CONST";
+import * as api from "../../../api/api";
 
 const mapStateToProps = (state) =>{
     const loginToken = getCustomerLoginToken(state);

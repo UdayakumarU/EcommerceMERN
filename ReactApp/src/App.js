@@ -1,8 +1,5 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
+import { React, Route, Switch, connect, Loader, Notifier } from "./library";
 
-import { Loader, Notifier } from "./library";
 import HomePage from "./pages/homePage";
 import LoginSignupPage from "./pages/loginSignupPage";
 import ProductPage from "./pages/productPage";

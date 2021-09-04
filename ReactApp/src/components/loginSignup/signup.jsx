@@ -1,11 +1,7 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { React, Component, connect, Link, Tile, Field } from "../../library";
 
-import { Tile, Field } from "../../library";
-
-import { validateEmail, validateUsername, validatePassword } from "../../utils/loginUtils";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
+import { validateEmail, validateUsername, validatePassword } from "../../utils/loginUtils";
 import * as api from "../../api/api.js";
 
 const INITIAL_STATE = {

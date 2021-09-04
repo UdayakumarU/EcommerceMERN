@@ -1,15 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import { React, Component, connect } from "../library";
 
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
 import Breadcrum from "../components/misc/breadcrum";
 import ProductDetails from "../components/product/productDetails";
-import { getProductById, getBreadcrumSections } from "../utils/util";
 
-import { setCurrentProduct } from "../redux/product/product.action";
 import { getHomeProducts } from "../redux/product/product.selector";
+import { setCurrentProduct } from "../redux/product/product.action";
+import { getProductById, getBreadcrumSections } from "../utils/util";
 
 const mapStateToProps = (state, props) => {
     const availableProducts = getHomeProducts(state);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { React, Component } from "../library";
 
 export default class Field extends Component {
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { React } from "../library";
 
 const Banner = ({items}) => (
   <div id="carouselExampleIndicators" className="carousel slide _bottom_space" data-ride="carousel">

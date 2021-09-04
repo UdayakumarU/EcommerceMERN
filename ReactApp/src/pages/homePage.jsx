@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import{ React, Component, connect } from "../library";
 
 import Banner from "../core-components/banner";
 import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
 import ProductSlider from "../components/product/productSlider";
-import * as api from "../api/api.js";
 
-import { addHomeProducts } from "../redux/product/product.action";
 import { getHomeProducts } from "../redux/product/product.selector";
+import { addHomeProducts } from "../redux/product/product.action";
+
 import { getProductsByType } from "../utils/util";
+import * as api from "../api/api.js";
 
 const caroselitems = [
     {imageUrl:"./banners/banner1.jpg", altName:"First slide"},

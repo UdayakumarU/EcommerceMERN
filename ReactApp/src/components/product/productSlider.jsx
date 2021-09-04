@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { React, Component, Link, Tile } from  '../../library';
 
-import { Tile } from  '../../library';
 import ProductOverview from "../product/productOverview";
 import ProductSliderButtons from "./productSliderButtons";
 

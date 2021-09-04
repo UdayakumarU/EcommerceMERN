@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux';
+import { React, Component, connect } from "../../../library";
 
 import AddressForm from './addressForm';
 import AddressDetails from './addressDetails';

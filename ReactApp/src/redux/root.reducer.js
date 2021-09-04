@@ -1,6 +1,4 @@
-import { combineReducers } from "redux";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { combineReducers, persistReducer, storage } from "../library";
 
 import customerReducer from './customer/customer.reducer';
 import productReducer from './product/product.reducer';

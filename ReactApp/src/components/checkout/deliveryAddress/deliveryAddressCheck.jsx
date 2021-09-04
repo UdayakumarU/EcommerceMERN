@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import {connect} from "react-redux";
+import { React, Component, connect, Tile } from "../../../library";
 
-import { Tile } from "../../../library";
 import AddressForm from "./addressForm";
 import AddressList from "./addressList";
+
 import { getCustomerLoginToken, getCustomerAddresses } from "../../../redux/customer/customer.selector";
 import { getCheckoutStepStatus, getConfirmedAddressId, getSelectedAddressId } from "../../../redux/checkout/checkout.selector";
 import { setCustomerAddresses } from "../../../redux/customer/customer.action";
@@ -11,8 +10,8 @@ import { setCheckoutStepStatus, setSelectedAddressId } from "../../../redux/chec
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
 import {getAddressById} from "../../../utils/util";
-import * as api from "../../../api/api";
 import APP_CONST from '../../../APP_CONST';
+import * as api from "../../../api/api";
 
 const mapStateToProps = (state) => {
     const addresses = getCustomerAddresses(state);

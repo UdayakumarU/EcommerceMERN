@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {URL} from './api.const';
+import { axios } from "../library";
+import { URL } from "./api.const";
 
 export const getProducts = () => {
     return axios.get(URL.PRODUCTS).then( ({ data })=>{
