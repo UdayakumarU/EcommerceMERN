@@ -32,9 +32,9 @@ class CartPage extends Component {
                                     <ItemList items={cartItems} handleRemoveItem ={removeItemFromCart}/>
                                 </Tile>
                                 <Tile>
-                                    <div className= "col-md-3 offset-md-9">
+                                    <div className= "float-right">
                                         <Link to="./checkout" 
-                                            className="btn btn-block btn-lg btn-dark" 
+                                            className="btn btn-dark btn-lg px-5" 
                                             onClick={this.handlePlaceOrder}> 
                                                 <small>PLACE ORDER</small>  
                                         </Link>
