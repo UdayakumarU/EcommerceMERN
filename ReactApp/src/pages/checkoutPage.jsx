@@ -11,7 +11,7 @@ import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
 import { getCheckoutItems, getCheckoutStepStatus } from "../redux/checkout/checkout.selector";
 import { getCartItems } from '../redux/cart/cart.selector';
 import { setCheckoutStepStatus, moveItemsToCheckout, initializeCheckoutSteps, terminateCheckout } from "../redux/checkout/checkout.action";
-import { mergeCustomerCart, emptyCart} from "../redux/cart/cart.action";
+import { mergeCustomerCart } from "../redux/cart/cart.action";
 
 import APP_CONST from "../APP_CONST";
 
@@ -27,7 +27,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     initializeCheckout : () => dispatch(initializeCheckoutSteps()),
     moveItemsToCheckout : cartItems => dispatch(moveItemsToCheckout(cartItems)),
-    emptyCart : () => dispatch(emptyCart()),
     setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status)),
     mergeCustomerCart : (checkoutItems) => dispatch(mergeCustomerCart(checkoutItems)),
     terminateCheckout : ()=> dispatch(terminateCheckout())
@@ -37,17 +36,14 @@ class CheckoutPage extends Component {
     componentDidMount(){
         //Prone to inconsistent checkout state on page refresh
         //need to implement proper onbeforeunload handler
-        const { loginCheck, setCheckoutStepStatus, initializeCheckout, moveItemsToCheckout, emptyCart, cartItems } = this.props;
+        const { loginCheck, setCheckoutStepStatus, initializeCheckout, moveItemsToCheckout, cartItems } = this.props;
         initializeCheckout();
         moveItemsToCheckout(cartItems);
-        emptyCart();
         setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
         setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
     }
 
     componentWillUnmount(){
-        if(this.props.paymentCheck !== APP_CONST.CHECKED)
-            this.props.mergeCustomerCart(this.props.checkoutItems);
         this.props.terminateCheckout();
     }
 

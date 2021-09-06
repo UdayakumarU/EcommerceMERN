@@ -4,9 +4,7 @@ import ItemList from '../../itemList';
 
 import { getCheckoutStepStatus, getCheckoutItems } from "../../../redux/checkout/checkout.selector";
 import { setCheckoutStepStatus, removeItemFromCheckout } from "../../../redux/checkout/checkout.action";
-import { mergeCustomerCart } from '../../../redux/cart/cart.action';
 
-import { getProductById } from '../../../utils/util';
 import APP_CONST from "../../../APP_CONST";
 
 const mapStateToProps = (state) => {
@@ -18,8 +16,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     removeItemFromCheckout: (productId)=> dispatch(removeItemFromCheckout(productId)),
-    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status)),
-    mergeCustomerCart: (cartItems) => dispatch(mergeCustomerCart(cartItems))
+    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 
 class OrderSummaryCheck extends Component {
@@ -40,10 +37,8 @@ class OrderSummaryCheck extends Component {
         this.props.setCheckoutStatus(APP_CONST.STEP.FOUR, APP_CONST.OPEN);
     }
     
-    moveItemfromCheckoutToCart = (productId) => {
-        const { mergeCustomerCart, removeItemFromCheckout, checkoutItems } = this.props;
-        mergeCustomerCart([getProductById(checkoutItems, productId)]);
-        removeItemFromCheckout(productId);
+    moveItemfromCheckout = (productId) => {
+        this.props.removeItemFromCheckout(productId);
     }
 
     showUncheckedOrderSummary = () =>{
@@ -51,7 +46,7 @@ class OrderSummaryCheck extends Component {
         return( 
             stepThreeStatus?(
                 checkoutItems.length?<React.Fragment>
-                    <ItemList items={checkoutItems} handleRemoveItem= {this.moveItemfromCheckoutToCart}/>
+                    <ItemList items={checkoutItems} handleRemoveItem= {this.moveItemfromCheckout}/>
                     <Tile>
                         <div className="float-right">
                             <button 
