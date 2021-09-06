@@ -13,6 +13,7 @@ import { getCartItems } from '../redux/cart/cart.selector';
 import { setCheckoutStepStatus, moveItemsToCheckout, initializeCheckoutSteps, terminateCheckout } from "../redux/checkout/checkout.action";
 import { mergeCustomerCart } from "../redux/cart/cart.action";
 
+import { beforeUnloadListener } from "../utils/util";
 import APP_CONST from "../APP_CONST";
 
 const mapStateToProps = (state) => {
@@ -34,8 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class CheckoutPage extends Component {
     componentDidMount(){
-        //Prone to inconsistent checkout state on page refresh
-        //need to implement proper onbeforeunload handler
+        window.addEventListener('beforeunload', beforeUnloadListener);
         const { loginCheck, setCheckoutStepStatus, initializeCheckout, moveItemsToCheckout, cartItems } = this.props;
         initializeCheckout();
         moveItemsToCheckout(cartItems);
@@ -44,6 +44,7 @@ class CheckoutPage extends Component {
     }
 
     componentWillUnmount(){
+        window.removeEventListener('beforeunload', beforeUnloadListener);
         this.props.terminateCheckout();
     }
 

@@ -45,3 +45,8 @@ export const getBreadcrumSections = (item) =>{
 }
 
 export const getAddressById = (addresses, id) => addresses.find( address => address._id === id);
+
+export const beforeUnloadListener = (e) => {
+    e.preventDefault();
+    e.returnValue = "The page that you're looking for used information that you entered. Returning to that page might cause any action you took to be repeated. Do you want to continue?";
+}
