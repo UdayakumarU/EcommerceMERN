@@ -2,21 +2,21 @@ import { getValue } from "./modelutils";
 
 export const calculatePriceAfterDiscount = (actualPrice, discount) =>{
     return actualPrice - (actualPrice * (discount/100));
-}
+};
 
 export const calculateSavingPrice = (actualPrice, discount) =>{
     return (actualPrice * (discount/100));
-}
+};
 
 export const numberToPrice = number => number.toFixed(2);
 
 export const getProductById = (products, productId) =>{
     return products.find( product => getValue(product, 'productId', "") === productId );
-} 
+};
 
 export const getProductsByType = (products, name, type) =>{
     return products.filter( product => getValue(product, type, "").toLowerCase() === name.toLowerCase() );
-}
+};
 
 export const capitalize = ( str ) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -42,11 +42,11 @@ export const getBreadcrumSections = (item) =>{
         }
     }
     return sections;
-}
+};
 
 export const getAddressById = (addresses, id) => addresses.find( address => address._id === id);
 
 export const beforeUnloadListener = (e) => {
     e.preventDefault();
     e.returnValue = "The page that you're looking for used information that you entered. Returning to that page might cause any action you took to be repeated. Do you want to continue?";
-}
+};
