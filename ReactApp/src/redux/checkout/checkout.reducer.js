@@ -1,7 +1,7 @@
 import CHECKOUT_CONST from './checkout.const';
 const INITIAL_STATE = {};
 
-const checkoutReducer = (currentState = INITIAL_STATE, action) =>{
+const checkoutReducer = (currentState = INITIAL_STATE, action) => {
     switch(action.type){
         case CHECKOUT_CONST.CHECKOUT_INITIALIZE:{
             return { ...action.payload }

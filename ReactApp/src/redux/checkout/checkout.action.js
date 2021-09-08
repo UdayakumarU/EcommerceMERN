@@ -37,4 +37,4 @@ export const removeItemFromCheckout = productId => ({
 export const terminateCheckout = () => ({
     type: CHECKOUT_CONST.CHECKOUT_TERMINATE,
     payload: {}
-})
+});
