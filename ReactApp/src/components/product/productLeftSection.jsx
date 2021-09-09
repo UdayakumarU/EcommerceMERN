@@ -4,6 +4,8 @@ import { getCartItems } from "../../redux/cart/cart.selector";
 import { addItemToCart } from '../../redux/cart/cart.action';
 import { isCartHasThisItem } from "../../utils/cartUtils";
 
+import APP_CONST from "../../APP_CONST";
+
 const mapDispatchToProps = dispatch =>({
   addItemToCart : (item) => dispatch(addItemToCart(item))
 });
@@ -26,7 +28,7 @@ class ProductLeftSection extends Component {
     if(!isCartHasThisItem(cartItems, product)){
       addItemToCart(product);
     }
-    history.push('/checkout');
+    history.push(`/checkout?${APP_CONST.QUERY.PRODUCT_ID}=${product.productId}`);
   }
   
   render() {

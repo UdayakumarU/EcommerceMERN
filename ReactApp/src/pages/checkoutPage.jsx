@@ -10,18 +10,22 @@ import PriceDetail from "../components/priceDetail";
 import { getCustomerLoginStatus } from "../redux/customer/customer.selector";
 import { getCheckoutItems, getCheckoutStepStatus } from "../redux/checkout/checkout.selector";
 import { getCartItems } from '../redux/cart/cart.selector';
+import { getHomeProducts } from '../redux/product/product.selector';
 import { setCheckoutStepStatus, moveItemsToCheckout, initializeCheckoutSteps, terminateCheckout } from "../redux/checkout/checkout.action";
 import { mergeCustomerCart } from "../redux/cart/cart.action";
 
-import { beforeUnloadListener } from "../utils/util";
+import { beforeUnloadListener, getProductById, parseQuery } from "../utils/util";
 import APP_CONST from "../APP_CONST";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+    const query = parseQuery(props.location.search);
     return{
         cartItems : getCartItems(state),
         loginCheck : getCustomerLoginStatus(state),
-        checkoutItems: getCheckoutItems(state),
-        paymentCheck: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR)
+        checkoutItems : getCheckoutItems(state),
+        paymentCheck : getCheckoutStepStatus(state, APP_CONST.STEP.FOUR),
+        products : getHomeProducts(state),
+        queriedProductId : query.get(APP_CONST.QUERY.PRODUCT_ID)
     }
 };
 
@@ -36,9 +40,10 @@ const mapDispatchToProps = (dispatch) => ({
 class CheckoutPage extends Component {
     componentDidMount(){
         window.addEventListener('beforeunload', beforeUnloadListener);
-        const { loginCheck, setCheckoutStepStatus, initializeCheckout, moveItemsToCheckout, cartItems } = this.props;
+        const { loginCheck, setCheckoutStepStatus, initializeCheckout, moveItemsToCheckout, cartItems, products, queriedProductId } = this.props;
+        const item = queriedProductId? getProductById(products, queriedProductId): null;
         initializeCheckout();
-        moveItemsToCheckout(cartItems);
+        moveItemsToCheckout(item? [item]: cartItems);
         setCheckoutStepStatus(APP_CONST.STEP.ONE, loginCheck? APP_CONST.CHECKED: APP_CONST.OPEN);
         setCheckoutStepStatus(APP_CONST.STEP.TWO, loginCheck? APP_CONST.OPEN: false);
     }

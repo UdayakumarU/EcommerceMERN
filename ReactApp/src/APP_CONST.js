@@ -8,6 +8,9 @@ const APP_CONST = {
         TWO:'Two',
         THREE:'Three',
         FOUR:'Four',
+    },
+    QUERY:{
+        PRODUCT_ID: "productId"
     }
 };
 
