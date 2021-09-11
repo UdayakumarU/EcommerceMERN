@@ -4,8 +4,8 @@ const {userAuth} = require('../middleware/auth');
 
 const orderRouter = express.Router();
 
-orderRouter.post("/checkout", userAuth, (req, res, next) => {
-    orderService.checkoutOrder(req.auth, req.body)
+orderRouter.post("/place-order", userAuth, (req, res, next) => {
+    orderService.checkoutOrder(req.auth.customerId, req.body)
       .then(response => res.send(response))
       .catch(error => next(error));
 });

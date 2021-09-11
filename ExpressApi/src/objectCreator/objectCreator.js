@@ -11,12 +11,12 @@ class Order{
     constructor(OrderDetails){
         this.orderId = OrderDetails.orderId;
         this.customerId = OrderDetails.customerId;
-        this.products = OrderDetails.cart;
         this.orderPrice = OrderDetails.orderPrice;
+        this.products = OrderDetails.checkoutItems;
         this.paymentType = OrderDetails.paymentType;
         this.deliveryAddress = OrderDetails.deliveryAddress;
         this.orderDate = new Date();
-        this.deliveredDate = new Date(new Date().getTime() + (10*24*60*60*1000));
+        this.deliveredDate = new Date(new Date().getTime() + (2*24*60*60*1000));
         this.status = "Order placed";
     }
 }

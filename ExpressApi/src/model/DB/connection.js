@@ -26,14 +26,14 @@ const customersObj = {
     "uCurrency": { type : Number, default : 10 },
     "addresses":{
         type:[{
-            "receiverName": { type : String, required:true},
-            "receiverMobile": { type : Number, required:true},
-            "landmark":{ type : String},
-            "area":{ type : String, required:[true,"Area is required"]},
-            "city" : { type : String , required:[true,"City is required"]},
-            "state":{type : String,required:[true,"State is required"]},
-            "pincode":{ type : Number, required:[true,"Pincode is required"]},
-            "addressType":{ type: String, enum:['H','W']}
+            "receiverName": { type:String, required:true },
+            "receiverMobile": { type:Number, required:true },
+            "landmark": { type:String },
+            "area": { type:String, required:[true,"Area is required"] },
+            "city": { type:String, required:[true,"City is required"] },
+            "state": {type:String, required:[true,"State is required"] },
+            "pincode": { type:Number, required:[true,"Pincode is required"] },
+            "addressType": { type:String, enum:['H','W'] }
             }],
         default : []
     }
@@ -98,11 +98,14 @@ const ordersObj = {
     "status": { type : String, required: true},
     "deliveryAddress":{
         type:{
-            "doorNumber":{ type : String},
-            "street":{ type : String, required:true},
-            "city" : { type : String , required:true},
-            "state":{type : String,required:true},
-            "pincode":{ type : Number, required:true}
+            "receiverName": { type:String, required:true },
+            "receiverMobile": { type:Number, required:true },
+            "landmark": { type:String },
+            "area": { type:String, required:[true,"Area is required"] },
+            "city": { type:String, required:[true,"City is required"] },
+            "state": {type:String, required:[true,"State is required"] },
+            "pincode": { type:Number, required:[true,"Pincode is required"] },
+            "addressType": { type:String, enum:['H','W'] }
             },
         required : true
     },
