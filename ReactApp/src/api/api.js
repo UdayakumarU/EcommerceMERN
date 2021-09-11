@@ -76,3 +76,13 @@ export const updateCustomerAddress = (addressDetails, customerLoginToken) => {
         throw response? response.data.errorMessage : message;
     });
 }
+
+export const placeOrder = (orderDetails, customerLoginToken) => {
+    const headers = { 'Authorization' : customerLoginToken };
+    return axios.post(URL.PLACE_ORDER, {...orderDetails}, {headers})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}

@@ -1,4 +1,8 @@
-import { getValue } from "./modelutils";
+import { getValue } from "../library";
+
+import { getCheckoutItems, getConfirmedAddressId } from "../redux/checkout/checkout.selector";
+import { getCustomerAddresses } from "../redux/customer/customer.selector";
+import { store } from '../redux/store'; // import this on every selector files
 
 export const calculatePriceAfterDiscount = (actualPrice, discount) =>{
     return actualPrice - (actualPrice * (discount/100));
@@ -52,3 +56,11 @@ export const beforeUnloadListener = (e) => {
 };
 
 export const parseQuery = (search) => new URLSearchParams(search);
+
+export const prepareOrderDetails = () =>{
+    return{
+        checkoutItems : getCheckoutItems(store.getState()).map( item => ({productId: item.productId, quantity : 1})),
+        paymentType : "C.O.D",
+        deliveryAddress : getAddressById(getCustomerAddresses(store.getState()), getConfirmedAddressId(store.getState()))
+    };
+};

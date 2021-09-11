@@ -1,4 +1,4 @@
-import { getValue } from "./modelutils"
+import { getValue } from "../library"
 import { calculateSavingPrice } from "./util";
 
 export const isCartHasThisItem = (cartitem, newItem) => {

@@ -69,7 +69,7 @@ class AddressForm extends Component {
     }
     
     setAsDeliveryAddress = addressId => {
-        // how to set the deliveryaddress for a newly added address which doesn't have _id
+        // how to set the deliveryaddress for a newly added address which doesn't have _id, causing extra to completes
         if(addressId){ 
             this.props.setConfirmedAddressId(addressId);
         }
