@@ -22,11 +22,19 @@ orderService.checkoutOrder = (customerId, orderDetails) => {
             const orderDetail = new Order({ ...orderDetails, customerId, orderId, orderPrice });
             return orderModel.insertOrder(orderDetail);
         })
-        .then(orderResponse =>{
-            if (orderResponse) return customersModel.addOrderId(customerId, orderResponse.orderId);
+        .then(async orderResponse => {
+            if (orderResponse){
+                await customersModel.addOrderId(customerId, orderResponse.orderId);
+                return orderResponse;
+            } 
             throw new ApiError("Order not Placed. Please! try Later", 500);
         })
-        .then(() => "Order Placed Successfullly");
+        .then(orderResponse => {
+            return { 
+                orderedProducts : orderResponse.products.map(product =>({"productId": product.productId})),
+                message : "Order Placed Successfully"}
+            } 
+        );
 }
 
 module.exports = orderService;
