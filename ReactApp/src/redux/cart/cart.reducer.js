@@ -17,6 +17,9 @@ const cartReducer = (currentState = INITIAL_STATE, action) => {
         case CART_CONST.EMPTY_CART:{
             return { ...currentState, cartItems: [] }
         }
+        case CART_CONST.ADD_ITEMS:{
+            return { ...currentState, cartItems: action.payload }
+        }
         default:
             return currentState;
     }

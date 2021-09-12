@@ -19,3 +19,8 @@ export const emptyCart = () => ({
     type: CART_CONST.EMPTY_CART,
     payload: []
 });
+
+export const cleanCartAndAddItems = items => ({
+    type: CART_CONST.ADD_ITEMS,
+    payload : items
+})

@@ -7,7 +7,7 @@ import { mergeCustomerCart } from "../../redux/cart/cart.action";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
 
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
-import { removeCurrentFromSavedCart } from "../../utils/cartUtils";
+import { removeSelectedProducts } from "../../utils/cartUtils";
 
 import * as api from "../../api/api.js";
 
@@ -51,7 +51,7 @@ class Login extends Component {
     mergeCustomerCart = (savedCartItems) => {
        const { products, cartItems, mergeCustomerCart } = this.props;
        const cartProducts = [];
-       const savedCartItemsAfterFilter = removeCurrentFromSavedCart(cartItems, savedCartItems);
+       const savedCartItemsAfterFilter = removeSelectedProducts(cartItems, savedCartItems);
        savedCartItemsAfterFilter.forEach(cartItem => {
             let result = products.find(product => product.productId === cartItem.productId);
             result && cartProducts.push(result);

@@ -27,8 +27,8 @@ export const mapCartProductsToIds = (cartItems) =>{
    return cartItems.map( item => ({productId:item.productId, quantity:1}) );
 };
 
-export const removeCurrentFromSavedCart = (currentCartItems, savedCartItems) => {
-    return savedCartItems.filter(savedCartItem => {
-        return !currentCartItems.find(cartItem => cartItem.productId === savedCartItem.productId)
+export const removeSelectedProducts = (selectedProducts, products) => {
+    return products.filter(product => {
+        return !selectedProducts.find(selectedProduct => selectedProduct.productId === product.productId)
     });
 };

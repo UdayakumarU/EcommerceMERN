@@ -2,9 +2,12 @@ import { React, Component, connect, Tile, withRouter } from "../../../library";
 
 import { getCheckoutStepStatus } from "../../../redux/checkout/checkout.selector";
 import { getCustomerLoginToken } from "../../../redux/customer/customer.selector";
+import { getCartItems } from "../../../redux/cart/cart.selector";
 import { setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
+import { cleanCartAndAddItems } from "../../../redux/cart/cart.action";
 import { setLoader, setErrorMessage, setSuccessMessage } from "../../../redux/misc/misc.action";
 import { prepareOrderDetails } from "../../../utils/util";
+import { removeSelectedProducts } from "../../../utils/cartUtils";
 
 import APP_CONST from "../../../APP_CONST";
 import * as api from "../../../api/api";
@@ -12,7 +15,8 @@ import * as api from "../../../api/api";
 const mapStateToProps = (state) => {
     return {
         stepFourStatus: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR),
-        loginToken: getCustomerLoginToken(state)
+        loginToken: getCustomerLoginToken(state),
+        cartItems : getCartItems(state)
     }
 };
 
@@ -20,7 +24,8 @@ const mapDispatchToProps = (dispatch) => ({
     setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status)),
     setLoader : (status) => dispatch(setLoader(status)),
     setErrorMessage : (error) => dispatch(setErrorMessage(error)),
-    setSuccessMessage: (success) => dispatch(setSuccessMessage(success))
+    setSuccessMessage: (success) => dispatch(setSuccessMessage(success)),
+    cleanCartAndAddItems : (items) => dispatch(cleanCartAndAddItems(items))
 });
 
 class PaymentOptionCheck extends Component {
@@ -32,12 +37,14 @@ class PaymentOptionCheck extends Component {
     );
     
     confirmOrder = () =>{
-        const {loginToken, setLoader, setErrorMessage, setSuccessMessage, setCheckoutStatus, history} = this.props; 
+        const { loginToken, setLoader, setErrorMessage, setSuccessMessage, 
+                setCheckoutStatus, cartItems, history, cleanCartAndAddItems } = this.props; 
         const orderDetails = prepareOrderDetails();
         setCheckoutStatus(APP_CONST.STEP.FOUR, APP_CONST.CHECKED);
         setLoader(true);
         api.placeOrder(orderDetails, loginToken).then( response => {
-            setSuccessMessage([response]);
+            setSuccessMessage([response.message]);
+            cleanCartAndAddItems(removeSelectedProducts(response.orderedProducts, cartItems));
             setLoader(false);
             history.push("/"); //redirect to order tracking page
         }, reject => {
