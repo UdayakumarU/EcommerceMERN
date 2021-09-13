@@ -8,8 +8,8 @@ const mapStateToProps = (state, props) => {
     return{
         actualTotalPrice ,
         discountPrice,
-        totalItems : props.items.length,
-        totalPrice : numberToPrice(actualTotalPrice-discountPrice)
+        totalItems: props.items.length,
+        totalPrice: numberToPrice(actualTotalPrice-discountPrice)
     }
 }
 

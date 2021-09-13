@@ -1,3 +1,4 @@
 import {getValue} from '../../library';
+import { store } from '../../redux/store';
 
-export const getCategories = state => getValue(state, 'Directory.categories', []);
+export const getCategories = () => getValue(store.getState(), 'Directory.categories', []);

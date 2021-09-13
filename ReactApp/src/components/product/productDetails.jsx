@@ -7,7 +7,7 @@ import { getSelectedProduct } from "../../redux/product/product.selector";
 import { isNotEmpty } from "../../utils/modelutils";
 
 const mapStateToProps = () => ({
-    product : getSelectedProduct()
+    product: getSelectedProduct()
 });
 
 class ProductDetails extends Component {

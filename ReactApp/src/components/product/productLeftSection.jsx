@@ -6,12 +6,12 @@ import { isCartHasThisItem } from "../../utils/cartUtils";
 
 import APP_CONST from "../../APP_CONST";
 
-const mapDispatchToProps = dispatch =>({
-  addItemToCart : (item) => dispatch(addItemToCart(item))
+const mapDispatchToProps = dispatch => ({
+  addItemToCart: (item) => dispatch(addItemToCart(item))
 });
 
-const mapStateToProps = state =>({
-  cartItems : getCartItems(state)
+const mapStateToProps = () => ({
+  cartItems: getCartItems()
 });
 
 class ProductLeftSection extends Component {

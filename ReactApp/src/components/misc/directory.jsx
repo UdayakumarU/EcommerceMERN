@@ -2,8 +2,8 @@ import { React, Link, connect } from "../../library";
 
 import { getCategories } from "../../redux/directory/directory.selector";
 
-const mapStateToProps = state =>({
-    categories : getCategories(state)
+const mapStateToProps = () => ({
+    categories: getCategories()
 });
 
 const Directory = ({categories}) => {

@@ -13,25 +13,21 @@ import { mapCartProductsToIds } from "../../utils/cartUtils";
 import  APP_CONST from "../../APP_CONST";
 import * as api from "../../api/api";
 
-const mapStateToProps = (state) => {
-    return {
-        customerName : getCustomerName(state),
-        customerLoginToken : getCustomerLoginToken(state),
-        cartItems : getCartItems(state),
-        isLoggedIn : getCustomerLoginStatus(state),
-        stepOneStatus: getCheckoutStepStatus(state, APP_CONST.STEP.ONE)
-    }
-};
+const mapStateToProps = () => ({
+    customerName: getCustomerName(),
+    customerLoginToken: getCustomerLoginToken(),
+    cartItems: getCartItems(),
+    isLoggedIn: getCustomerLoginStatus(),
+    stepOneStatus: getCheckoutStepStatus(APP_CONST.STEP.ONE)
+});
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logoutCustomer : () => dispatch(logoutCustomer()),
-        emptyCart : () => dispatch(emptyCart()),
-        setLoader : (status) => dispatch(setLoader(status)),
-        setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-        setCheckoutStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
-    }
-};
+const mapDispatchToProps = (dispatch) => ({
+    logoutCustomer: () => dispatch(logoutCustomer()),
+    emptyCart: () => dispatch(emptyCart()),
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (errors) => dispatch(setErrorMessage(errors)),
+    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status))
+});
 
 class LoginCheck extends Component {
     getHeaderContent = (color) => (

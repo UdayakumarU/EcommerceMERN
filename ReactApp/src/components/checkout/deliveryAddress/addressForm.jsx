@@ -9,17 +9,16 @@ import { validateName, validateMobileNumber, validatePincode, validateText } fro
 import APP_CONST from "../../../APP_CONST";
 import * as api from "../../../api/api";
 
-const mapStateToProps = (state) =>{
-    const loginToken = getCustomerLoginToken(state);
-    return {loginToken}
-}
+const mapStateToProps = () => ({
+    loginToken: getCustomerLoginToken()
+});
 
-const mapDispatchToProps= (dispatch) =>({
-    setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (error) => dispatch(setErrorMessage(error)),
-    setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses)),
-    setConfirmedAddressId : (addressId) => dispatch(setConfirmedAddressId(addressId)),
-    setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
+const mapDispatchToProps = (dispatch) => ({
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (error) => dispatch(setErrorMessage(error)),
+    setCustomerAddresses: (addresses) => dispatch(setCustomerAddresses(addresses)),
+    setConfirmedAddressId: (addressId) => dispatch(setConfirmedAddressId(addressId)),
+    setCheckoutStepStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 
 const INITIAL_STATE = {

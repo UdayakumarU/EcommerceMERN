@@ -13,22 +13,22 @@ import {getAddressById} from "../../../utils/util";
 import APP_CONST from '../../../APP_CONST';
 import * as api from "../../../api/api";
 
-const mapStateToProps = (state) => {
-    const addresses = getCustomerAddresses(state);
-    const addressId = getConfirmedAddressId(state);
+const mapStateToProps = () => {
+    const addresses = getCustomerAddresses();
+    const addressId = getConfirmedAddressId();
     return {
-        logintoken : getCustomerLoginToken(state),
+        logintoken: getCustomerLoginToken(),
         addresses,
-        stepTwoStatus: getCheckoutStepStatus(state, APP_CONST.STEP.TWO),
+        stepTwoStatus: getCheckoutStepStatus(APP_CONST.STEP.TWO),
         confirmedAddress: getAddressById(addresses, addressId),
-        selectedAddress: getSelectedAddressId(state)}
+        selectedAddress: getSelectedAddressId()}
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    setCustomerAddresses : (addresses) => dispatch(setCustomerAddresses(addresses)),
-    setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status)),
+    setCustomerAddresses: (addresses) => dispatch(setCustomerAddresses(addresses)),
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (errors) => dispatch(setErrorMessage(errors)),
+    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status)),
     setSelectedAddressId: (id) => dispatch(setSelectedAddressId(id))
 });
 

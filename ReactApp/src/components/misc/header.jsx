@@ -3,12 +3,9 @@ import { React, Link, connect } from "../../library";
 import CutomerQuickLinks from '../loginSignup/cutomerQuickLinks';
 import { getCustomerLoginStatus } from "../../redux/customer/customer.selector";
 
-const mapStateToProps = (state) => {
-    const customerLoggedIn = getCustomerLoginStatus(state);
-    return {
-        customerLoggedIn
-    };
-}
+const mapStateToProps = () => ({
+    customerLoggedIn: getCustomerLoginStatus()
+});
 
 const Header = ({hideCart, hideLogin, customerLoggedIn}) => {
 

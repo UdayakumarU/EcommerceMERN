@@ -4,8 +4,8 @@ import { setErrorMessage, setSuccessMessage } from "../redux/misc/misc.action";
 import APP_CONST from "../APP_CONST";
 
 const mapDispatchToProps = (dispatch) => ({
-  removeErrorMessage : () => dispatch(setErrorMessage([])),
-  removeSuccessMessage : () => dispatch(setSuccessMessage([]))
+  removeErrorMessage: () => dispatch(setErrorMessage([])),
+  removeSuccessMessage: () => dispatch(setSuccessMessage([]))
 })
 
 class Notifier extends React.Component{ 

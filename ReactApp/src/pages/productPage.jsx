@@ -20,8 +20,8 @@ const mapStateToProps = (state, props) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) =>({
-    setCurrentProduct : (selectedProduct) => dispatch(setCurrentProduct(selectedProduct))
+const mapDispatchToProps = (dispatch) => ({
+    setCurrentProduct: (selectedProduct) => dispatch(setCurrentProduct(selectedProduct))
 });
 
 class ProductPage extends Component {

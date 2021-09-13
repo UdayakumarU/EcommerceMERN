@@ -1,9 +1,10 @@
 import { getValue } from '../../library';
+import { store } from '../../redux/store';
 
-export const getCheckoutStepStatus = (state, step) => getValue(state, `Checkout.step${step}.status`, false);
+export const getCheckoutStepStatus = (step) => getValue(store.getState(), `Checkout.step${step}.status`, false);
 
-export const getSelectedAddressId = state => getValue(state, 'Checkout.stepTwo.selectedAddressId', "");
+export const getSelectedAddressId = () => getValue(store.getState(), 'Checkout.stepTwo.selectedAddressId', "");
 
-export const getConfirmedAddressId = state => getValue(state, 'Checkout.stepTwo.confirmedAddressId', "");
+export const getConfirmedAddressId = () => getValue(store.getState(), 'Checkout.stepTwo.confirmedAddressId', "");
 
-export const getCheckoutItems = state => getValue(state, 'Checkout.stepThree.checkoutItems', []);
+export const getCheckoutItems = () => getValue(store.getState(), 'Checkout.stepThree.checkoutItems', []);

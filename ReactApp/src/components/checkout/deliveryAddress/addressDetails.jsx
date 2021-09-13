@@ -2,10 +2,10 @@ import { React, Component, connect, Tile } from '../../../library';
 import { setSelectedAddressId, setConfirmedAddressId, setCheckoutStepStatus } from "../../../redux/checkout/checkout.action";
 import APP_CONST from '../../../APP_CONST';
 
-const mapDispatchToProps = (dispatch) =>({
-    setSelectedAddressId : (id) => dispatch(setSelectedAddressId(id)),
-    setConfirmedAddressId : (id) => dispatch(setConfirmedAddressId(id)),
-    setCheckoutStatus : (step, status) => dispatch(setCheckoutStepStatus(step, status))
+const mapDispatchToProps = (dispatch) => ({
+    setSelectedAddressId: (id) => dispatch(setSelectedAddressId(id)),
+    setConfirmedAddressId: (id) => dispatch(setConfirmedAddressId(id)),
+    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 
 class AddressDetails extends Component {

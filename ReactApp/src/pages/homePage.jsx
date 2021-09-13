@@ -18,16 +18,16 @@ const caroselitems = [
     {imageUrl:"./banners/banner3.jpg", altName:"Third slide"},
 ];
 
-const mapDispatchToProps = dispatch =>({
-    addHomeProducts : (products) => dispatch(addHomeProducts(products))
+const mapDispatchToProps = dispatch => ({
+    addHomeProducts: (products) => dispatch(addHomeProducts(products))
 });
 
 const mapStateToProps = () => {
     const products = getHomeProducts();
     return {
-        trending : products,
-        fashions : getProductsByType(products, "Fashion", 'category'),
-        electronics : getProductsByType(products, "Electronics", 'category')
+        trending: products,
+        fashions: getProductsByType(products, "Fashion", 'category'),
+        electronics: getProductsByType(products, "Electronics", 'category')
     };
 }
 

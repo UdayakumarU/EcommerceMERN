@@ -11,19 +11,18 @@ import { removeSelectedProducts } from "../../utils/cartUtils";
 
 import * as api from "../../api/api.js";
 
-const mapDispatchToProps = dispatch =>({
-    loginCustomer : (user) => dispatch(loginCustomer(user)),
-    setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-    setSuccessMessage : (success) => dispatch(setSuccessMessage(success)),
-    mergeCustomerCart : (cartProducts) => dispatch(mergeCustomerCart(cartProducts)),
+const mapDispatchToProps = dispatch => ({
+    loginCustomer: (user) => dispatch(loginCustomer(user)),
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (errors) => dispatch(setErrorMessage(errors)),
+    setSuccessMessage: (success) => dispatch(setSuccessMessage(success)),
+    mergeCustomerCart: (cartProducts) => dispatch(mergeCustomerCart(cartProducts)),
 });
 
-const mapStateToProps = state => {
-    const products = getHomeProducts();
-    const cartItems = getCartItems(state);
-    return { products, cartItems };
-};
+const mapStateToProps = () => ({
+    products: getHomeProducts(), 
+    cartItems: getCartItems()
+});
 
 const INITIAL_STATE = {
     userId: "",

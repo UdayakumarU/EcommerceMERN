@@ -12,20 +12,18 @@ import { removeSelectedProducts } from "../../../utils/cartUtils";
 import APP_CONST from "../../../APP_CONST";
 import * as api from "../../../api/api";
 
-const mapStateToProps = (state) => {
-    return {
-        stepFourStatus: getCheckoutStepStatus(state, APP_CONST.STEP.FOUR),
-        loginToken: getCustomerLoginToken(state),
-        cartItems : getCartItems(state)
-    }
-};
+const mapStateToProps = () => ({
+    stepFourStatus: getCheckoutStepStatus(APP_CONST.STEP.FOUR),
+    loginToken: getCustomerLoginToken(),
+    cartItems: getCartItems()
+});
 
 const mapDispatchToProps = (dispatch) => ({
-    setCheckoutStatus:(step, status) => dispatch(setCheckoutStepStatus(step, status)),
-    setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (error) => dispatch(setErrorMessage(error)),
+    setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status)),
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (error) => dispatch(setErrorMessage(error)),
     setSuccessMessage: (success) => dispatch(setSuccessMessage(success)),
-    cleanCartAndAddItems : (items) => dispatch(cleanCartAndAddItems(items))
+    cleanCartAndAddItems: (items) => dispatch(cleanCartAndAddItems(items))
 });
 
 class PaymentOptionCheck extends Component {

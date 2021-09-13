@@ -20,21 +20,21 @@ import APP_CONST from "../APP_CONST";
 const mapStateToProps = (state, props) => {
     const query = parseQuery(props.location.search);
     return{
-        cartItems : getCartItems(state),
-        loginCheck : getCustomerLoginStatus(state),
-        checkoutItems : getCheckoutItems(state),
-        paymentCheck : getCheckoutStepStatus(state, APP_CONST.STEP.FOUR),
-        products : getHomeProducts(),
-        queriedProductId : query.get(APP_CONST.QUERY.PRODUCT_ID)
+        cartItems: getCartItems(),
+        loginCheck: getCustomerLoginStatus(),
+        checkoutItems: getCheckoutItems(),
+        paymentCheck: getCheckoutStepStatus(APP_CONST.STEP.FOUR),
+        products: getHomeProducts(),
+        queriedProductId: query.get(APP_CONST.QUERY.PRODUCT_ID)
     }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    initializeCheckout : () => dispatch(initializeCheckoutSteps()),
-    moveItemsToCheckout : cartItems => dispatch(moveItemsToCheckout(cartItems)),
-    setCheckoutStepStatus : (step, status) => dispatch(setCheckoutStepStatus(step,status)),
-    mergeCustomerCart : (checkoutItems) => dispatch(mergeCustomerCart(checkoutItems)),
-    terminateCheckout : ()=> dispatch(terminateCheckout())
+    initializeCheckout: () => dispatch(initializeCheckoutSteps()),
+    moveItemsToCheckout: (cartItems) => dispatch(moveItemsToCheckout(cartItems)),
+    setCheckoutStepStatus: (step, status) => dispatch(setCheckoutStepStatus(step,status)),
+    mergeCustomerCart: (checkoutItems) => dispatch(mergeCustomerCart(checkoutItems)),
+    terminateCheckout: () => dispatch(terminateCheckout())
 });
 
 class CheckoutPage extends Component {

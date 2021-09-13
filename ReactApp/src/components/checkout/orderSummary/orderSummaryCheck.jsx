@@ -7,15 +7,13 @@ import { setCheckoutStepStatus, removeItemFromCheckout } from "../../../redux/ch
 
 import APP_CONST from "../../../APP_CONST";
 
-const mapStateToProps = (state) => {
-    return {
-        stepThreeStatus: getCheckoutStepStatus(state, APP_CONST.STEP.THREE),
-        checkoutItems: getCheckoutItems(state) 
-    }
-};
+const mapStateToProps = () => ({
+    stepThreeStatus: getCheckoutStepStatus(APP_CONST.STEP.THREE),
+    checkoutItems: getCheckoutItems()
+});
 
 const mapDispatchToProps = (dispatch) => ({
-    removeItemFromCheckout: (productId)=> dispatch(removeItemFromCheckout(productId)),
+    removeItemFromCheckout: (productId) => dispatch(removeItemFromCheckout(productId)),
     setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
 

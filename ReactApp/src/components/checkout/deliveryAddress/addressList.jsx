@@ -5,10 +5,9 @@ import AddressDetails from './addressDetails';
 
 import { getSelectedAddressId } from "../../../redux/checkout/checkout.selector";
 
-const mapStateToProps = (state) => {
-    const selectedAddressId = getSelectedAddressId(state);
-    return {selectedAddressId};
-}
+const mapStateToProps = () => ({
+    selectedAddressId: getSelectedAddressId()
+});
 
 class AddressList extends Component {
     constructor(){

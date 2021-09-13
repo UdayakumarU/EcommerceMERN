@@ -1,8 +1,8 @@
 import { React, Component, Link, connect, Tile } from "../../library";
 import { getCustomerLoginStatus } from "../../redux/customer/customer.selector";
 
-const mapStateToProps = (state) => ({
-    Loggedin: getCustomerLoginStatus(state)
+const mapStateToProps = () => ({
+    Loggedin: getCustomerLoginStatus()
 });
 
 class EmptyCart extends Component {

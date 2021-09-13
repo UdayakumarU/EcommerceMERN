@@ -10,7 +10,7 @@ import { getHomeProducts } from "../redux/product/product.selector";
 import { getProductsByType, getBreadcrumSections } from "../utils/util";
 
 
-const mapStateToProps = (state, props) =>{
+const mapStateToProps = (state, props) => {
     const products = getHomeProducts();
     let productsByType, breadcrumSections;
     if( props.match.params.subCategory ){

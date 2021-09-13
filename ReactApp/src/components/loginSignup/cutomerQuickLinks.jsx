@@ -10,19 +10,17 @@ import { mapCartProductsToIds } from "../../utils/cartUtils";
 
 import * as api from "../../api/api";
 
-const mapStateToProps = (state) => {
-    return {
-        customerName : getCustomerName(state),
-        cartItems : getCartItems(state),
-        customerLoginToken : getCustomerLoginToken(state)
-    };
-}
+const mapStateToProps = () => ({
+    customerName: getCustomerName(),
+    cartItems: getCartItems(),
+    customerLoginToken: getCustomerLoginToken()
+});
 
-const mapDispatchToProps = dispatch =>({
-    logoutCustomer : () => dispatch(logoutCustomer()),
-    emptyCart : () => dispatch(emptyCart()),
-    setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (errors) => dispatch(setErrorMessage(errors))
+const mapDispatchToProps = dispatch => ({
+    logoutCustomer: () => dispatch(logoutCustomer()),
+    emptyCart: () => dispatch(emptyCart()),
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (errors) => dispatch(setErrorMessage(errors))
 });
 
 class CutomerQuickLinks extends Component {

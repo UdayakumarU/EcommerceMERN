@@ -9,12 +9,12 @@ import ItemList from "../components/itemList";
 import { getCartItems } from '../redux/cart/cart.selector';
 import { removeItemFromCart } from "../redux/cart/cart.action";
 
-const mapStateToProps = (state) => ({ 
-    cartItems : getCartItems(state)
+const mapStateToProps = () => ({ 
+    cartItems : getCartItems()
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    removeItemFromCart : (productId) => dispatch(removeItemFromCart(productId))
+    removeItemFromCart: (productId) => dispatch(removeItemFromCart(productId))
 });
 
 class CartPage extends Component {

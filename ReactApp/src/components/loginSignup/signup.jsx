@@ -17,10 +17,10 @@ const INITIAL_STATE = {
     }
 };
 
-const mapDispatchToProps = dispatch =>({
-    setLoader : (status) => dispatch(setLoader(status)),
-    setErrorMessage : (errors) => dispatch(setErrorMessage(errors)),
-    setSuccessMessage : (success) => dispatch(setSuccessMessage(success))
+const mapDispatchToProps = dispatch => ({
+    setLoader: (status) => dispatch(setLoader(status)),
+    setErrorMessage: (errors) => dispatch(setErrorMessage(errors)),
+    setSuccessMessage: (success) => dispatch(setSuccessMessage(success))
 });
 
 class Signup extends Component {
