@@ -11,7 +11,7 @@ import { getProductsByType, getBreadcrumSections } from "../utils/util";
 
 
 const mapStateToProps = (state, props) =>{
-    const products = getHomeProducts(state);
+    const products = getHomeProducts();
     let productsByType, breadcrumSections;
     if( props.match.params.subCategory ){
         productsByType = getProductsByType(products, props.match.params.subCategory, 'subCategory');

@@ -1,5 +1,6 @@
 import {getValue} from '../../library';
+import { store } from '../../redux/store'; 
 
-export const getHomeProducts = state => getValue(state, 'Product.homeProducts', []);
+export const getHomeProducts = () => getValue(store.getState(), 'Product.homeProducts', []);
 
-export const getSelectedProduct = state => getValue(state, 'Product.selectedProduct', {});
+export const getSelectedProduct = () => getValue(store.getState(), 'Product.selectedProduct', {});

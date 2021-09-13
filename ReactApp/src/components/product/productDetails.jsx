@@ -6,8 +6,8 @@ import ProductRightSection from "./productRightSection";
 import { getSelectedProduct } from "../../redux/product/product.selector";
 import { isNotEmpty } from "../../utils/modelutils";
 
-const mapStateToProps = (state) => ({
-    product : getSelectedProduct(state)
+const mapStateToProps = () => ({
+    product : getSelectedProduct()
 });
 
 class ProductDetails extends Component {

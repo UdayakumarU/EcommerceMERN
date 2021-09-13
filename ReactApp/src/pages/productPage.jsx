@@ -11,7 +11,7 @@ import { setCurrentProduct } from "../redux/product/product.action";
 import { getProductById, getBreadcrumSections } from "../utils/util";
 
 const mapStateToProps = (state, props) => {
-    const availableProducts = getHomeProducts(state);
+    const availableProducts = getHomeProducts();
     const selectedProduct = getProductById(availableProducts, props.match.params.productId);
     const breadcrumSections = getBreadcrumSections(selectedProduct);
     return { 

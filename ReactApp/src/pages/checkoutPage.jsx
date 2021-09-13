@@ -24,7 +24,7 @@ const mapStateToProps = (state, props) => {
         loginCheck : getCustomerLoginStatus(state),
         checkoutItems : getCheckoutItems(state),
         paymentCheck : getCheckoutStepStatus(state, APP_CONST.STEP.FOUR),
-        products : getHomeProducts(state),
+        products : getHomeProducts(),
         queriedProductId : query.get(APP_CONST.QUERY.PRODUCT_ID)
     }
 };

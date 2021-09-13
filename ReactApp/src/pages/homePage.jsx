@@ -22,8 +22,8 @@ const mapDispatchToProps = dispatch =>({
     addHomeProducts : (products) => dispatch(addHomeProducts(products))
 });
 
-const mapStateToProps = (state) => {
-    const products = getHomeProducts(state);
+const mapStateToProps = () => {
+    const products = getHomeProducts();
     return {
         trending : products,
         fashions : getProductsByType(products, "Fashion", 'category'),

@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch =>({
 });
 
 const mapStateToProps = state => {
-    const products = getHomeProducts(state);
+    const products = getHomeProducts();
     const cartItems = getCartItems(state);
     return { products, cartItems };
 };
