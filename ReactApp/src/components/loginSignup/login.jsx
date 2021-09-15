@@ -14,9 +14,9 @@ import * as api from "../../api/api.js";
 const INITIAL_STATE = {
     userId: "",
     password: "",
-    error :{
-        userId:"",
-        password:""
+    error: {
+        userId: "",
+        password: ""
     }
 };
 
@@ -68,8 +68,8 @@ class Login extends Component {
                 loginCustomer({
                     id: customerData.customerId, 
                     name: customerData.customerName,
-                    loginStatus:true,
-                    loginToken:token
+                    loginStatus: true,
+                    loginToken: token
                 });
                 this.mergeCustomerCart(customerData.cart);
                 this.setState(INITIAL_STATE);

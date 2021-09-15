@@ -3,7 +3,7 @@ import { React, Component } from "../library";
 export default class Field extends Component {
 
     getFieldByType = (props) => {
-        const { inputType, handleChange, errorlabel, ...otherProps} = props;
+        const { inputType, handleChange, errorlabel, ...otherProps } = props;
         const className = `form-control ${errorlabel? "is-invalid": ""}`;
         switch(inputType){
             case "TEXTBOX": return(

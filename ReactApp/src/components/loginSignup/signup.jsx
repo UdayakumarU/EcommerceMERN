@@ -6,14 +6,14 @@ import * as api from "../../api/api.js";
 
 const INITIAL_STATE = {
     username: "",
-    email:"",
+    email: "",
     password: "",
-    rePassword:"",
-    error :{
+    rePassword: "",
+    error: {
         username: "",
-        email:"",
+        email: "",
         password: "",
-        rePassword:"",
+        rePassword: "",
     }
 };
 

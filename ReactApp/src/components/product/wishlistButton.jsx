@@ -3,11 +3,11 @@ import { React, Component } from "../../library";
 export default class WishlistButton extends Component {
     constructor(props){
         super(props);
-        this.state ={ wish : false};
+        this.state = { wish: false };
     }
 
     toggleHeart = () =>{
-        this.setState({wish:!this.state.wish});
+        this.setState({ wish: !this.state.wish });
     }
 
     render() {
