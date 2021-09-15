@@ -18,10 +18,6 @@ const caroselitems = [
     {imageUrl:"./banners/banner3.jpg", altName:"Third slide"},
 ];
 
-const mapDispatchToProps = dispatch => ({
-    addHomeProducts: (products) => dispatch(addHomeProducts(products))
-});
-
 const mapStateToProps = () => {
     const products = getHomeProducts();
     return {
@@ -30,6 +26,10 @@ const mapStateToProps = () => {
         electronics: getProductsByType(products, "Electronics", 'category')
     };
 }
+
+const mapDispatchToProps = dispatch => ({
+    addHomeProducts: (products) => dispatch(addHomeProducts(products))
+});
 
 class HomePage extends Component {
     componentDidMount() {

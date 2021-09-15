@@ -10,7 +10,7 @@ import CheckoutPage from "./pages/checkoutPage";
 import { getLoaderStatus, getErrorMessages, getSuccessMessages } from "./redux/misc/misc.selector";
 import APP_CONST from "./APP_CONST";
 
-const mapStateToProps = () =>({
+const mapStateToProps = () => ({
   loaderOn: getLoaderStatus(),
   errors: getErrorMessages(),
   success: getSuccessMessages(),

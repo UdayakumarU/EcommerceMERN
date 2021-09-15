@@ -58,8 +58,8 @@ export const parseQuery = (search) => new URLSearchParams(search);
 
 export const prepareOrderDetails = () =>{
     return{
-        checkoutItems : getCheckoutItems().map( item => ({productId: item.productId, quantity : 1})),
-        paymentType : "C.O.D",
-        deliveryAddress : getAddressById(getCustomerAddresses(), getConfirmedAddressId())
+        checkoutItems: getCheckoutItems().map( item => ({productId: item.productId, quantity : 1})),
+        paymentType: "C.O.D",
+        deliveryAddress: getAddressById(getCustomerAddresses(), getConfirmedAddressId())
     };
 };

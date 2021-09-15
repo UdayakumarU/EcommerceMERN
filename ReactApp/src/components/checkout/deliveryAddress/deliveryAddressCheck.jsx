@@ -9,7 +9,7 @@ import { setCustomerAddresses } from "../../../redux/customer/customer.action";
 import { setCheckoutStepStatus, setSelectedAddressId } from "../../../redux/checkout/checkout.action";
 import { setLoader, setErrorMessage } from "../../../redux/misc/misc.action";
 
-import {getAddressById} from "../../../utils/util";
+import { getAddressById } from "../../../utils/util";
 import APP_CONST from '../../../APP_CONST';
 import * as api from "../../../api/api";
 

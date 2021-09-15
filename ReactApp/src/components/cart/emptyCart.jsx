@@ -6,7 +6,6 @@ const mapStateToProps = () => ({
 });
 
 class EmptyCart extends Component {
-    
     loggedInCartSection = () =>{
         return (
             <React.Fragment>

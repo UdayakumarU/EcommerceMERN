@@ -1,4 +1,4 @@
-import{ React } from "../../library";
+import { React } from "../../library";
 
 const Footer = () => (
     <footer

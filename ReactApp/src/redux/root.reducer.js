@@ -10,16 +10,16 @@ import checkoutReducer from './checkout/checkout.reducer';
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist : ['Product','Customer','Cart']  //find a soln to remove Product from the whitelist
+    whitelist: ['Product','Customer','Cart']  //find a soln to remove Product from the whitelist
 }
 
 const rootReducer = combineReducers ({
-    Customer:customerReducer,
-    Directory:directoryReducer,
-    Product:productReducer,
-    Misc:miscReducer,
-    Cart:cartReducer,
-    Checkout:checkoutReducer
+    Customer: customerReducer,
+    Directory: directoryReducer,
+    Product: productReducer,
+    Misc: miscReducer,
+    Cart: cartReducer,
+    Checkout: checkoutReducer
 });
 
 

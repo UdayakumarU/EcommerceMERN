@@ -1,6 +1,6 @@
-import {React, Component, Link} from "../library";
+import { React, Component, Link } from "../library";
 
-import {calculatePriceAfterDiscount} from "../utils/util";
+import { calculatePriceAfterDiscount } from "../utils/util";
 
 export default class ItemList extends Component {
     render() {

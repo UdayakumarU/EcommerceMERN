@@ -19,7 +19,7 @@ export const calculateCartDiscountPrice = (cartItems) =>{
 
 export const calculateCartTotalPrice = (cartItems) =>{
     let discountPrice = 0; 
-    cartItems.forEach( item=> { discountPrice += calculateSavingPrice(item.productActualPrice, item.discount) });
+    cartItems.forEach( item => { discountPrice += calculateSavingPrice(item.productActualPrice, item.discount) });
     return discountPrice;
 };
 

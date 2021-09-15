@@ -1,4 +1,4 @@
-import {React, Component, connect} from "../../library";
+import { React, Component, connect } from "../../library";
 
 import ProductLeftSection from "./productLeftSection";
 import ProductRightSection from "./productRightSection";
