@@ -1,4 +1,4 @@
-import { React, Component, connect } from "../../library";
+import { React, Component, connect, withRouter } from "../../library";
 
 import { getCustomerName } from "../../redux/customer/customer.selector";
 import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
@@ -37,6 +37,10 @@ class CutomerQuickLinks extends Component {
             setLoader(false);
         });
     }
+    
+    navigateToOrders = () =>{
+        this.props.history.push("/orders");
+    }
 
     render() {
         const {customerName} = this.props;
@@ -44,11 +48,12 @@ class CutomerQuickLinks extends Component {
             <span className="_dropdown py-3 btn">
                 <div className="_dropdown_link py-1"> {customerName} </div>
                 <div className="_dropdown_menu mt-3">
-                    <div className="_dropdown_item" onClick={this.logoutCustomer}>Logout</div>
+                    <div className="_dropdown_item _line_at_end" onClick={this.logoutCustomer}>Logout</div>
+                    <div className="_dropdown_item" onClick={this.navigateToOrders}>Orders</div>
                 </div>
             </span>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CutomerQuickLinks);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CutomerQuickLinks));

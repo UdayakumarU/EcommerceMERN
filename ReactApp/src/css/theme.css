@@ -181,6 +181,11 @@ button._primary_bg:focus {
   box-shadow: 0px 0px 5px 1px rgba(38, 38, 38, 1);
 }
 
+._line_at_end{
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #aaa;
+}
 /* other styles */
   .animate-error {
     position: fixed;
