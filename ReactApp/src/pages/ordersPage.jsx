@@ -4,7 +4,7 @@ import Header from "../components/misc/header";
 import Footer from "../components/misc/footer";
 import Directory from "../components/misc/directory";
 
-class OrderPage extends Component {
+class OrdersPage extends Component {
     render() {  
         return (
             <React.Fragment>
@@ -16,4 +16,4 @@ class OrderPage extends Component {
     }
 }
 
-export default OrderPage;
+export default OrdersPage;
