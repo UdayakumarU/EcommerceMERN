@@ -12,7 +12,7 @@ class Order{
         this.orderId = OrderDetails.orderId;
         this.customerId = OrderDetails.customerId;
         this.orderPrice = OrderDetails.orderPrice;
-        this.products = OrderDetails.checkoutItems;
+        this.product = OrderDetails.checkoutItem;
         this.paymentType = OrderDetails.paymentType;
         this.deliveryAddress = OrderDetails.deliveryAddress;
         this.orderDate = new Date();

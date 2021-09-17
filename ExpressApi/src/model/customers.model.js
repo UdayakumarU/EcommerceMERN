@@ -106,11 +106,11 @@ customersModel.deleteCartByCustomerId = customerId => {
         .then(response => response);
 }
 
-customersModel.addOrderId = (customerId,orderId)  => {
+customersModel.addOrderIds = (customerId, orderIds)  => {
     return collection.getCollection(COLLECTION_NAME.CUSTOMERS)
         .then(model => model.findOneAndUpdate(
             { customerId },
-            { "$push": { "orders": orderId } },
+            { "$push": { "orders": orderIds } },
             { new: true, rawResult: true, runValidators: true }))
         .then(response => response);
 }

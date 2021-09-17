@@ -86,16 +86,15 @@ const productsObj = {
 const ordersObj = {
     "orderId":{ type:String, required:true },
     "customerId":{type : String, required : true},
-    "products": {
-        type: [{
+    "product": {
+        type:{
             "productId": { type: String, required: true },
             "quantity": { type: Number, min: 1, required: true }
-        }],
+        },
         required : true
     },
     "orderPrice":{type : Number, required: true},
     "paymentType":{type : String, required: true},
-    "status": { type : String, required: true},
     "deliveryAddress":{
         type:{
             "receiverName": { type:String, required:true },
@@ -110,7 +109,8 @@ const ordersObj = {
         required : true
     },
     "orderDate":{ type: Date, required :true },
-    "deliveredDate":{ type: Date, required:true }
+    "deliveredDate":{ type: Date, required:true },
+    "status": { type : String, required: true}
 };
 
 const sellersObj = {

@@ -9,9 +9,9 @@ orderModel.getAllOrders = () => {
       .then(data => data );
   }
 
-orderModel.insertOrder = (orderDetails) => {
+orderModel.insertOrders = (orders) => {
   return collection.getCollection(COLLECTION_NAME.ORDERS)
-    .then(model => model.create(orderDetails))
+    .then(model => model.insertMany(orders))
     .then(response => response);
 }
 
