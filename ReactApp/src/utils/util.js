@@ -1,7 +1,8 @@
-import { getValue } from "../library";
+import { getValue, setValue } from "../library";
 
 import { getCheckoutItems, getConfirmedAddressId } from "../redux/checkout/checkout.selector";
 import { getCustomerAddresses } from "../redux/customer/customer.selector";
+import { getHomeProducts } from "../redux/product/product.selector";
 
 export const calculatePriceAfterDiscount = (actualPrice, discount) =>{
     return actualPrice - (actualPrice * (discount/100));
@@ -62,4 +63,16 @@ export const prepareOrderDetails = () =>{
         paymentType: "C.O.D",
         deliveryAddress: getAddressById(getCustomerAddresses(), getConfirmedAddressId())
     };
+};
+
+export const mapProductsInOrders = (orders) => { 
+    // would be better to include these minor product details in order schema
+    const products = getHomeProducts();
+    return orders.map( order => {
+        const product = getProductById(products, getValue(order, "product.productId", ""));
+        setValue(order, "product.productName", product.productName);
+        setValue(order, "product.sellerId", product.sellerId);
+        setValue(order, "product.productImage", product.productImages[0]);
+        return order;
+    });
 };

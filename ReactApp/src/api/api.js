@@ -1,6 +1,8 @@
 import { axios } from "../library";
 import { URL } from "./api.const";
 
+import { getCustomerLoginToken } from "../redux/customer/customer.selector";
+
 export const getProducts = () => {
     return axios.get(URL.PRODUCTS).then( ({ data })=>{
         return data;
@@ -80,6 +82,16 @@ export const updateCustomerAddress = (addressDetails, customerLoginToken) => {
 export const placeOrder = (orderDetails, customerLoginToken) => {
     const headers = { 'Authorization' : customerLoginToken };
     return axios.post(URL.PLACE_ORDER, {...orderDetails}, {headers})
+    .then( ({ data }) =>{
+        return data;
+    }).catch( ( {response,message} ) => {
+        throw response? response.data.errorMessage : message;
+    });
+}
+
+export const getOrders = () => {
+    const headers = { 'Authorization' : getCustomerLoginToken() };
+    return axios.get(URL.CUSTOMER_ORDERS, {headers})
     .then( ({ data }) =>{
         return data;
     }).catch( ( {response,message} ) => {

@@ -1,10 +1,9 @@
-import { React, Component, connect } from "../../library";
+import { React, Component, connect, isNotEmpty } from "../../library";
 
 import ProductLeftSection from "./productLeftSection";
 import ProductRightSection from "./productRightSection";
 
 import { getSelectedProduct } from "../../redux/product/product.selector";
-import { isNotEmpty } from "../../utils/modelutils";
 
 const mapStateToProps = () => ({
     product: getSelectedProduct()

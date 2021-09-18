@@ -14,3 +14,7 @@ export const setCustomerAddresses = (addresses) => ({
     payload: addresses
 });
 
+export const setCustomerOrders = (orders) => ({
+    type: CUSTOMER_CONST.CUSTOMER_ORDERS,
+    payload: orders
+});

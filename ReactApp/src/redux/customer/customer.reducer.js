@@ -12,6 +12,9 @@ const userReducer = (currentState = INITIAL_STATE, action) => {
         case CUSTOMER_CONST.CUSTOMER_ADDRESSES:{
             return { ...currentState, addresses: action.payload }
         }
+        case CUSTOMER_CONST.CUSTOMER_ORDERS:{
+            return { ...currentState, orders: action.payload }
+        }
         default : return currentState;
     }
 }

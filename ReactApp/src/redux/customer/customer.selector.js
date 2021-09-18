@@ -10,3 +10,5 @@ export const getCustomerName = () => getValue(store.getState(), 'Customer.loginD
 export const getCustomerLoginToken = () => getValue(store.getState(), 'Customer.loginDetails.loginToken', "");
 
 export const getCustomerAddresses = () => getValue(store.getState(), 'Customer.addresses', []);
+
+export const getCustomerOrders = () => getValue(store.getState(), 'Customer.orders', []);

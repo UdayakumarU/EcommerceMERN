@@ -8,5 +8,6 @@ export const URL = {
     CUSTOMER_ADDRESSES: `${HOST}/account/get-customer-addresses/`,
     CUSTOMER_ADDRESS_ADD: `${HOST}/account/add-address/`,
     CUSTOMER_ADDRESS_UPDATE: `${HOST}/account/update-address/`,
-    PLACE_ORDER: `${HOST}/order/place-order/`
+    PLACE_ORDER: `${HOST}/order/place-order/`,
+    CUSTOMER_ORDERS: `${HOST}/order/get-order/`
 };

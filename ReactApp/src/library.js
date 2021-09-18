@@ -10,7 +10,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import storage from "redux-persist/lib/storage";
 
-import { get, isEmpty } from "lodash";
+import { get, set, isEmpty } from "lodash";
 import axios from "axios";
 
 import Tile from "./core-components/tile";
@@ -20,7 +20,7 @@ import Notifier from "./core-components/notifier";
 import ScrollToTop from "./core-components/scrollToTop";
 import DialogModal from "./core-components/dialogModal";
 
-import {getValue} from "./utils/modelutils";
+import {getValue, setValue, isNotEmpty} from "./utils/modelutils";
 
 export { ReactDOM, React, Component };
 export { Link, Route, Switch, BrowserRouter, withRouter, useRouteMatch };
@@ -29,8 +29,8 @@ export { createStore, applyMiddleware, combineReducers, connect, Provider, logge
 export { persistStore, persistReducer, PersistGate, storage };
 
 
-export { get, isEmpty };
+export { get, set, isEmpty };
 export { axios };
 
 export { Tile, Field, Loader, Notifier, ScrollToTop, DialogModal };
-export { getValue };
+export { getValue, setValue, isNotEmpty };
