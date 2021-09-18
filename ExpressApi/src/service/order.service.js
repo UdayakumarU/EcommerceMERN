@@ -33,8 +33,12 @@ orderService.checkoutOrder = (customerId, orderDetails) => {
             return { 
                 orderedProducts : orderResponse.map(order =>({"productId": order.product.productId})),
                 message : "Order Placed Successfully"}
-            } 
+            }
         );
+}
+
+orderService.getOrdersByCustomerId = (customerId) => {
+    return orderModel.getOrdersByCustomerId(customerId);
 }
 
 module.exports = orderService;

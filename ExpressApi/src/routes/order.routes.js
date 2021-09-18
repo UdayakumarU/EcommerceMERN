@@ -10,4 +10,10 @@ orderRouter.post("/place-order", userAuth, (req, res, next) => {
       .catch(error => next(error));
 });
 
+orderRouter.get("/get-order", userAuth, (req, res, next) => {
+  orderService.getOrdersByCustomerId(req.auth.customerId)
+    .then(response => res.send(response))
+    .catch(error => next(error));
+});
+
 module.exports = orderRouter;
