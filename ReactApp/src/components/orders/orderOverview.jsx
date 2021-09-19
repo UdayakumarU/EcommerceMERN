@@ -1,4 +1,4 @@
-import { React, Component, Tile } from "../../library";
+import { React, Component, Tile, withRouter } from "../../library";
 
 class OrderOverview extends Component{
     getFormatedDate=(date)=>{
@@ -9,9 +9,13 @@ class OrderOverview extends Component{
         return `${month} ${day}, ${year}`;
     }
     
+    navigateToOrderDetail = () =>{
+        this.props.history.push("/order-details");
+    }
+
     render() {
         return (
-            <Tile>
+            <Tile className ="_pointer _hoverable mt-2" onClick={this.navigateToOrderDetail}>
                 <div className ="row">
                     <div className="col-md-2">
                         <img className="img-thumbnail" src={this.props.thumnail} alt={this.props.productName} />
@@ -35,4 +39,4 @@ class OrderOverview extends Component{
     }
 }
 
-export default OrderOverview;
+export default withRouter(OrderOverview);
