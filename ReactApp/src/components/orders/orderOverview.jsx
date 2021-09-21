@@ -10,7 +10,7 @@ class OrderOverview extends Component{
     }
     
     navigateToOrderDetail = () =>{
-        this.props.history.push("/order-details");
+        this.props.history.push(`/order-details/${this.props.orderId}`);
     }
 
     render() {

@@ -1,18 +1,42 @@
-import { React, Component } from "../library";
+import { React, Component, connect, Tile } from "../library";
 
 import Header from "../components/misc/header";
 import Footer from "../components/misc/footer";
 import Directory from "../components/misc/directory";
+import OrderedProduct from "../components/orders/orderedProduct";
+
+import { getCustomerOrders } from "../redux/customer/customer.selector";
+import { mapProductsInOrders, numberToPrice } from "../utils/util";
+
+const mapStateToProps = (state, props) =>{
+    const [ order ] = mapProductsInOrders([getCustomerOrders().find(order=> order.orderId === props.match.params.orderId)]);
+    return { order };
+};
 
 class OrderDetailsPage extends Component{
     render(){
+        const { order } = this.props;
+        const { product } = order;
         return(
             <React.Fragment>
                 <Header/>
                 <Directory/>
+                <Tile className="container my-3">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <OrderedProduct
+                                productId={product.productId}
+                                productName={product.productName}
+                                thumnail={product.productImage}
+                                sellerId={product.sellerId}
+                                price={numberToPrice(order.orderPrice)}
+                            />
+                        </div>
+                    </div>
+                </Tile>
                 <Footer/>
             </React.Fragment>)
     }
 }
 
-export default OrderDetailsPage;
+export default connect(mapStateToProps)(OrderDetailsPage);

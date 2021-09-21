@@ -32,7 +32,7 @@ class App extends React.Component {
             <Route path="/cart" component={CartPage} />
             <Route path="/checkout" component={CheckoutPage} />
             <Route path="/orders" component={OrdersPage} />
-            <Route path="/order-details" component={OrderDetailsPage} />
+            <Route path="/order-details/:orderId" component={OrderDetailsPage} />
             <Route path="/product/:productId" component={ProductPage} />
             <Route path="/:category/:subCategory" component={DirectoryPage} />
             <Route path="/:category" component={DirectoryPage} />

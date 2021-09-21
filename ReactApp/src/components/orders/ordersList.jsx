@@ -18,6 +18,7 @@ class OrdersList extends Component{
             return(
                 <OrderOverview
                     key = {order.orderId}
+                    orderId= {order.orderId}
                     productId = {product.productId}
                     productName = {product.productName}
                     thumnail = {product.productImage}
