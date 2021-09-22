@@ -4,6 +4,7 @@ import Header from "../components/misc/header";
 import Footer from "../components/misc/footer";
 import Directory from "../components/misc/directory";
 import OrderedProduct from "../components/orders/orderedProduct";
+import OrderedAddress from "../components/orders/orderedAddress";
 
 import { getCustomerOrders } from "../redux/customer/customer.selector";
 import { mapProductsInOrders, numberToPrice } from "../utils/util";
@@ -21,6 +22,13 @@ class OrderDetailsPage extends Component{
             <React.Fragment>
                 <Header/>
                 <Directory/>
+                <Tile className="container my-3">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <OrderedAddress address={order.deliveryAddress}/>
+                        </div>
+                    </div>
+                </Tile>
                 <Tile className="container my-3">
                     <div className="row">
                         <div className="col-md-4">
