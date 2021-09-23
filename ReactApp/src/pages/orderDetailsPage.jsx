@@ -5,6 +5,7 @@ import Footer from "../components/misc/footer";
 import Directory from "../components/misc/directory";
 import OrderedProduct from "../components/orders/orderedProduct";
 import OrderedAddress from "../components/orders/orderedAddress";
+import OrderTracker from "../components/orders/orderTracker";
 
 import { getCustomerOrders } from "../redux/customer/customer.selector";
 import { mapProductsInOrders, numberToPrice } from "../utils/util";
@@ -39,6 +40,9 @@ class OrderDetailsPage extends Component{
                                 sellerId={product.sellerId}
                                 price={numberToPrice(order.orderPrice)}
                             />
+                        </div>
+                        <div>
+                            <OrderTracker/>
                         </div>
                     </div>
                 </Tile>

@@ -186,6 +186,42 @@ button._primary_bg:focus {
   border-bottom-width: 1px;
   border-bottom-color: #aaa;
 }
+
+._tracker_line{
+  background-color: #26a541;
+  min-width: 200px;
+  height: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+._tracker_point{
+  width: .75em;
+  height: .75em;
+  border-radius: 50%;
+  background-color: #26a541;
+  position: relative;
+}
+
+._tracker_point::before{
+  content: attr(status);
+  position: absolute;
+  top: -2em;
+  font-size: 12px;
+  font-weight: 700;
+  color: #26a541;
+}
+
+._tracker_point::after{
+  content: attr(date);
+  position: absolute;
+  top: 2em;
+  font-size: 12px;
+  font-weight: 700;
+  color: #777;
+}
+
 /* other styles */
   .animate-error {
     position: fixed;
