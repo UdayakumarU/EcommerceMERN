@@ -41,7 +41,7 @@ class OrderDetailsPage extends Component{
                                 price={numberToPrice(order.orderPrice)}
                             />
                         </div>
-                        <div>
+                        <div className="col-md-6">
                             <OrderTracker/>
                         </div>
                     </div>
