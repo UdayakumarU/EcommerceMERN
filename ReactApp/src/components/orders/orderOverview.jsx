@@ -1,14 +1,8 @@
 import { React, Component, Tile, withRouter } from "../../library";
+import { getFormattedDate } from "../../utils/util";
+import APP_CONST from "../../APP_CONST";
 
 class OrderOverview extends Component{
-    getFormatedDate=(date)=>{
-        const newDate = new Date(date);
-        const month = new Intl.DateTimeFormat('en-US', { month: 'short'}).format(newDate)
-        const day = newDate.getDate();
-        const year = newDate.getFullYear();
-        return `${month} ${day}, ${year}`;
-    }
-    
     navigateToOrderDetail = () =>{
         this.props.history.push(`/order-details/${this.props.orderId}`);
     }
@@ -30,7 +24,7 @@ class OrderOverview extends Component{
                     <div className="col-md-4 col-12">
                         <small>
                             <span className="badge badge-success mr-2"> </span> 
-                            <strong>{this.props.status} on {this.getFormatedDate(this.props.orderedDate)} </strong>
+                            <strong>{this.props.status} on {getFormattedDate(this.props.orderedDate, APP_CONST.DATE_FORMAT.MDtY)} </strong>
                         </small>
                     </div>
                 </div>
