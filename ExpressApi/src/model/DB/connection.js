@@ -108,9 +108,9 @@ const ordersObj = {
             },
         required : true
     },
-    "orderDate":{ type: Date, required :true },
-    "deliveredDate":{ type: Date, required:true },
-    "status": { type : String, required: true}
+    "statusTrack":{
+        type : [{ "statusCd":{type:Number}, "date":{type:Date} }]
+    }
 };
 
 const sellersObj = {

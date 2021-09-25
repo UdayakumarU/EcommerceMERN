@@ -8,7 +8,7 @@ const { ApiError, Order } = require('../objectCreator/objectCreator');
 
 const orderService ={};
 
-orderService.checkoutOrder = (customerId, orderDetails) => {
+orderService.placeOrder = (customerId, orderDetails) => {
     if(orderDetails.checkoutItems.length === 0) throw ApiError("No product to place order",400);
     return orderModel.getAllOrders()
         .then(allOrders => {

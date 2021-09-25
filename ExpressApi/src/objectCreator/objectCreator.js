@@ -15,9 +15,7 @@ class Order{
         this.product = OrderDetails.checkoutItem;
         this.paymentType = OrderDetails.paymentType;
         this.deliveryAddress = OrderDetails.deliveryAddress;
-        this.orderDate = new Date();
-        this.deliveredDate = new Date(new Date().getTime() + (2*24*60*60*1000));
-        this.status = "Order placed";
+        this.statusTrack = [{statusCd:1, date:new Date()}];
     }
 }
 
