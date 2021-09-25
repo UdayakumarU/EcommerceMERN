@@ -35,7 +35,7 @@ class OrdersPage extends Component {
                 <Directory/>
                 <div className="container">
                     <div className="row">
-                        <div className="offset-md-3 col-md-9">
+                        <div className="offset-md-1 col-md-10">
                             <OrdersList />
                         </div>
                     </div>

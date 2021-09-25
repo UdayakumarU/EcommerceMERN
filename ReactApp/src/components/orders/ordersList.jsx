@@ -3,11 +3,11 @@ import { React, Component, connect } from "../../library";
 import OrderOverview from "../../components/orders/orderOverview";
 
 import { getCustomerOrders } from "../../redux/customer/customer.selector";
-import { mapProductsInOrders, numberToPrice, getCurrentStatus, getCurrentStatusDate } from "../../utils/util";
+import { mapProductsInOrders, numberToPrice, getCurrentStatus, getCurrentStatusDate, sortByCreatedAt } from "../../utils/util";
 
 const mapStatetoProps = () => {
     return {
-        orders : mapProductsInOrders(getCustomerOrders())
+        orders : sortByCreatedAt(mapProductsInOrders(getCustomerOrders()))
     } 
 }
 

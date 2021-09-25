@@ -44,7 +44,7 @@ class PaymentOptionCheck extends Component {
             setSuccessMessage([response.message]);
             cleanCartAndAddItems(removeSelectedProducts(response.orderedProducts, cartItems));
             setLoader(false);
-            history.push("/"); //redirect to order tracking page
+            history.push("/orders"); //redirect to order tracking page
         }, reject => {
             setErrorMessage([reject]);
             setLoader(false);

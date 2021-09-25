@@ -123,3 +123,7 @@ export const mapOrderStatusDetails = (statusTrack) => {
     const removeIndex = statusTrack.length <= 3? 3: 1; 
     return tracker.filter((track, index) => index !== removeIndex);
 };
+
+export const sortByCreatedAt = ( orders ) => ( 
+    orders.sort( (a, b) => (new Date(b.createdAt) - new Date(a.createdAt)) )
+);
