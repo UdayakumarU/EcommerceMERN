@@ -42,7 +42,7 @@ class OrderDetailsPage extends Component{
                             />
                         </div>
                         <div className="col-md-6">
-                            <OrderTracker/>
+                            <OrderTracker statusTrack = {order.statusTrack}/>
                         </div>
                     </div>
                 </Tile>

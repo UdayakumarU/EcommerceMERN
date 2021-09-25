@@ -3,7 +3,7 @@ import { React, Component, connect } from "../../library";
 import OrderOverview from "../../components/orders/orderOverview";
 
 import { getCustomerOrders } from "../../redux/customer/customer.selector";
-import { mapProductsInOrders, numberToPrice } from "../../utils/util";
+import { mapProductsInOrders, numberToPrice, getCurrentStatus, getCurrentStatusDate } from "../../utils/util";
 
 const mapStatetoProps = () => {
     return {
@@ -24,8 +24,8 @@ class OrdersList extends Component{
                     thumnail = {product.productImage}
                     sellerId = {product.sellerId}
                     price = {numberToPrice(order.orderPrice)}
-                    status = {order.status}
-                    orderedDate = {order.orderDate}
+                    status = {getCurrentStatus(order.statusTrack)}
+                    orderedDate = {getCurrentStatusDate(order.statusTrack)}
                 />
             )
         })

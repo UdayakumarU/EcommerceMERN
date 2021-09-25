@@ -4,6 +4,8 @@ import { getCheckoutItems, getConfirmedAddressId } from "../redux/checkout/check
 import { getCustomerAddresses } from "../redux/customer/customer.selector";
 import { getHomeProducts } from "../redux/product/product.selector";
 
+import APP_CONST from "../APP_CONST";
+
 export const calculatePriceAfterDiscount = (actualPrice, discount) =>{
     return actualPrice - (actualPrice * (discount/100));
 };
@@ -75,4 +77,49 @@ export const mapProductsInOrders = (orders) => {
         setValue(order, "product.productImage", product.productImages[0]);
         return order;
     });
+};
+
+export const getCurrentStatus = (statusTrack) =>{
+    return APP_CONST.ORDER_STATUS[statusTrack[statusTrack.length-1].statusCd];
+};
+
+export const getCurrentStatusDate = (statusTrack) =>{
+    return statusTrack[statusTrack.length-1].date;
+};
+
+export const getFormattedDate = (unFormattedDate, format) => {
+    const newDate = new Date(unFormattedDate);
+    const date = newDate.getDate();
+    const day = new Intl.DateTimeFormat('en-US', { weekday: 'short'}).format(newDate);
+    const month = new Intl.DateTimeFormat('en-US', { month: 'short'}).format(newDate);
+    const year = newDate.getFullYear();
+   
+    switch(format){
+       case APP_CONST.DATE_FORMAT.MDtY :  return `${month} ${date}, ${year}`;
+       case APP_CONST.DATE_FORMAT.DyDtM :  return `${day}, ${date} ${month}`;
+       default :  return `${month} ${date}, ${year}`;
+    }
+};
+
+export const mapOrderStatusDetails = (statusTrack) => {
+    const tracker = statusTrack.map(track => ({
+            ...track,
+            date: getFormattedDate(track.date, APP_CONST.DATE_FORMAT.DyDtM),
+            status: APP_CONST.ORDER_STATUS[track.statusCd]
+        })
+    );
+
+    for(let cd=tracker[tracker.length-1].statusCd+1; cd<=5; ++cd){
+        const expectedDate = new Date(tracker[cd-2].date).getTime();
+        const expectedTrack = {
+            _id: cd,
+            status: APP_CONST.ORDER_STATUS[cd],
+            date : cd === 5? `Expected by ${getFormattedDate(expectedDate, APP_CONST.DATE_FORMAT.DyDtM)}`:
+                            getFormattedDate(expectedDate+(2*24*60*60*1000), APP_CONST.DATE_FORMAT.DyDtM)
+        }
+        tracker.push(expectedTrack);
+    }
+    // Packed '@index 1' and Out for Delivery '@index 3' are mutually exclusive
+    const removeIndex = statusTrack.length <= 3? 3: 1; 
+    return tracker.filter((track, index) => index !== removeIndex);
 };

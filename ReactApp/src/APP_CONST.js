@@ -11,6 +11,17 @@ const APP_CONST = {
     },
     QUERY:{
         PRODUCT_ID: "productId"
+    },
+    ORDER_STATUS:{
+        1:"Ordered",
+        2:"Packed",
+        3:"Shipped",
+        4:"Out For Delivery",
+        5:"Delivered"
+    },
+    DATE_FORMAT:{
+        MDtY : 'Month_Date_Year',
+        DyDtM : 'Day_Date_Month'
     }
 };
 

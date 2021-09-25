@@ -188,7 +188,6 @@ button._primary_bg:focus {
 }
 
 ._tracker_line{
-  background-color: #26a541;
   position: relative;
   top: 50%;
   width: 100%;
@@ -198,7 +197,7 @@ button._primary_bg:focus {
   align-items: center;
 }
 
-._tracker_point{
+._tracker_point_complete{
   width: .75em;
   height: .75em;
   border-radius: 50%;
@@ -206,22 +205,52 @@ button._primary_bg:focus {
   position: relative;
 }
 
-._tracker_point::before{
+._tracker_point_complete::before{
   content: attr(status);
   position: absolute;
   top: -2em;
-  font-size: 12px;
+  font-size: .7em;
   font-weight: 700;
   color: #26a541;
+  white-space: nowrap;
 }
 
-._tracker_point::after{
+._tracker_point_complete::after{
   content: attr(date);
   position: absolute;
   top: 2em;
-  font-size: 12px;
+  font-size: .7em;
   font-weight: 700;
   color: #777;
+  white-space: nowrap;
+}
+
+._tracker_point_incomplete{
+  width: .75em;
+  height: .75em;
+  background-color: #ccc;
+  border-radius: 50%;
+  position: relative;
+}
+
+._tracker_point_incomplete::before{
+  content: attr(status);
+  position: absolute;
+  top: -2em;
+  font-size: .7em;
+  font-weight: 700;
+  color: #ccc;
+  white-space: nowrap;
+}
+
+._tracker_point_incomplete::after{
+  content: attr(date);
+  position: absolute;
+  top: 2em;
+  font-size: .7em;
+  font-weight: 700;
+  color: #777;
+  white-space: nowrap;
 }
 
 /* other styles */
