@@ -1,4 +1,4 @@
-const HOST = "http://localhost:5000";
+const HOST = "https://ukart-express-api.herokuapp.com"//http://localhost:5000";
 
 export const URL = {
     PRODUCTS: `${HOST}/products/`,
