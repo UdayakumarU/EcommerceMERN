@@ -13,4 +13,10 @@ const ID_PREFIX = {
 const JWT_KEY = {
     SECRET:"KART_SECRET"
 }
-module.exports = {COLLECTION_NAME, ID_PREFIX, JWT_KEY};
+
+const DB_URL = {
+    LOCAL:"mongodb://localhost:27017/UkartShoppingDB",
+    PRODUCTION:"mongodb+srv://erudayuorg:TUvu90erudayuorg@ukartdb.1u82g.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
+
+module.exports = {COLLECTION_NAME, ID_PREFIX, JWT_KEY, DB_URL};

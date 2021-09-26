@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {COLLECTION_NAME} = require('../../keys/constant');
+const { COLLECTION_NAME, DB_URL } = require('../../keys/constant');
 mongoose.Promise = global.Promise;
 const Schema = mongoose.Schema;
 
@@ -142,7 +142,7 @@ const ordersSchema = new Schema(ordersObj, { collection: "Orders", timestamps: t
 const sellersSchema = new Schema(sellersObj, { collection: "Sellers", timestamps: true });
 
 connection.getCollection = collectionName => {
-    return mongoose.connect("mongodb://localhost:27017/UkartShoppingDB", 
+    return mongoose.connect(DB_URL.PRODUCTION, 
     {useNewUrlParser: true, useUnifiedTopology: true}).then((db) => {
         switch (collectionName){
             case COLLECTION_NAME.CUSTOMERS: return db.model(collectionName, customersSchema);
