@@ -3,6 +3,7 @@ const { ApiError } = require('../objectCreator/objectCreator');
 
 const productService ={};
 
+//remove this api in PROD once Seller app created
 productService.insertScript = () => {
     return productsModel.deleteAllProducts()
         .then( response => {
