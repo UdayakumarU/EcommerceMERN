@@ -1,4 +1,4 @@
-import { React, Component, connect, withRouter, Link, Tile} from "../../library";
+import { React, Component, connect, withRouter, Tile} from "../../library";
 
 import { getCustomerLoginStatus, getCustomerName } from "../../redux/customer/customer.selector";
 import { getCustomerLoginToken } from "../../redux/customer/customer.selector";
@@ -7,7 +7,7 @@ import { getCheckoutStepStatus } from "../../redux/checkout/checkout.selector";
 import { logoutCustomer } from "../../redux/customer/customer.action";
 import { setCheckoutStepStatus } from "../../redux/checkout/checkout.action";
 import { emptyCart } from "../../redux/cart/cart.action";
-import { setLoader, setErrorMessage } from "../../redux/misc/misc.action";
+import { setLoader, setErrorMessage, setLoginFromCheckout } from "../../redux/misc/misc.action";
 
 import { mapCartProductsToIds } from "../../utils/cartUtils";
 import  APP_CONST from "../../APP_CONST";
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
     logoutCustomer: () => dispatch(logoutCustomer()),
     emptyCart: () => dispatch(emptyCart()),
     setLoader: (status) => dispatch(setLoader(status)),
+    setLoginFromCheckout: () => dispatch(setLoginFromCheckout(true)),
     setErrorMessage: (errors) => dispatch(setErrorMessage(errors)),
     setCheckoutStatus: (step, status) => dispatch(setCheckoutStepStatus(step, status))
 });
@@ -64,6 +65,11 @@ class LoginCheck extends Component {
         this.props.setCheckoutStatus(APP_CONST.STEP.TWO, APP_CONST.OPEN);
     }
 
+    handleLoginToCheckout = () =>{
+        this.props.setLoginFromCheckout();
+        this.props.history.push('/user/login');
+    }
+    
     showUncheckedLogin = () => (
         this.props.isLoggedIn? (
             <div className="container">
@@ -83,7 +89,7 @@ class LoginCheck extends Component {
             </div>):(
             <div className="row">
                 <div className="col-md-5">
-                    <Link to={"./user/login"} className="btn btn-dark btn-block btn-lg my-3"><small> LOGIN TO CHECKOUT </small></Link>
+                    <button onClick={this.handleLoginToCheckout} className="btn btn-dark btn-block btn-lg my-3"><small> LOGIN TO CHECKOUT </small></button>
                 </div>
                 <small className="col-md-12 text-muted"> Please note that upon clicking "Login" your last saved cart items will be added with current cart items</small>
             </div>

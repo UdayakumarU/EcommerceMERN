@@ -2,9 +2,10 @@ import { React, Component, connect, Link, Tile, Field } from "../../library";
 
 import { getHomeProducts } from "../../redux/product/product.selector";
 import { getCartItems } from "../../redux/cart/cart.selector";
+import { getLoginFromCheckout } from "../../redux/misc/misc.selector";
 import { loginCustomer } from "../../redux/customer/customer.action";
 import { mergeCustomerCart } from "../../redux/cart/cart.action";
-import { setLoader, setErrorMessage, setSuccessMessage } from "../../redux/misc/misc.action";
+import { setLoader, setErrorMessage, setSuccessMessage, setLoginFromCheckout } from "../../redux/misc/misc.action";
 
 import { validateUserId, validatePassword } from "../../utils/loginUtils";
 import { removeSelectedProducts } from "../../utils/cartUtils";
@@ -22,7 +23,8 @@ const INITIAL_STATE = {
 
 const mapStateToProps = () => ({
     products: getHomeProducts(), 
-    cartItems: getCartItems()
+    cartItems: getCartItems(),
+    loginFromCheckout: getLoginFromCheckout()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -30,6 +32,7 @@ const mapDispatchToProps = dispatch => ({
     setLoader: (status) => dispatch(setLoader(status)),
     setErrorMessage: (errors) => dispatch(setErrorMessage(errors)),
     setSuccessMessage: (success) => dispatch(setSuccessMessage(success)),
+    unsetLoginFromCheckout:() => dispatch(setLoginFromCheckout(false)),
     mergeCustomerCart: (cartProducts) => dispatch(mergeCustomerCart(cartProducts)),
 });
 
@@ -59,7 +62,7 @@ class Login extends Component {
     }
 
     handleSubmit = event => {
-        const {loginCustomer, setLoader, setErrorMessage, setSuccessMessage, history} = this.props;
+        const {loginCustomer, setLoader, setErrorMessage, setSuccessMessage, loginFromCheckout, unsetLoginFromCheckout, history} = this.props;
         event.preventDefault();
         if(this.validateForm()){
             setLoader(true);
@@ -73,7 +76,13 @@ class Login extends Component {
                 });
                 this.mergeCustomerCart(customerData.cart);
                 this.setState(INITIAL_STATE);
-                history.goBack();
+                console.log(history);
+                if(loginFromCheckout){
+                    unsetLoginFromCheckout();
+                    history.goBack();
+                }
+                else
+                    history.push('/');
                 setErrorMessage([]);
                 setSuccessMessage([message]);
                 setLoader(false);

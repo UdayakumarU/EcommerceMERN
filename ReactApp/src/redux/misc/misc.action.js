@@ -14,3 +14,8 @@ export const setSuccessMessage = (successMsgs) => ({
     type: MISC_CONST.SUCCESS_MSG,
     payload: {message:successMsgs}
 });
+
+export const setLoginFromCheckout = (status) => ({
+    type: MISC_CONST.LOGIN_FROM_CHECKOUT,
+    payload: {status}
+});

@@ -12,6 +12,9 @@ const loaderReducer = ( currentState = INITIAL_STATE, action) => {
         case MISC_CONST.SUCCESS_MSG:{
             return { ...currentState, success: action.payload }
         }
+        case MISC_CONST.LOGIN_FROM_CHECKOUT:{
+            return { ...currentState, loginFromCheckout: action.payload }
+        }
         default: 
             return currentState;
     }
