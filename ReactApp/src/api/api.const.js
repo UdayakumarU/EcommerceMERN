@@ -1,4 +1,6 @@
-const HOST = "https://ukart-express-api.herokuapp.com"//http://localhost:5000";
+const PROD_URL = "https://ukart-express-api.herokuapp.com";
+const LOCAL_URL = "http://localhost:5000";
+const HOST = process.env.NODE_ENV === 'production'? PROD_URL: LOCAL_URL;
 
 export const URL = {
     PRODUCTS: `${HOST}/products/`,
