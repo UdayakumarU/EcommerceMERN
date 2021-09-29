@@ -7,10 +7,10 @@ class ProductOverview extends Component{
     render(){
         const {brand, productName, productActualPrice, discount, productId, productImages} = this.props.product;
         return <Tile
-            className="col-md-3"
+            className="col-md-3 col-sm-6 col-6 p-2"
             footer={
                 <React.Fragment>
-                    <h6 className="text-muted">{brand}</h6>
+                    <strong className="_cut_text text-muted">{brand}</strong>
                     <span className="_cut_text">{productName}</span>
                     <div> 
                         <strong className="mr-2">₹{numberToPrice(calculatePriceAfterDiscount(productActualPrice, discount))}</strong>

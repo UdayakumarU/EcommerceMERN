@@ -55,7 +55,7 @@ button._primary_bg:focus {
 }
 
 ._cut_text{ 
-  width: 90%; 
+  width: 95%; 
   overflow: hidden; 
   display:inline-block;
   text-overflow: ellipsis;
@@ -251,6 +251,22 @@ button._primary_bg:focus {
   font-weight: 700;
   color: #777;
   white-space: nowrap;
+}
+
+._top_right{
+  position: absolute;
+  top:2%;
+  right:2%;
+}
+
+@media screen and (max-width: 768px) { 
+  body { 
+    font-size: 0.7em; 
+ }
+
+  ._slider_button{
+    visibility: hidden;
+  }
 }
 
 /* other styles */
