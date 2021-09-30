@@ -37,17 +37,17 @@ class ProductLeftSection extends Component {
       <div>
         <img className="img-thumbnail" src={productImages[0]} alt={productName} />
         <br /><br />
-        <div className="row">
-          <div className="col-md-7">
-            <button className="btn btn-dark btn-md btn-block" onClick={this.buyNow}>
-              <i className="material-icons _align_middle">play_arrow</i>
-              <span className="align-straight _align_middle">Buy Now</span>
-            </button>
-          </div>
-          <div className="col-md-5">
+        <div className="row mb-3">
+          <div className="col-6 pr-0">
             <button className="btn btn-outline-dark btn-md btn-block" onClick={this.addToCart}>
               <i className="material-icons _align_middle">shopping_cart</i>
               <span className="align-straight _align_middle">Add to Cart</span> 
+            </button>
+          </div>
+          <div className="col-6 pl-1">
+            <button className="btn btn-dark btn-md btn-block" onClick={this.buyNow}>
+              <i className="material-icons _align_middle">play_arrow</i>
+              <span className="align-straight _align_middle">Buy Now</span>
             </button>
           </div>
         </div>

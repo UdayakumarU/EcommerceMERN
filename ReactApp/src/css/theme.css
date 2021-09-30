@@ -261,9 +261,13 @@ button._primary_bg:focus {
 
 @media screen and (max-width: 768px) { 
   body { 
-    font-size: 0.7em; 
- }
-
+    font-size: 0.8em; 
+  }
+ 
+ ._icon{
+  font-size: 1em; 
+  }
+  
   ._slider_button{
     visibility: hidden;
   }
