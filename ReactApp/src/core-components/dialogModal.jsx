@@ -13,7 +13,7 @@ class DialogModal extends Component{
         return(
             <div className="_page_overlay">
                 <div className="_center_child">
-                    <div className="card _p_md_5">
+                    <div className="card _p_md_5 _w_h_md">
                         <div className="card-body text-center">
                             <div className="_svg_container">
                                 <svg fill="rgb(255, 67, 67)" viewBox="0 0 20 20">    

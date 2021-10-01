@@ -294,6 +294,11 @@ button._primary_bg:focus {
     padding: 0;
   }
 
+  ._w_h_md{
+    width: 80vw;
+    height: 40vh;
+  }
+
   .card-title{
     font-size: 1.2em;
   }
