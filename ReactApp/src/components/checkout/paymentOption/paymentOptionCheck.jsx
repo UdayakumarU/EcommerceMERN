@@ -29,8 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
 class PaymentOptionCheck extends Component {
     getHeaderContent = (color) => (
         <React.Fragment>
-            <span className={`badge badge-${color} px-2 py-1`}>4</span>
-            <span className="text-muted px-3"><strong>PAYMENT OPTIONS</strong></span>
+            <span className={`badge badge-${color}`}>4</span>
+            <span className="text-muted px-1"><strong>PAYMENT OPTIONS</strong></span>
         </React.Fragment>
     );
     
@@ -59,9 +59,9 @@ class PaymentOptionCheck extends Component {
                     <div className="col">Cash on delivery</div>
                 </div>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-7 col-sm-5 col-md-4 pr-0">
                         <button 
-                            className="btn btn-dark btn-lg px-5"
+                            className="btn btn-dark btn-block px-0"
                             onClick={this.confirmOrder}>
                                 <small> CONFIRM ORDER </small>
                         </button> 

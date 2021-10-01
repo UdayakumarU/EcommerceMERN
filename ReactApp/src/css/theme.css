@@ -259,17 +259,43 @@ button._primary_bg:focus {
   right:2%;
 }
 
+._svg_container{
+  width: 4em;
+  display: block;
+  margin: auto;
+}
+
+._p_md_5{
+  padding: 25px;
+}
+
 @media screen and (max-width: 768px) { 
   body { 
     font-size: 0.8em; 
   }
- 
- ._icon{
-  font-size: 1em; 
+
+  input[type="text"] {
+    font-size: 1.1em;
+  }
+
+  ._icon{
+    font-size: 1em; 
   }
   
   ._slider_button{
     visibility: hidden;
+  }
+  
+  ._svg_container{
+    width: 3em;
+  }
+  
+  ._p_md_5{
+    padding: 0;
+  }
+
+  .card-title{
+    font-size: 1.2em;
   }
 }
 

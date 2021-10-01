@@ -33,8 +33,8 @@ const mapDispatchToProps = (dispatch) => ({
 class LoginCheck extends Component {
     getHeaderContent = (color) => (
         <React.Fragment>
-            <span className={`badge badge-${color} px-2 py-1`}>1</span>
-            <span className="text-muted px-3"><strong>LOGIN</strong></span>
+            <span className={`badge badge-${color}`}>1</span>
+            <span className="text-muted px-1"><strong>LOGIN</strong></span>
         </React.Fragment>
     );
 
@@ -74,13 +74,13 @@ class LoginCheck extends Component {
         this.props.isLoggedIn? (
             <div className="container">
                 <div className="row">
-                    <div className="col-md-5">
+                    <div className="col-md-5 col-sm-6">
                         <div className="small py-1">
                             <span className="text-muted">Name</span>
                             <strong className="ml-2">{this.props.customerName}</strong>
                         </div>
                         <button className="btn btn-link p-0" onClick={this.logoutAndSignin}><small>Logout & Sign in to another account</small></button>
-                        <button className="btn btn-dark btn-block btn-lg my-3" onClick={this.continueCheckout}><small> CONTINUE CHECKOUT </small></button>
+                        <button className="btn btn-dark btn-block my-3 px-0" onClick={this.continueCheckout}><small> CONTINUE CHECKOUT </small></button>
                     </div>
                 </div>
                 <div className="row">
@@ -89,7 +89,7 @@ class LoginCheck extends Component {
             </div>):(
             <div className="row">
                 <div className="col-md-5">
-                    <button onClick={this.handleLoginToCheckout} className="btn btn-dark btn-block btn-lg my-3"><small> LOGIN TO CHECKOUT </small></button>
+                    <button onClick={this.handleLoginToCheckout} className="btn btn-dark btn-block my-3 px-0"><small> LOGIN TO CHECKOUT </small></button>
                 </div>
                 <small className="col-md-12 text-muted"> Please note that upon clicking "Login" your last saved cart items will be added with current cart items</small>
             </div>
@@ -99,17 +99,15 @@ class LoginCheck extends Component {
     showCheckedLogin = () => (
         <React.Fragment>
             <div className="row">
-                <div className="col-md-9 col-sm-9 col-9">
+                <div className="col-md-9 col-sm-9 col-8">
                     {this.getHeaderContent('light')}
                     <span className="text-dark"><strong>&#x2713;</strong></span>
+                    <div className="col pl-3 ml-1">
+                        <small><strong>{this.props.customerName}</strong></small>
+                    </div>
                 </div>
-                <div className="col">
-                    <button className="btn btn-outline-dark float-right" onClick={this.changeDetail}>Change</button>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-md-10 pl-5 ml-2">
-                    <small><strong>{this.props.customerName}</strong></small>
+                <div className="col-sm-3 col-sm-3 col-4 pr-1 pl-0">
+                    <button className="btn btn-outline-dark btn-block px-0" onClick={this.changeDetail}>Change</button>
                 </div>
             </div>
         </React.Fragment>

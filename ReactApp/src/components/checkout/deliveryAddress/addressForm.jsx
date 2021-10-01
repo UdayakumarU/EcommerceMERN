@@ -207,17 +207,17 @@ class AddressForm extends Component {
                         onChange={this.handleChange}
                         label="Work (Delivery between 10AM - 5PM)" />
                 </div>
-                <div className="row py-3">
-                    <div className="col-md-5">
+                <div className="row py-1">
+                    <div className="col-md-6 col-sm-7 col-12 pt-2">
                         <button 
-                            className="btn btn-dark btn-block btn-lg" 
+                            className="btn btn-dark btn-block" 
                             onClick={this.saveAndDeliver}>
                                 <small>SAVE AND DELIVER HERE</small>
                         </button>
                     </div>
-                    <div className="col-md-2">
+                    <div className="col-md-3 col-sm-3 col-12 pt-2">
                         <button 
-                            className="btn btn-light btn-lg" 
+                            className="btn btn-light btn-block px-0" 
                             onClick={closeform}>
                                 <small>CANCEL</small>
                         </button>

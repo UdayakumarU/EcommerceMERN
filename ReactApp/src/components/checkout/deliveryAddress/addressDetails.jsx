@@ -34,7 +34,7 @@ class AddressDetails extends Component {
         return (
             <Tile className={`${selectClass} _pointer _hoverable`} onClick={() => this.handleSelectedAddress(address._id)}>
                 <div className="row">
-                    <div className="col-md-10">
+                    <div className="col-md-9 col-8">
                         <div className="small">
                             <span className="mr-2"><strong>{address.receiverName}</strong></span>
                             {this.getAddressType(address.addressType)}
@@ -47,16 +47,16 @@ class AddressDetails extends Component {
                             <span><strong>{address.pincode}</strong></span>
                         </div>
                     </div>
-                    {isSelectedAddress && <div className="col">
+                    {isSelectedAddress && <div className="col-md-3 col-4">
                         <button
-                            className="btn btn-light text-primary float-right _text_sm_dark"
+                            className="btn btn-light btn-block text-primary _text_sm_dark px-0"
                             onClick={() => this.editAddress(address._id)}>EDIT</button>
                     </div>}
                 </div>
                 {isSelectedAddress && <div className="row">
                     <div className="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                         <button 
-                            className="btn btn-dark btn-block btn-lg my-3" 
+                            className="btn btn-dark btn-block my-3" 
                             onClick={() => this.handleDeliveryAddress(address._id)}>
                                 <small> DELIVER HERE </small>
                         </button>    

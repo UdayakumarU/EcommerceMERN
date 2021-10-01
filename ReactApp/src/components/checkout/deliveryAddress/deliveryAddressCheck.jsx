@@ -61,8 +61,8 @@ class DeliveryAddressCheck extends Component {
     
     getHeaderContent = (color) => (
         <React.Fragment>
-            <span className={`badge badge-${color} px-2 py-1`}>2</span>
-            <span className="text-muted px-3"><strong>DELIVERY ADDRESS</strong></span>
+            <span className={`badge badge-${color}`}>2</span>
+            <span className="text-muted px-1"><strong>DELIVERY ADDRESS</strong></span>
         </React.Fragment>
     );
 
@@ -107,25 +107,24 @@ class DeliveryAddressCheck extends Component {
         return(
             <React.Fragment>
                 <div className="row">
-                    <div className="col-md-9 col-sm-9 col-9">
+                    <div className="col-md-9 col-sm-9 col-8">
                         {this.getHeaderContent('light')}
                         <span className="text-dark"><strong>&#x2713;</strong></span>
+                        <div className="col pl-3 ml-1">
+                            <small>
+                                <strong>{`${confirmedAddress.receiverName} `}</strong>
+                                <span>{`${confirmedAddress.area}, `}</span>
+                                <span>{`${confirmedAddress.city}, `}</span>
+                                <span>{`${confirmedAddress.state} - `}</span>
+                                <span><strong>{confirmedAddress.pincode}</strong></span>
+                            </small>
+                        </div>
                     </div>
-                    <div className="col">
-                        <button className="btn btn-outline-dark float-right" onClick={this.changeDetail}>Change</button>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-10 pl-5 ml-2">
-                        <small>
-                            <strong>{`${confirmedAddress.receiverName} `}</strong> 
-                            <span>{`${confirmedAddress.area}, `}</span>
-                            <span>{`${confirmedAddress.city}, `}</span>
-                            <span>{`${confirmedAddress.state} - `}</span>
-                            <span><strong>{confirmedAddress.pincode}</strong></span>
-                        </small>
+                    <div className="col-sm-3 col-sm-3 col-4 pr-1 pl-0">
+                        <button className="btn btn-outline-dark btn-block px-0" onClick={this.changeDetail}>Change</button>
                     </div>
                 </div>
+                
             </React.Fragment>
         );
     }

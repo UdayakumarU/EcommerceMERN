@@ -25,8 +25,8 @@ class OrderSummaryCheck extends Component {
 
     getHeaderContent = (color) => (
         <React.Fragment>
-            <span className={`badge badge-${color} px-2 py-1`}>3</span>
-            <span className="text-muted px-3"><strong>ORDER SUMMARY</strong></span>
+            <span className={`badge badge-${color}`}>3</span>
+            <span className="text-muted px-1"><strong>ORDER SUMMARY</strong></span>
         </React.Fragment>
     );
 
@@ -45,15 +45,16 @@ class OrderSummaryCheck extends Component {
             stepThreeStatus?(
                 checkoutItems.length?<React.Fragment>
                     <ItemList items={checkoutItems} handleRemoveItem= {this.moveItemfromCheckout}/>
-                    <Tile>
-                        <div className="float-right">
-                            <button 
-                                className="btn btn-dark btn-lg px-5" 
-                                onClick={this.confirmCheckoutItem}>
-                                    <small> CONTINUE </small>
-                            </button>    
+                        <hr/>
+                        <div className="row mt-3">
+                            <div className="offset-md-8 offset-sm-8 offset-6 col-md-4 col-sm-4 col-6">
+                                <button
+                                    className="btn btn-dark btn-block" 
+                                    onClick={this.confirmCheckoutItem}>
+                                        <small> CONTINUE </small>
+                                </button>
+                            </div>
                         </div>
-                    </Tile>
                 </React.Fragment>:
                 <small>Your checkout has no items.</small>
             ):
@@ -71,19 +72,15 @@ class OrderSummaryCheck extends Component {
         return( 
             <React.Fragment>
                 <div className="row">
-                    <div className="col-md-9 col-sm-9 col-9">
+                    <div className="col-md-9 col-sm-9 col-8">
                         {this.getHeaderContent('light')}
                         <span className="text-dark"><strong>&#x2713;</strong></span>
+                        <div className="col pl-3 ml-1">
+                            <small> <strong>{checkedItem}</strong> </small>
+                        </div>
                     </div>
-                    <div className="col">
-                        <button className="btn btn-outline-dark float-right" onClick={this.changeDetail}>Change</button>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-md-10 pl-5 ml-2">
-                        <small>
-                            <strong>{ checkedItem }</strong> 
-                        </small>
+                    <div className="col-sm-3 col-sm-3 col-4 pr-1 pl-0">
+                        <button className="btn btn-outline-dark btn-block px-0" onClick={this.changeDetail}>Change</button>
                     </div>
                 </div>
             </React.Fragment>
