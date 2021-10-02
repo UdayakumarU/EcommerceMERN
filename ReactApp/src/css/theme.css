@@ -279,7 +279,7 @@ button._primary_bg:focus {
   display: inline-block;
 }
 
-@media screen and (max-width: 768px) { 
+@media screen and (max-width: 768px) {
   body { 
     font-size: 0.85em; 
   }
@@ -306,11 +306,40 @@ button._primary_bg:focus {
 
   ._w_h_md{
     width: 80vw;
-    height: 40vh;
   }
 
   .card-title{
     font-size: 1.2em;
+  }
+  
+  ._tracker_line{
+    top: 3vh;
+    margin: 0 0 5vh 2vw;
+    width: 3px;
+    height: 30vh;
+    flex-direction: column;
+  }
+  
+  ._tracker_point_complete::before{
+    left: 1.6em;
+    top: -0.3em;
+    font-size: .8em;
+  }
+  
+  ._tracker_point_complete::after{
+    left: 1.8em;
+    top: 1em;
+  }
+
+  ._tracker_point_incomplete::before{
+    left: 1.6em;
+    top: -0.3em;
+    font-size: .8em;
+  }
+  
+  ._tracker_point_incomplete::after{
+    left: 1.8em;
+    top: 1em;
   }
 }
 

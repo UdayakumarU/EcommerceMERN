@@ -7,7 +7,9 @@ class OrderTracker extends Component {
         const tracks = mapOrderStatusDetails(this.props.statusTrack);
         const completion = (tracks.filter(track=>track.statusCd).length-1) * 33;
          //may i need a better approach
-        const style = { background : `linear-gradient(90deg, #26a541 0 ${completion}%, #ccc ${completion}% 100%)` };
+        const gradientDegree = (window.innerWidth > 768) ? '90deg' : '180deg';
+        const style = { background : `linear-gradient(${gradientDegree}, #26a541 0 ${completion}%, #ccc ${completion}% 100%)` };
+
         return (
             <div className="_tracker_line" style={style}>
                 {tracks.map(track => (
