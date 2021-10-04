@@ -15,6 +15,9 @@ const loaderReducer = ( currentState = INITIAL_STATE, action) => {
         case MISC_CONST.LOGIN_FROM_CHECKOUT:{
             return { ...currentState, loginFromCheckout: action.payload }
         }
+        case MISC_CONST.FOOTER_DISPLAY_STATUS:{
+            return { ...currentState, footerDisplay: action.payload }
+        }
         default: 
             return currentState;
     }

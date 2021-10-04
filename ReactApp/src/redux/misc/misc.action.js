@@ -19,3 +19,8 @@ export const setLoginFromCheckout = (status) => ({
     type: MISC_CONST.LOGIN_FROM_CHECKOUT,
     payload: {status}
 });
+
+export const setFooterDisplay = (status) => ({
+    type: MISC_CONST.FOOTER_DISPLAY_STATUS,
+    payload: {status}
+});
