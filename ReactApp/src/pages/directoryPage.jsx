@@ -1,6 +1,5 @@
 import { React, Component, connect } from "../library";
 
-import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
 import Breadcrum from "../components/misc/breadcrum";
@@ -38,7 +37,6 @@ class DirectoryPage extends Component {
                     <Breadcrum sections = {breadcrumSections}/>
                     <ProductList products = {productsByType}/>
                 </div>
-                <Footer/>
             </React.Fragment>
         );
     }

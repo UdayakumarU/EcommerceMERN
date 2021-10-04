@@ -1,7 +1,6 @@
 import { React, Component, connect } from "../library";
 
 import Header from "../components/misc/header";
-import Footer from "../components/misc/footer";
 import Directory from "../components/misc/directory";
 import OrdersList from "../components/orders/ordersList";
 
@@ -40,7 +39,6 @@ class OrdersPage extends Component {
                         </div>
                     </div>
                 </div>
-                <Footer/>
             </React.Fragment>
         )
     }

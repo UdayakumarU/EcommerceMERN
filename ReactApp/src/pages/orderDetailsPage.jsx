@@ -1,7 +1,6 @@
 import { React, Component, connect, Tile } from "../library";
 
 import Header from "../components/misc/header";
-import Footer from "../components/misc/footer";
 import Directory from "../components/misc/directory";
 import OrderedProduct from "../components/orders/orderedProduct";
 import OrderedAddress from "../components/orders/orderedAddress";
@@ -46,7 +45,6 @@ class OrderDetailsPage extends Component{
                         </div>
                     </div>
                 </Tile>
-                <Footer/>
             </React.Fragment>)
     }
 }

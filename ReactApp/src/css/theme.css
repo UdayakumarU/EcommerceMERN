@@ -1,3 +1,24 @@
+* {
+  box-sizing: border-box;
+ }
+
+ *:before, *:after {
+  box-sizing: border-box;
+ }
+
+ html, body {
+  height: 100%;
+  position: relative;
+ }
+ 
+ ._main_container {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 25vh; /* height of footer */
+ }
+ 
 ._text_sm{
   font-size: smaller;
 }
@@ -120,11 +141,11 @@ button._primary_bg:focus {
   top: 0;
   right: 0;
 }
-
 ._sticky_footer {
-    flex-shrink: none;
-    margin-top: 130px; 
-  }
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 ._dropdown {
     position: relative;

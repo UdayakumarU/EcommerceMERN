@@ -1,6 +1,5 @@
 import { React, Component, connect } from "../library";
 
-import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
 import Breadcrum from "../components/misc/breadcrum";
@@ -39,7 +38,6 @@ class ProductPage extends Component {
                     <Breadcrum sections={this.props.breadcrumSections}/>
                     <ProductDetails/>
                 </div>
-                <Footer/>
             </React.Fragment>
         );
     }

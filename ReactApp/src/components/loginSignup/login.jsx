@@ -76,7 +76,6 @@ class Login extends Component {
                 });
                 this.mergeCustomerCart(customerData.cart);
                 this.setState(INITIAL_STATE);
-                console.log(history);
                 if(loginFromCheckout){
                     unsetLoginFromCheckout();
                     history.goBack();

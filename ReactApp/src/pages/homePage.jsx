@@ -1,7 +1,6 @@
 import{ React, Component, connect } from "../library";
 
 import Banner from "../core-components/banner";
-import Footer from "../components/misc/footer";
 import Header from "../components/misc/header";
 import Directory from "../components/misc/directory";
 import ProductSlider from "../components/product/productSlider";
@@ -49,7 +48,6 @@ class HomePage extends Component {
                     <ProductSlider products = {trending} title="Trending Offers"/>
                     <ProductSlider products = {fashions} title="Fashions" link="/fashion"/>
                     <ProductSlider products = {electronics} title="Electronics" link="/electronics"/>
-                    <Footer/>
                 </div>
             </React.Fragment>
         );

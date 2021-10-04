@@ -9,10 +9,10 @@ const mapStateToProps = () => ({
 const Directory = ({categories}) => {
     return (
         <nav className="navbar navbar-dark bg-dark navbar-expand-lg navbar-expand-lg p-1">
-            <button class="navbar-toggler" data-toggle="collapse" data-target="#directoryList">
-                <span class="navbar-toggler-icon"></span>
+            <button className="navbar-toggler" data-toggle="collapse" data-target="#directoryList">
+                <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="directoryList">
+            <div className="collapse navbar-collapse" id="directoryList">
                 <ul className="navbar-nav text-md-center nav-justified w-100">
                 {
                     categories.map((category) => (

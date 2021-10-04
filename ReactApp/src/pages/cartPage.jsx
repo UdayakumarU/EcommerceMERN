@@ -1,7 +1,6 @@
 import { React, Component, connect, Link, Tile } from "../library";
 
 import Header from "../components/misc/header";
-import Footer from "../components/misc/footer";
 import EmptyCart from "../components/cart/emptyCart";
 import PriceDetail from "../components/priceDetail";
 import ItemList from "../components/itemList";
@@ -49,7 +48,6 @@ class CartPage extends Component {
                         </div>
                     </div>
                 ) }
-                <Footer/>
             </React.Fragment>
         );
     }

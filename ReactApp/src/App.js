@@ -8,21 +8,23 @@ import CartPage from "./pages/cartPage";
 import CheckoutPage from "./pages/checkoutPage";
 import OrdersPage from "./pages/ordersPage";
 import OrderDetailsPage from "./pages/orderDetailsPage";
+import Footer from "./components/misc/footer";
 
-import { getLoaderStatus, getErrorMessages, getSuccessMessages } from "./redux/misc/misc.selector";
+import { getLoaderStatus, getErrorMessages, getSuccessMessages, getFooterDisplay } from "./redux/misc/misc.selector";
 import APP_CONST from "./APP_CONST";
 
 const mapStateToProps = () => ({
   loaderOn: getLoaderStatus(),
   errors: getErrorMessages(),
   success: getSuccessMessages(),
+  showFooter: getFooterDisplay()
 });
 
 class App extends React.Component {
   render() {
-    const {errors, success, loaderOn} = this.props;
+    const {errors, success, loaderOn, showFooter} = this.props;
     return (
-      <div>
+      <div className = "_main_container">
           { errors.length > 0 && <Notifier messageType={APP_CONST.FAILURE} messages={errors}/>}
           { success.length > 0 && <Notifier messageType={APP_CONST.SUCCESS} messages={success}/>}
           { loaderOn && <Loader/> }
@@ -37,6 +39,7 @@ class App extends React.Component {
             <Route path="/:category/:subCategory" component={DirectoryPage} />
             <Route path="/:category" component={DirectoryPage} />
           </Switch>
+          {showFooter && <Footer/>}
       </div>
     );
   }
