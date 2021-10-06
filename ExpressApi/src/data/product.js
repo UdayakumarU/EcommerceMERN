@@ -136,7 +136,7 @@ const sampleProducts = [{
         ],
         "rating": 4.1,
         "productImages":
-        ["https://sastobazzar.com/image/cache/catalog/LG_brand/MBoRvr_1541329243-FC1450S2E-550x550.jpg"],
+        ["https://www.sathya.store/img/product/m9P3OwIOS3AUdJor.jpg"],
         "sellerId":"SE4001"
       },
       {
