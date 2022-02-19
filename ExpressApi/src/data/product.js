@@ -44,7 +44,7 @@ const sampleProducts = [{
         ],
         "rating": 4.4,
         "productImages":
-          ["https://www.nyasa.info/wp-content/uploads/2019/09/APPLE_1-2-600x600.jpg"],
+          ["https://www.energycellphones.com/wp-content/uploads/2020/11/image-8-600x600.jpeg"],
         "sellerId":"SE4002"
         },
       {
@@ -90,7 +90,7 @@ const sampleProducts = [{
         ],
         "rating": 4.3,
         "productImages":
-          ["https://shopsbazaar.com/wp-content/uploads/2019/08/618ZNI86PgL._SL1100_-600x600.jpg"],
+          ["https://e2simages.excess2sell.com/images/products/amerilibasc1601467479319_1601467481_lg.jpg"],
         "sellerId":"SE4001"
       },
       {
@@ -250,7 +250,7 @@ const sampleProducts = [{
         ],
         "rating": 4.5,
         "productImages":
-        ["https://cdn.movertix.com/media/catalog/product/i/p/iphone-12-blue-128gb.jpg"],
+        ["https://specifications-pro.com/wp-content/uploads/2020/04/iPhone-12-2.jpg"],
         "sellerId":"SE4001"
       },
       {
